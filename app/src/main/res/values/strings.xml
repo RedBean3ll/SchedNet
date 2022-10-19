@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">SchedNet</string>
+    <string name="app_name">"SchedNet"</string>
+    <string name="dmuu_content_descr">"Test Activity"</string>
 </resources>

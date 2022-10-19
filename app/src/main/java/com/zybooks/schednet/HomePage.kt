@@ -1,11 +1,12 @@
 package com.zybooks.schednet
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class TodoActivity : Activity() {
+class HomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.)
+        setContentView(R.layout.activity_home_page)
+
     }
 }
