@@ -7,4 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="temptheme_alpha">#FFC9C9C9</color>
+    <color name="temptheme_beta">#FF00E814</color>
+    <color name="temptheme_alpha_heavy">#FFA3A3A3</color>
 </resources>
