@@ -24,7 +24,8 @@
             android:contentDescription="Delete Selection Mode"
             app:layout_constraintRight_toLeftOf="@+id/thn_select_create_favorite"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_default_trash_ico" />
+            app:srcCompat="@drawable/ic_default_trash_ico"
+            />
 
         <ImageButton
             android:id="@+id/thn_select_create_favorite"
@@ -91,7 +92,7 @@
         app:srcCompat="@drawable/ic_calendar_gen_ico">
 
     </Button>
-    
+
     <ScrollView
         android:id="@+id/thn_task_space"
         android:layout_width="match_parent"

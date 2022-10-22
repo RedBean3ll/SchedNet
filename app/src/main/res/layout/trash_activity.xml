@@ -106,7 +106,6 @@
             android:layout_alignParentEnd="true"
             android:background="@drawable/ic_button_background_round"
             android:contentDescription="Search This"
-            app:layout_constraintRight_toEndOf="parent"
             app:srcCompat="@drawable/ic_search_ico" />
 
     </RelativeLayout>

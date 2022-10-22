@@ -20,33 +20,33 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_button_background_round"
+            
             android:contentDescription="Delete Selection Mode"
             app:layout_constraintRight_toLeftOf="@+id/tdo_select_share_todo"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_add_trash_ico" />
+            android:src="@drawable/ic_add_trash_ico" />
 
         <ImageButton
             android:id="@+id/tdo_select_share_todo"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_button_background_round"
+            
             android:contentDescription="Share List"
             app:layout_constraintRight_toLeftOf="@+id/tdo_calendar_view_todo"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_select_box_ico" />
+            android:src="@drawable/ic_select_box_ico" />
 
         <ImageButton
             android:id="@+id/tdo_calendar_view_todo"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_button_background_round"
+            
             android:contentDescription="Share List"
             app:layout_constraintRight_toLeftOf="@+id/tdo_menu_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_calendar_gen_ico" />
+            android:src="@drawable/ic_calendar_gen_ico" />
 
         <Button
             android:id="@+id/tdo_back_button"
@@ -62,10 +62,10 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_button_background_round"
+            
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_menu_dot_settings_ico"
+            android:src="@drawable/ic_menu_dot_settings_ico"
             android:contentDescription="Action Menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -115,10 +115,11 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/ic_button_background_round"
             android:contentDescription="Search This"
-            app:layout_constraintRight_toEndOf="parent"
-            app:srcCompat="@drawable/ic_search_ico" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_search_ico"
+
+            />
 
     </RelativeLayout>
 
@@ -177,6 +178,6 @@
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_plus_ico" />
+        android:src="@drawable/ic_plus_ico" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

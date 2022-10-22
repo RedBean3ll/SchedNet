@@ -16,15 +16,15 @@ class LoginPage : AppCompatActivity() {
 
 
 
-        val backBtn: Button = findViewById(R.id.backBtn)
+        //val backBtn: Button = findViewById(R.id.cdm_back_button)
         val loginBtn: Button = findViewById(R.id.LoginBtn2)
     var emailTxt: EditText = findViewById(R.id.editTextTextEmailAddress)
 
 
-        backBtn.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this@LoginPage, MainActivity::class.java)
-            startActivity(intent)
-        })
+        //backBtn.setOnClickListener(View.OnClickListener {
+        //    val intent = Intent(this@LoginPage, MainActivity::class.java)
+        //    startActivity(intent)
+        //})
 
         loginBtn.setOnClickListener{
           val intent = Intent(this@LoginPage, HomePage::class.java)
