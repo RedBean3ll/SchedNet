@@ -1,6 +1,12 @@
 package com.zybooks.schednet
 
 class TodoRibbonObj {
+    var Tdo_RibbonId = "0"
+        get() = field
+        set(value) {
+            field = value
+        }
+
     var Tdo_Name = "todo_nam"
         get() = field
         set(value) {

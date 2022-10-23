@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <EditText
+        android:id="@+id/new_ribbon_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:autofillHints="Name of task"
+        android:background="@null"
+        android:hint="Name of task here"
+        android:inputType="none"
+        android:minHeight="50dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColorHint="#6D4C41"
+
+        />
+
+    <Button
+        android:id="@+id/new_ribbon_button"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/new_ribbon_text"
+        android:layout_alignParentEnd="true"
+
+        android:text="save"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:background="@color/transparent"
+        />
+
+</RelativeLayout>

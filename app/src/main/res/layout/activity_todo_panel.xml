@@ -123,50 +123,21 @@
 
     </RelativeLayout>
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tdo_task_space"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tdo_search_menu_cl"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ExtraText">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/sample_ribbon_beta"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/temptheme_alpha">
-
-            <CheckBox
-                android:id="@+id/sample_ribbon_box"
-                android:layout_width="55dp"
-                android:layout_height="match_parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-
-            <EditText
-                android:id="@+id/sample_ribbon_edit_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:autofillHints="Name of task"
-                android:hint="Name of task here"
-                android:inputType="text"
-                android:maxHeight="65dp"
-                android:minHeight="50dp"
-                android:maxLength="62"
-                android:textColorHint="#6D4C41"
-                app:layout_constraintLeft_toRightOf="@id/sample_ribbon_box"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="ExtraText"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:nestedScrollingEnabled="true"
+        tools:listitem="@layout/todo_ribbon_frame"
+        >
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        #Max length may be temporary
-
-    </ScrollView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/tdo_new_todo_fab"
