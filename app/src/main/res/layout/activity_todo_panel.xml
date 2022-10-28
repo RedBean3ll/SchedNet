@@ -116,8 +116,8 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:contentDescription="Search This"
-            app:layout_constraintEnd_toEndOf="parent"
             android:src="@drawable/ic_search_ico"
+            app:layout_constraintEnd_toEndOf="parent"
 
             />
 

@@ -1,29 +1,18 @@
 package com.zybooks.schednet.Model
 
+//FOR RIBBON
 class TodoModel {
 
-    var mId : Int? = null
-        get() = field
-        set(value) {
-            field = value
-        }
-
-    var mStatus : Int? = null
-        get() = field
-        set(value) {
-            field = value
-        }
-
-    var mTaskNam : String? = null
-        get() = field
-        set(value) {
-            field = value
-        }
+    var TodoId : Int? = null
+    var TodoStatus : Int? = null
+    var TodoName : String? = null
+    var TodoPriorityStatus : Int? = null
 
     init {
-        mId = 0
-        mStatus = 1
-        mTaskNam = "NA"
+        TodoId = 0
+        TodoStatus = 1
+        TodoName = "COULD NOT BE LOADED"
+
     }
 
 }

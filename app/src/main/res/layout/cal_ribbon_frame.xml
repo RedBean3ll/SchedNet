@@ -8,6 +8,7 @@
     app:cardElevation="4dp"
     >
 
+    <!-- UPDATE TO FIT NEEDS -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/sample_ribbon_beta"
         android:layout_width="match_parent"
