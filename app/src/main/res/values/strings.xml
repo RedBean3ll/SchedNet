@@ -21,5 +21,12 @@
     <!-- home -->
     <string name="name1">TMP</string>
     <string name="personal_hub">TMP</string>
+    <string name="save_new_todo">save</string>
+
+    <string-array name="number_remind">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 
 </resources>

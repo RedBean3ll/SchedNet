@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Task Name" >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/newribbon_name"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="30"
+                android:maxLines="1"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingEnd="5dp"
+        android:paddingTop="5dp"
+        >
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/newribbon_chipgroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/newribbon_chip_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STAR"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/newribbon_chip_duedate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DUE"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/newribbon_chip_repeat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REPEAT"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/newribbon_chip_remind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REMIND"
+                />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/newribbon_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@color/transparent"
+        android:text="@string/save_new_todo"
+        />
+
+
+</LinearLayout>
