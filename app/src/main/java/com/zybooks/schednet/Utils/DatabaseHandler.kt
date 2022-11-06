@@ -78,8 +78,8 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, nul
         //COMMANDS ----------------------------------------------
         private const val CREATE_TABLE_USERS = "CREATE TABLE IF NOT EXISTS 'Users' ('user' INTEGER PRIMARY KEY, 'username' TEXT DEFAULT 'EMERGENCY' NOT NULL, 'password' TEXT DEFAULT 'EMERGENCY' NOT NULL, 'frequencycleancal' TEXT DEFAULT 'week' NOT NULL, 'frequencycleantdo' TEXT DEFAULT 'month' NOT NULL, 'defaultlogin' INTEGER DEFAULT 0 NOT NULL, 'loggedin' INTEGER DEFAULT 0 NOT NULL)"
         private const val CREATE_TABLE_LISTS = "CREATE TABLE IF NOT EXISTS 'TodoLists' ('user' INTEGER DEFAULT 0 NOT NULL, 'list' INTEGER PRIMARY KEY, 'listtitle' TEXT DEFAULT 'TITLE' NOT NULL)"
-        private const val CREATE_TABLE_TODO = "CREATE TABLE IF NOT EXISTS 'TodoMain' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'list' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'description' TEXT, 'due' TEXT, 'remindone' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT, 'statusstamp' TEXT, 'createstamp' TEXT, 'priority' INTEGER DEFAULT 0 NOT NULL)"
-        private const val CREATE_TABLE_CALENDAR = "CREATE TABLE IF NOT EXISTS 'CalendarMain' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'eventlocation' TEXT, 'description' TEXT, 'allday' INTEGER DEFAULT 1 NOT NULL, 'datestart' TEXT, 'dateend' TEXT, 'remind' INTEGER DEFAULT 0 NOT NULL, 'remindone' TEXT, 'remindtwo' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT, 'statusstamp' TEXT, 'createstamp' TEXT)"
+        private const val CREATE_TABLE_TODO = "CREATE TABLE IF NOT EXISTS 'TodoMain' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'list' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'description' TEXT, 'due' TEXT, 'remindone' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT, 'statusstamp' TEXT, 'createstamp' INTEGER, 'priority' INTEGER DEFAULT 0 NOT NULL)"
+        private const val CREATE_TABLE_CALENDAR = "CREATE TABLE IF NOT EXISTS 'CalendarMain' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'eventlocation' TEXT, 'description' TEXT, 'allday' INTEGER DEFAULT 1 NOT NULL, 'datestart' TEXT, 'dateend' TEXT, 'remind' INTEGER DEFAULT 0 NOT NULL, 'remindone' TEXT, 'remindtwo' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT, 'statusstamp' TEXT, 'createstamp' INTEGER)"
         private const val CREATE_TABLE_FAV_TODO = "CREATE TABLE IF NOT EXISTS 'FavoriteTodo' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'description' TEXT, 'due' TEXT, 'remindone' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT)"
         private const val CREATE_TABLE_FAV_CALENDAR = "CREATE TABLE IF NOT EXISTS 'FavoriteCalendar' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'eventlocation' TEXT, 'description' TEXT, 'allday' INTEGER DEFAULT 1 NOT NULL, 'datestart' TEXT, 'dateend' TEXT, 'remind' INTEGER DEFAULT 0 NOT NULL, 'remindone' TEXT, 'remindtwo' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT)"
         private const val CREATE_TABLE_ACTIVEEVENTS = "CREATE TABLE IF NOT EXISTS 'ActiveReminders' ( 'remind' INTEGER PRIMARY KEY, 'user' INTEGER, 'id' INTEGER, 'source' TEXT, 'remindtime' TEXT)"
@@ -146,13 +146,12 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, nul
                                 var task: TodoModel = TodoModel()
                                 task.TodoId = if(cur.getColumnIndex(EVENT_ID) == -1) 0 else cur.getInt(cur.getColumnIndex(EVENT_ID))
                                 task.TodoName = if(cur.getColumnIndex(EVENT_NAME) == -1) "NA" else cur.getString(cur.getColumnIndex(EVENT_NAME))
-                                task.TodoStatus = if(cur.getColumnIndex(EVENT_STATUS) == -1) 0 else cur.getInt(cur.getColumnIndex(EVENT_STATUS))
-                                task.TodoPriorityStatus = if(cur.getColumnIndex(EVENT_PRIORITYSTATUS) == -1) 0 else cur.getInt(cur.getColumnIndex(EVENT_PRIORITYSTATUS))
-                                task.TodoCreateStamp = if(cur.getColumnIndex(EVENT_CREATESTAMP) == -1) "NA" else cur.getString(cur.getColumnIndex(EVENT_CREATESTAMP))
+                                task.TodoStatus = if(cur.getColumnIndex(EVENT_STATUS) == -1) false else (if(cur.getInt(cur.getColumnIndex(EVENT_STATUS)) == 1) true else false)
+                                task.TodoPriorityStatus = if(cur.getColumnIndex(EVENT_PRIORITYSTATUS) == -1) false else (if(cur.getInt(cur.getColumnIndex(EVENT_PRIORITYSTATUS)) == 1) true else false)
+                                task.TodoCreateStamp = if(cur.getColumnIndex(EVENT_CREATESTAMP) == -1) 0 else cur.getLong(cur.getColumnIndex(EVENT_CREATESTAMP))
                                 task.TodoStatusTimestamp = if(cur.getColumnIndex(EVENT_STATUSTIMESTAMP) == -1) "NA" else cur.getString(cur.getColumnIndex(EVENT_STATUSTIMESTAMP))
                             } while(cur.moveToNext())
                         }
-
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()

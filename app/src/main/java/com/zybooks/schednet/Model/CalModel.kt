@@ -3,11 +3,11 @@ package com.zybooks.schednet.Model
 //FOR RIBBON
 class CalModel {
 
-    var CalId : Int? = null //TASK BY USER ID WILL BE HANDLED BY DB HANDLER
-    var CalEventName : String? = null
-    var CalEventStart : Int? = null //DATETIME IN ONE STRING <<DATETIME IS DATE AND TIME TOGETHER>>
-    var CalEventEnd : Int? = null
-    var CalIsRepeat : Int? = null //MAYBE PLACE STAR AT END OF RIBBON IF REPEATING?? DELETE IF SCRAPPED..
+    var CalId: Int //TASK BY USER ID WILL BE HANDLED BY DB HANDLER
+    var CalEventName: String
+    var CalEventStart : Int //DATETIME IN ONE STRING <<DATETIME IS DATE AND TIME TOGETHER>>
+    var CalEventEnd : Int
+    var CalIsRepeat : Int //MAYBE PLACE STAR AT END OF RIBBON IF REPEATING?? DELETE IF SCRAPPED..
 
     init { //DEFAULT VALUES IF NOT UPDATED OR DB PULL FAILS
         CalId = 0

@@ -83,58 +83,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tdo_top_menu_cl" />
 
-    <RelativeLayout
-        android:id="@+id/tdo_search_menu_cl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:paddingEnd="10dp"
-        android:paddingStart="10dp"
-        android:background="@color/purple_500"
-        app:layout_constraintTop_toBottomOf="@id/tdo_title_todo"
-        app:layout_constraintLeft_toLeftOf="parent">
-
-        <EditText
-            android:id="@+id/tdo_search_textbox"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toStartOf="@id/tdo_search_button"
-            android:autofillHints="What to search?"
-            android:backgroundTint="@color/white"
-            android:hint="Search..."
-            android:inputType="text"
-            android:paddingStart="10dp"
-            android:paddingEnd="0dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white" />
-
-        <ImageButton
-            android:id="@+id/tdo_search_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:contentDescription="Search This"
-            android:src="@drawable/ic_search_ico"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            />
-
-    </RelativeLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tdo_task_space"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tdo_search_menu_cl"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ExtraText"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:nestedScrollingEnabled="true"
-        tools:listitem="@layout/todo_ribbon_frame"
-        >
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tdo_title_todo"
+        tools:ignore="ExtraText"
+        tools:listitem="@layout/todo_ribbon_frame">
 
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -149,6 +108,7 @@
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_plus_ico" />
+        android:src="@drawable/ic_plus_ico"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

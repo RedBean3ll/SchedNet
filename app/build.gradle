@@ -19,9 +19,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    /*realm {
-        syncEnabled = false
-    }*/
+    buildFeatures {
+        viewBinding true
+    }
 
     buildTypes {
         release {
@@ -36,6 +36,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+
 }
 
 dependencies {

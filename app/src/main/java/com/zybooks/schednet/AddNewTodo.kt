@@ -4,45 +4,49 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.EditText
+import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.chip.Chip
-import com.zybooks.schednet.Utils.DatabaseHandler
+import com.zybooks.schednet.Model.TodoViewModel
+import com.zybooks.schednet.databinding.TodoNewRibbonFrameBinding
 
 class AddNewTodo : BottomSheetDialogFragment() {
-
+    //DEBUG
     val TAG = "ActionBottomDialog"
 
-    private var nameEdit: EditText? = null
-    //private var chipSet: ChipGroup? = null
-    private var priorityChippet: Chip? = null
-    private var dueChippet: Chip? = null
-    private var repeatChippet: Chip? = null
-    private var remindChippet: Chip? = null
-    private var db: DatabaseHandler? = null
-
-    fun AddNewTodo() : AddNewTodo {
-        return AddNewTodo()
-    }
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(STYLE_NORMAL, R.style.DialogStyle)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view: View = inflater.inflate(R.layout.todo_new_ribbon_frame, container, false)
-        //API CHECK
-        return view
-    }
+    private lateinit var binding: TodoNewRibbonFrameBinding
+    private lateinit var tViewModel: TodoViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val activity = requireActivity()
+        tViewModel = ViewModelProvider(activity).get(TodoViewModel::class.java)
+        binding.newribbonChipDescription.setOnClickListener {
+            toggleDescriptionVisible()
+        }
+        binding.newribbonSave.setOnClickListener {
+            saveAction()
+        }
+    }
 
-        nameEdit = getView()?.findViewById(R.id.newribbon_name)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = TodoNewRibbonFrameBinding.inflate(inflater, container, false)
 
+        return binding.root
+    }
+
+    private fun saveAction() {
+        tViewModel.TodoTitle.value = binding.newribbonName.text.toString()
+        tViewModel.TodoDescription.value = if(binding.newribbonDescriptionCasing.isVisible) binding.newribbonDescription.text.toString() else ""
+        binding.newribbonName.setText("")
+        binding.newribbonDescription.setText("")
+        dismiss()
+    }
+
+
+    //Guarantee flip
+    private fun toggleDescriptionVisible() {
+        binding.newribbonDescriptionCasing.isVisible = !binding.newribbonDescriptionCasing.isVisible
     }
 
 }

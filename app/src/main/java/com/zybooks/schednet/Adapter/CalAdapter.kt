@@ -13,8 +13,8 @@ import com.zybooks.schednet.R
 class CalAdapter(actin: CalendarPage) : RecyclerView.Adapter<CalAdapter.ViewHolder>() {
 
     //LIST AND TMI
-    private var mActin: CalendarPage? = null
-    private var mCalList: List<CalModel>? = null //LIST OF EVENTS FOR CAL
+    private var mActin: CalendarPage
+    private lateinit var mCalList: List<CalModel> //LIST OF EVENTS FOR CAL
 
     init {
         mActin = actin
@@ -42,13 +42,13 @@ class CalAdapter(actin: CalendarPage) : RecyclerView.Adapter<CalAdapter.ViewHold
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) { //BIND DATA TO CARD
-        var item: CalModel? = mCalList?.get(position)
+        val item: CalModel = mCalList.get(position)
         holder.RibbonName.text = item?.CalEventName
         holder.RibbonDate.text = "STRUCTURE OF EVENT START AND EVENT END"
     }
 
     override fun getItemCount(): Int { //SIZE OF LIST
-        return mCalList?.size!!
+        return mCalList.size
     }
 
     fun convBool(num: Int): Boolean { //CONVERTS INT TO BOOLEAN

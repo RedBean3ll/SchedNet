@@ -2,15 +2,16 @@ package com.zybooks.schednet.Model
 
 class TodoModelFull {
 
-        var TodoId : Int? = null
-        var TodoStatus : Boolean? = null
-        var TodoName : String? = null
-        var TodoPriorityStatus : Boolean? = null
+        var TodoId: Int
+        var TodoStatus: Boolean
+        var TodoName: String
+        var TodoPriorityStatus: Boolean
 
         init {
             TodoId = 0
             TodoStatus = true
             TodoName = "NA"
+            TodoPriorityStatus = false
         }
 
 }

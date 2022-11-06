@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 
 class DebugMenu : AppCompatActivity() {
 
@@ -39,7 +38,7 @@ class DebugMenu : AppCompatActivity() {
     }
 
     fun callLocalTDOPannel(view: View) {
-        val intend: Intent = Intent(this, TodoLocal::class.java)
+        val intend: Intent = Intent(this, TodoActivity::class.java)
         startActivity(intend)
     }
 

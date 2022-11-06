@@ -11,4 +11,5 @@
     <color name="temptheme_beta">#FF00E814</color>
     <color name="temptheme_alpha_heavy">#FFA3A3A3</color>
     <color name="transparent">#00000000</color>
+    <color name="gray_classic">#D4D4D4</color>
 </resources>
