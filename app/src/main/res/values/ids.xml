@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="usTxt" type="id" />
+    <item name="NameBox" type="id" />
+    <item name="EmailTxt" type="id" />
+    <item name="emailBox" type="id" />
+    <item name="PassTxt" type="id" />
+    <item name="stepWithTxt" type="id" />
+    <item name="yourFirstTxt" type="id" />
+    <item name="HeresTxt" type="id" />
+    <item name="PassBox" type="id" />
+    <item name="nameTxt" type="id" />
+    <item name="RegisterBtn" type="id" />
+    <item name="BackBtn" type="id" />
+</resources>
