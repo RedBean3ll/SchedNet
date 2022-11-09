@@ -12,27 +12,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SchedNet"
-        tools:targetApi="31"
-        >
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value=""></meta-data>
 
-        <activity
-            android:name=".TodoActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:noHistory="true"
-            />
-        <activity
-            android:name=".DebugMenu"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:noHistory="true"
-            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>/>
         </activity>
+        <activity
+            android:name=".Login"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Sign_up"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".TodoLocal"
+            android:exported="false"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DebugMenu"
+            android:exported="true"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity android:name=".HomePage" />
+        <activity android:name=".Calendar" />
+        <activity android:name=".WeekViewActivity" />
+        <activity android:name=".EventEditActivity" />
     </application>
 
 </manifest>

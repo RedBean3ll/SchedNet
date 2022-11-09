@@ -16,17 +16,12 @@
 
     <!-- login -->
     <string name="login">Login</string>
-    <string name="back">TMP</string>
+    <string name="forward"><![CDATA[->]]></string>
+    <string name="back"><![CDATA[<-]]></string>
 
     <!-- home -->
     <string name="name1">TMP</string>
     <string name="personal_hub">TMP</string>
-    <string name="save_new_todo">save</string>
 
-    <string-array name="number_remind">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
 
 </resources>

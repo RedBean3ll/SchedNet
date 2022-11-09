@@ -2,79 +2,76 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     android:background="@drawable/debug_menu_quip"
-    >
+    android:gravity="center"
+    android:orientation="vertical">
 
     <!-- login, sign up, main hub, group hub (alpha), local hub, local tdo panel, favorite, trash -->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
-        android:text="DEBUG MENU"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:layout_marginBottom="25dp"
-        />
+        android:text="DEBUG MENU"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/LoginBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/dmuu_content_descr"
+        android:text="login" />
+
+    <Button
+        android:id="@+id/SignUpBtn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/dmuu_content_descr"
+        android:text="sign up" />
 
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="login"
-        android:onClick="callLogin"
         android:contentDescription="@string/dmuu_content_descr"
-        />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="sign up"
-        android:onClick="callSignUP"
-        android:contentDescription="@string/dmuu_content_descr"
-        />
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="main hub"
         android:onClick="callMainHub"
-        android:contentDescription="@string/dmuu_content_descr"
-        />
+        android:text="main hub" />
+
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="group hub"
+        android:contentDescription="@string/dmuu_content_descr"
         android:onClick="callGroupHub"
-        android:contentDescription="@string/dmuu_content_descr"
-        />
+        android:text="group hub" />
+
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="local hub"
-        android:onClick="callLocalHub"
         android:contentDescription="@string/dmuu_content_descr"
-        />
+        android:onClick="callLocalHub"
+        android:text="local hub" />
+
     <Button
         android:id="@+id/button_tdo_pnl"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="local todo pannel"
+        android:contentDescription="@string/dmuu_content_descr"
         android:onClick="callLocalTDOPannel"
-        android:contentDescription="@string/dmuu_content_descr"
-        />
+        android:text="local todo pannel" />
+
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="favorite"
+        android:contentDescription="@string/dmuu_content_descr"
         android:onClick="callFavorite"
-        android:contentDescription="@string/dmuu_content_descr"
-        />
+        android:text="favorite" />
+
     <Button
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="trash"
-        android:onClick="callTrash"
         android:contentDescription="@string/dmuu_content_descr"
-        />
+        android:onClick="callTrash"
+        android:text="trash" />
 
 </LinearLayout>
