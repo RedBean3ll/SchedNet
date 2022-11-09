@@ -49,8 +49,6 @@
             android:layout_height="match_parent"
             android:src="@drawable/priority_dummy"
             android:backgroundTint="@color/transparent"
-            android:visibility="gone"
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sample_ribbon_title"

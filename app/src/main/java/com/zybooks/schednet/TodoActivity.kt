@@ -38,8 +38,10 @@ class TodoActivity : AppCompatActivity() {
         binding.tdoTaskSpace.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.tdoTaskSpace.adapter = mAdapter
 
-        val shell = TodoModel()
+
+        var shell = TodoModel()
         todoViewModel.TodoTitle.observe(this) {
+            shell = TodoModel()
             shell.TodoName = String.format(it)
         }
         todoViewModel.TodoDescription.observe(this) {

@@ -126,7 +126,6 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, nul
         }
 
         fun getTaskTodoFull(): TodoModelFull {
-
             return TodoModelFull() //UPDATE BEFORE USE!!
         }
 

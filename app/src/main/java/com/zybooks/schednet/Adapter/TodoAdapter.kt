@@ -1,14 +1,14 @@
 package com.zybooks.schednet.Adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.zybooks.schednet.Model.TodoModel
-import com.zybooks.schednet.TodoActivity
-import com.zybooks.schednet.databinding.ActivityTodoPageBinding
 import com.zybooks.schednet.databinding.TodoRibbonFrameBinding
 
 class TodoAdapter(private var TodoList: List<TodoModel>) : ListAdapter<TodoModel, TodoAdapter.TodoViewHolder>(DiffCallback()) {
@@ -33,45 +33,27 @@ class TodoAdapter(private var TodoList: List<TodoModel>) : ListAdapter<TodoModel
     }
 
     inner class TodoViewHolder(private val binding: TodoRibbonFrameBinding) : RecyclerView.ViewHolder(binding.root) {
-
-
-
-        init {
-            /*binding.apply {
-                root.setOnClickListener {
-                    val position = layoutPosition
-                    if(position != RecyclerView.NO_POSITION) {
-                        val task = getItem(layoutPosition)
-                        listener.onItemClick(task)
-                        //May not work
-                    }
-                }
-                sampleRibbonCheckbox.setOnClickListener {
-                    val position = layoutPosition
-                    if(position != RecyclerView.NO_POSITION) {
-                        val task = getItem(position)
-                        listener.onCheckBoxClick(task, sampleRibbonCheckbox.isChecked)
-                    }
-                }
-            }*/
-        }
-
-
         fun bind(item: TodoModel) {
+            var desc: String
             binding.apply {
-                sampleRibbonCheckbox.isChecked = item.TodoStatus
-                sampleRibbonTitle.paint.isStrikeThruText = item.TodoStatus
+                binding.sampleRibbonCheckbox.isChecked = item.TodoStatus
                 if(item.TodoStatus) sampleRibbonBody.setBackgroundColor(Color.parseColor("#D4D4D4"))
-                sampleRibbonTitle.text = item.TodoName
+                binding.sampleRibbonTitle.text = item.TodoName
+                desc = item.TodoDescription
                 sampleRibbonCheckbox.setOnCheckedChangeListener { compoundButton, isChecked ->
                     if(isChecked) {
-                        binding.sampleRibbonBody.setBackgroundColor(Color.parseColor("#D4D4D4"))
+                        sampleRibbonBody.setBackgroundColor(Color.parseColor("#D4D4D4"))
                     } else {
-                        binding.sampleRibbonBody.setBackgroundColor(Color.WHITE)
+                        sampleRibbonBody.setBackgroundColor(Color.WHITE)
                     }
                     //getItem(layoutPosition)
                     //notifyItemChanged(layoutPosition)
 
+                }
+                sampleRibbonBody.setOnClickListener {
+
+
+                    //Log.i("TodoAdapter", "Item named: " + sampleRibbonTitle.text.toString() + " w/ Descr: "+ desc)
                 }
             }
 

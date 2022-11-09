@@ -1,9 +1,7 @@
 package com.zybooks.schednet
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,6 +29,8 @@ class AddNewTodo : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = TodoNewRibbonFrameBinding.inflate(inflater, container, false)
+        //NEEDS CODE TO USE DIFFERENT METHOD ON LATER VERSIONS FIXME
+        dialog?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
         return binding.root
     }

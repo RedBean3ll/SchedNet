@@ -29,4 +29,11 @@
         <item>2</item>
     </string-array>
 
+    <string-array name="repeat_type">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+
 </resources>
