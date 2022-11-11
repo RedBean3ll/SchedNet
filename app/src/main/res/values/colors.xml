@@ -12,4 +12,9 @@
     <color name="temptheme_alpha_heavy">#FFA3A3A3</color>
     <color name="transparent">#00000000</color>
     <color name="gray_classic">#D4D4D4</color>
+    <color name="red_error">#E61B1B</color>
+    <color name="red_menu">#FF0000</color>
+    <color name="blue_menu">#0000FF</color>
+    <color name="green_menu">#27E500</color>
+    <color name="gray_menu">#595959</color>
 </resources>

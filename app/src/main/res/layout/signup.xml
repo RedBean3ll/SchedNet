@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:columnCount="1"
+    android:padding="20dp"
+    android:useDefaultMargins="true"
+    tools:context=".Fragments.SignupFragment">
+
+    <TextView
+        android:id="@+id/signup_label_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_label_text"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center_horizontal"
+
+        android:layout_marginBottom="50dp"
+        />
+
+
+    <TextView
+        android:id="@+id/lgn_username_label"
+        android:text="@string/signup_username_text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signup_username_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_username_hint"
+        app:hintTextColor="@color/black"
+
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:errorIconDrawable="@drawable/ic_baseline_error_24"
+
+        app:errorTextColor="@color/red_error"
+        app:errorTextAppearance="@color/red_error"
+        app:boxStrokeErrorColor="@color/red_error" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_username_edit"
+            android:inputType="text"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/lgn_password_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_password_text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/signup_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/signup_password_hint"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24"
+        app:endIconDrawable="@drawable/ic_baseline_visibility_24"
+        app:errorIconDrawable="@drawable/ic_baseline_error_24"
+        app:endIconCheckable="true"
+        app:endIconMode="password_toggle"
+
+        app:errorTextColor="@color/red_error"
+        app:errorTextAppearance="@color/red_error"
+        app:boxStrokeErrorColor="@color/red_error"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/signup_password_edit"
+            android:inputType="textPassword"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/signup_forgot_password_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:text="@string/signup_forgot_text"
+        android:layout_gravity="end"
+        android:visibility="gone"
+        />
+
+
+
+    <Button
+        android:id="@+id/signup_local_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/signup_local_text"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:layout_gravity="bottom|center"
+        />
+
+</GridLayout>

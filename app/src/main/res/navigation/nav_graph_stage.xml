@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_stage"
+    app:startDestination="@id/todo_hub_fragment"
+    >
+
+    <fragment
+        android:id="@+id/todo_hub_fragment"
+        android:name="com.zybooks.schednet.Fragments.TodoHubFragment"
+        android:label="@string/nm_todo_hub"
+        tools:layout="@layout/todo_hub" >
+        <action
+            android:id="@+id/show_todo_list"
+            app:destination="@id/todo_list_fragment"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/todo_list_fragment"
+        android:name="com.zybooks.schednet.Fragments.TodoFragment"
+        android:label="@string/nav_todo_list"
+        tools:layout="@layout/todo_list" >
+        <action
+            android:id="@+id/show_todo_edit"
+            app:destination="@id/todo_edit_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/todo_edit_fragment"
+        android:name="com.zybooks.schednet.Fragments.TodoEditFragment"
+        android:label="@string/nav_todo_edit"
+        tools:layout="@layout/todo_edit"
+        />
+
+    <fragment
+        android:id="@+id/calendar_fragment"
+        android:name="com.zybooks.schednet.Fragments.CalendarFragment"
+        android:label="@string/nm_calendar"
+        tools:layout="@layout/calendar"
+        />
+
+    <fragment
+        android:id="@+id/favorite_fragment"
+        android:name="com.zybooks.schednet.Fragments.FavoriteFragment"
+        android:label="@string/nm_favorite"
+        tools:layout="@layout/favorite"
+        />
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.zybooks.schednet.Fragments.SettingsFragment"
+        android:label="@string/nm_settings"
+        tools:layout="@layout/login"
+        />
+</navigation>

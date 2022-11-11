@@ -16,16 +16,13 @@
         >
 
         <activity
-            android:name=".TodoActivity"
+            android:name=".StageActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:noHistory="true"
             />
         <activity
-            android:name=".DebugMenu"
+            android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:noHistory="true"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

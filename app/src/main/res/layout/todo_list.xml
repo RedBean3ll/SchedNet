@@ -20,22 +20,11 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="10dp"
-            
-            android:contentDescription="Delete Selection Mode"
-            app:layout_constraintRight_toLeftOf="@+id/tdo_select_share_todo"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_add_trash_ico" />
 
-        <ImageButton
-            android:id="@+id/tdo_select_share_todo"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="10dp"
-            
-            android:contentDescription="Share List"
-            app:layout_constraintRight_toLeftOf="@+id/tdo_calendar_view_todo"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_select_box_ico" />
+            android:contentDescription="Delete Selection Mode"
+            android:src="@drawable/ic_add_trash_ico"
+            app:layout_constraintEnd_toStartOf="@+id/tdo_calendar_view_todo"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/tdo_calendar_view_todo"
@@ -47,15 +36,6 @@
             app:layout_constraintRight_toLeftOf="@+id/tdo_menu_button"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/ic_calendar_gen_ico" />
-
-        <Button
-            android:id="@+id/tdo_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:text="Back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/tdo_menu_button"

@@ -1,4 +1,4 @@
-package com.zybooks.schednet
+package com.zybooks.schednet.Fragments.BottomFragments
 
 import android.os.Bundle
 import android.view.*
@@ -8,9 +8,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zybooks.schednet.Model.TodoViewModel
 import com.zybooks.schednet.databinding.TodoNewRibbonFrameBinding
 
-class AddNewTodo : BottomSheetDialogFragment() {
+class AddTodoBottomFragment: BottomSheetDialogFragment() {
     //DEBUG
     val TAG = "ActionBottomDialog"
+    val test = ""
 
     private lateinit var binding: TodoNewRibbonFrameBinding
     private lateinit var tViewModel: TodoViewModel
@@ -42,7 +43,6 @@ class AddNewTodo : BottomSheetDialogFragment() {
         binding.newribbonDescription.setText("")
         dismiss()
     }
-
 
     //Guarantee flip
     private fun toggleDescriptionVisible() {

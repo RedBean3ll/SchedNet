@@ -3,17 +3,16 @@ package com.zybooks.schednet.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.zybooks.schednet.CalendarPage
+import com.zybooks.schednet.Fragments.CalendarFragment
 import com.zybooks.schednet.Model.CalModel
 import com.zybooks.schednet.R
 
-class CalAdapter(actin: CalendarPage) : RecyclerView.Adapter<CalAdapter.ViewHolder>() {
+class CalAdapter(actin: CalendarFragment) : RecyclerView.Adapter<CalAdapter.ViewHolder>() {
 
     //LIST AND TMI
-    private var mActin: CalendarPage
+    private var mActin: CalendarFragment
     private lateinit var mCalList: List<CalModel> //LIST OF EVENTS FOR CAL
 
     init {
