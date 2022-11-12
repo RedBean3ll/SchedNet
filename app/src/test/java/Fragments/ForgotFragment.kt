@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.zybooks.schednet.R
-import com.zybooks.schednet.databinding.TodoEditBinding
 
-class TodoEditFragment(): Fragment() {
+class ForgotFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView: View = inflater.inflate(R.layout.todo_edit, container, false)
+        val rootView: View = inflater.inflate(R.layout.forgot_password, container, false)
         return rootView
     }
-
 }

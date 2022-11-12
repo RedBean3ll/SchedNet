@@ -8,10 +8,43 @@
 
     </style>
 
+    <style name="RibbonFrame">
+
+    </style>
+
     <style name="DialogStyle">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
+    </style>
+
+    <style name="TitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/TitleBarPadding</item>
+        <item name="android:paddingEnd">@dimen/TitleBarPadding</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/ActionBarPadding</item>
+    </style>
+
+    <style name="ActionBar.Element">
+        <item name="android:layout_width">@dimen/ActionBarElementSize</item>
+        <item name="android:layout_height">@dimen/ActionBarElementSize</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+        <item name="android:layout_marginStart">@dimen/ActionBarElementMarginStart</item>
+    </style>
+
+    <style name="ActionBar.AddElement">
+        <item name="android:layout_width">@dimen/ActionBarElementSize</item>
+        <item name="android:layout_height">@dimen/ActionBarElementSize</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+        <item name="android:layout_marginEnd">@dimen/ActionBarElementMarginStart</item>
     </style>
 
 </resources>

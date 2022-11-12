@@ -1,17 +1,22 @@
 package com.zybooks.schednet.Adapter
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.zybooks.schednet.Model.TodoModel
+import com.zybooks.schednet.R
 import com.zybooks.schednet.databinding.TodoRibbonFrameBinding
 
-class TodoAdapter(private var TodoList: List<TodoModel>) : ListAdapter<TodoModel, TodoAdapter.TodoViewHolder>(DiffCallback()) {
+class TodoAdapter(private var menuList: MutableList<TodoModel>) : ListAdapter<TodoModel, TodoAdapter.TodoViewHolder>(DiffCallback()) {
+    private lateinit var mTodos: List<TodoModel>
+
+    init {
+        mTodos = menuList
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         val binding = TodoRibbonFrameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,27 +24,32 @@ class TodoAdapter(private var TodoList: List<TodoModel>) : ListAdapter<TodoModel
     }
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        val item = TodoList[position]
+        val item = mTodos[position]
         holder.bind(item)
     }
 
     override fun getItemCount(): Int {
-        return TodoList.size
+        return mTodos.size
     }
 
     fun setTasks(list: MutableList<TodoModel>) {
-        this.TodoList = list
+        this.mTodos = list
         notifyDataSetChanged()
     }
 
     inner class TodoViewHolder(private val binding: TodoRibbonFrameBinding) : RecyclerView.ViewHolder(binding.root) {
+
+
         fun bind(item: TodoModel) {
-            var desc: String
+            var pinned: Boolean = false
+
             binding.apply {
                 binding.sampleRibbonCheckbox.isChecked = item.TodoStatus
-                if(item.TodoStatus) sampleRibbonBody.setBackgroundColor(Color.parseColor("#D4D4D4"))
                 binding.sampleRibbonTitle.text = item.TodoName
-                desc = item.TodoDescription
+                pinned = item.TodoStatus
+
+                if(item.TodoStatus) sampleRibbonBody.setBackgroundColor(Color.parseColor("#D4D4D4"))
+
                 sampleRibbonCheckbox.setOnCheckedChangeListener { compoundButton, isChecked ->
                     if(isChecked) {
                         sampleRibbonBody.setBackgroundColor(Color.parseColor("#D4D4D4"))
@@ -51,18 +61,21 @@ class TodoAdapter(private var TodoList: List<TodoModel>) : ListAdapter<TodoModel
 
                 }
                 sampleRibbonBody.setOnClickListener {
-
-
+                    Navigation.findNavController(it).navigate(R.id.show_todo_edit)
                     //Log.i("TodoAdapter", "Item named: " + sampleRibbonTitle.text.toString() + " w/ Descr: "+ desc)
+                }
+
+                sampleRibbonPriority.setOnClickListener {
+                    pinned = !pinned
+                    if(pinned) {
+                        binding.sampleRibbonPriority.setImageResource(R.drawable.ic_baseline_push_pin_24)
+                    } else {
+                        binding.sampleRibbonPriority.setImageResource(R.drawable.ic_baseline_push_pin_alt_24)
+                    }
                 }
             }
 
         }
-    }
-
-    interface OnItemClickListener {
-        fun onItemClick(view: TodoModel, position: Int)
-        fun onCheckBoxClick(task: TodoModel, isChecked: Boolean)
     }
 
     class DiffCallback: DiffUtil.ItemCallback<TodoModel>() {
@@ -74,6 +87,3 @@ class TodoAdapter(private var TodoList: List<TodoModel>) : ListAdapter<TodoModel
 
     }
 }
-
-
-

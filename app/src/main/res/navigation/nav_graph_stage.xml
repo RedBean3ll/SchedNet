@@ -8,9 +8,9 @@
 
     <fragment
         android:id="@+id/todo_hub_fragment"
-        android:name="com.zybooks.schednet.Fragments.TodoHubFragment"
+        android:name="com.zybooks.schednet.Fragments.ListFragment"
         android:label="@string/nm_todo_hub"
-        tools:layout="@layout/todo_hub" >
+        tools:layout="@layout/list" >
         <action
             android:id="@+id/show_todo_list"
             app:destination="@id/todo_list_fragment"
@@ -52,6 +52,6 @@
         android:id="@+id/settings_fragment"
         android:name="com.zybooks.schednet.Fragments.SettingsFragment"
         android:label="@string/nm_settings"
-        tools:layout="@layout/login"
+        tools:layout="@layout/settings"
         />
 </navigation>

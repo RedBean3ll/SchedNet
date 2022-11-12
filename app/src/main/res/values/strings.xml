@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">"SchedNet"</string>
 
+    <!-- MAIN_ACTIVITY -->
     <!-- n = navigate, m = menu -->
     <string name="nav_login">Login</string>
     <string name="nm_todo_hub">Todo</string>
     <string name="nav_todo_list">Todo List</string>
+    <string name="nav_todo_edit">Todo Edit</string>
     <string name="nm_calendar">Calendar Main</string>
     <string name="nm_favorite">Favorite Main</string>
     <string name="nm_settings">Setting Hub</string>
@@ -31,9 +33,17 @@
     <!-- Forgot Password -->
     <string name="forgot_label_title">Forgot Password</string>
 
+    <!-- STAGE ACTIVITY -->
 
-    <!-- TEMPORARY -->
+    <!-- Action Bar -->
+    <string name="generic_dots_description">Extra Actions</string>
+
+    <!-- TEMPORARY LOCATION -->
     <string name="temp_text">TEMP</string>
+    <string name="favorite_label_text">Favorites</string>
+    <string name="list_label_text">Lists</string>
+    <string name="todo_label_text">_listname_</string>
+
 
     <!-- home -->
     <string name="name1">TMP</string>
@@ -55,6 +65,10 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="nav_todo_edit">Todo Edit</string>
+
+    <string name="menu_ribbon_pin_description">Pin to top</string>
+
+    <string name="generic_add_element_description">Create List Item</string>
+
 
 </resources>

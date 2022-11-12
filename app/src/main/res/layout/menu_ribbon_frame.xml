@@ -12,7 +12,6 @@
         android:id="@+id/sample_ribbon_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="10dp"
         android:paddingEnd="10dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -20,40 +19,38 @@
 
         <CheckBox
             android:id="@+id/sample_ribbon_checkbox"
-            android:buttonTint="@color/purple_700"
-
-            android:maxLength="65"
-            android:paddingStart="10dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:visibility="gone"
+            android:buttonTint="@color/purple_700"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/sample_ribbon_title"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/sample_ribbon_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
+            android:paddingStart="10dp"
+            android:maxLines="2"
             android:textSize="20sp"
-            android:maxLines="3"
+            app:layout_constraintStart_toEndOf="@id/sample_ribbon_checkbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/sample_ribbon_priority"
-            app:layout_constraintStart_toEndOf="@id/sample_ribbon_checkbox"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/sample_ribbon_priority"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_baseline_push_pin_alt_24"
             android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/menu_ribbon_pin_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sample_ribbon_title"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/menu_ribbon_pin_description"
             tools:ignore="TouchTargetSizeCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

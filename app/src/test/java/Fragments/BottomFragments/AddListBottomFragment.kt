@@ -8,12 +8,18 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zybooks.schednet.Model.TodoViewModel
+import com.zybooks.schednet.R
+import com.zybooks.schednet.databinding.ListNewRibbonFrameBinding
 import com.zybooks.schednet.databinding.TodoNewRibbonFrameBinding
 import kotlin.ClassCastException
 
-class AddTodoBottomFragment: BottomSheetDialogFragment() {
-    private lateinit var binding: TodoNewRibbonFrameBinding
-    private lateinit var tViewModel: TodoViewModel
+class AddListBottomFragment: BottomSheetDialogFragment() {
+    private lateinit var binding: ListNewRibbonFrameBinding
+    private var pinned: Boolean
+
+    init {
+        pinned = false
+    }
 
     private val viewModel: TodoViewModel by activityViewModels()
 
@@ -22,18 +28,20 @@ class AddTodoBottomFragment: BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = TodoNewRibbonFrameBinding.inflate(inflater, container, false)
+        binding = ListNewRibbonFrameBinding.inflate(inflater, container, false)
 
-
-
-        val activity = getActivity()
-        tViewModel = ViewModelProvider(activity!!).get(TodoViewModel::class.java)
-        binding.newribbonChipDescription.setOnClickListener {
-            toggleDescriptionVisible()
-        }
         binding.newribbonSave.setOnClickListener {
             saveAction()
             dismiss()
+        }
+
+        binding.newribbonPriority.setOnClickListener {
+            pinned = !pinned
+            if(pinned) {
+                binding.newribbonPriority.setImageResource(R.drawable.ic_baseline_push_pin_24)
+            } else {
+                binding.newribbonPriority.setImageResource(R.drawable.ic_baseline_push_pin_alt_24)
+            }
         }
 
         return binding.root
@@ -45,15 +53,9 @@ class AddTodoBottomFragment: BottomSheetDialogFragment() {
 
     private fun saveAction() {
         viewModel.TodoTitle.value = binding.newribbonName.text.toString()
-        viewModel.TodoDescription.value = if(binding.newribbonDescriptionCasing.isVisible) binding.newribbonDescription.text.toString() else ""
-
+        viewModel.TodoStatus.value = pinned
     }
 
-
-    //Guarantee flip
-    private fun toggleDescriptionVisible() {
-        binding.newribbonDescriptionCasing.isVisible = !binding.newribbonDescriptionCasing.isVisible
-    }
 
 
 }

@@ -14,11 +14,11 @@ class TodoModel {
     init {
         TodoId = 0
         TodoStatus = false
-        TodoName = "NOT UPDATED: POTENTIAL ERROR"
-        TodoDescription = "NOT UPDATED: POTENTIAL ERROR"
+        TodoName = "NAN"
+        TodoDescription = "NAN"
         TodoPriorityStatus = false
         TodoCreateStamp = System.currentTimeMillis()
-        TodoStatusTimestamp = "NA"
+        TodoStatusTimestamp = "NAN"
     }
 
     override fun toString(): String {

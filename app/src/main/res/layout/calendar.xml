@@ -35,16 +35,7 @@
             android:contentDescription="Share List"
             app:layout_constraintRight_toLeftOf="@+id/cdm_menu_button"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_select_box_ico" />
-
-        <Button
-            android:id="@+id/cdm_back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_marginStart="10dp"
-            android:text="Back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            />
 
         <ImageButton
             android:id="@+id/cdm_menu_button"
@@ -54,7 +45,7 @@
             android:background="@drawable/ic_button_background_round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_plus_ico"
+            app:srcCompat="@drawable/ic_plus_24"
             android:contentDescription="Action Menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
