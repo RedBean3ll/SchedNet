@@ -72,7 +72,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, nul
         //ACTIVE REMINDS
         private const val REMIND_ID: String = "remind" //PRIMARY KEY
         //HAS EVENT_ID BUT NOT PRIMARY KEY
-        private const val REMIND_SOURCE: String = "source" //CAL OR TODO
+        private const val REMIND_SOURCE: String = "source" //CAL OR TDO
         private const val REMIND_TIME: String = "remindtime"
 
         //COMMANDS ----------------------------------------------
@@ -145,7 +145,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, nul
                                 var task: TodoModel = TodoModel()
                                 task.TodoId = if(cur.getColumnIndex(EVENT_ID) == -1) 0 else cur.getInt(cur.getColumnIndex(EVENT_ID))
                                 task.TodoName = if(cur.getColumnIndex(EVENT_NAME) == -1) "NA" else cur.getString(cur.getColumnIndex(EVENT_NAME))
-                                task.TodoStatus = if(cur.getColumnIndex(EVENT_STATUS) == -1) false else (if(cur.getInt(cur.getColumnIndex(EVENT_STATUS)) == 1) true else false)
+                                task.TodoPinned = if(cur.getColumnIndex(EVENT_STATUS) == -1) false else (if(cur.getInt(cur.getColumnIndex(EVENT_STATUS)) == 1) true else false)
                                 task.TodoPriorityStatus = if(cur.getColumnIndex(EVENT_PRIORITYSTATUS) == -1) false else (if(cur.getInt(cur.getColumnIndex(EVENT_PRIORITYSTATUS)) == 1) true else false)
                                 task.TodoCreateStamp = if(cur.getColumnIndex(EVENT_CREATESTAMP) == -1) 0 else cur.getLong(cur.getColumnIndex(EVENT_CREATESTAMP))
                                 task.TodoStatusTimestamp = if(cur.getColumnIndex(EVENT_STATUSTIMESTAMP) == -1) "NA" else cur.getString(cur.getColumnIndex(EVENT_STATUSTIMESTAMP))

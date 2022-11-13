@@ -7,9 +7,9 @@
     <string name="nm_todo_hub">Todo</string>
     <string name="nav_todo_list">Todo List</string>
     <string name="nav_todo_edit">Todo Edit</string>
-    <string name="nm_calendar">Calendar Main</string>
-    <string name="nm_favorite">Favorite Main</string>
-    <string name="nm_settings">Setting Hub</string>
+    <string name="nm_calendar">Calendar</string>
+    <string name="nm_favorite">Favorite</string>
+    <string name="nm_settings">Setting</string>
 
     <!-- login -->
     <string name="login_label_text">Welcome!</string>
@@ -48,7 +48,7 @@
     <!-- home -->
     <string name="name1">TMP</string>
     <string name="personal_hub">TMP</string>
-    <string name="save_new_todo">save</string>
+    <string name="generic_save_button_text">save</string>
 
 
     <string-array name="number_remind">
@@ -69,6 +69,13 @@
     <string name="menu_ribbon_pin_description">Pin to top</string>
 
     <string name="generic_add_element_description">Create List Item</string>
+    <string name="new_chip_pin_text">Pin</string>
+    <string name="new_chip_description_text">Description</string>
+    <string name="new_chip_due_text">Due</string>
+    <string name="general_task_name_hint">Task Name</string>
+    <string name="general_task_description_hint">Description</string>
+    <string name="favorite_actionbar_switch_description">Swap Mode</string>
+    <string name="new_chip_description_range">Event Range</string>
 
 
 </resources>

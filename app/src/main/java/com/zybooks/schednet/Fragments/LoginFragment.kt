@@ -13,11 +13,13 @@ import android.content.Intent
 
 class LoginFragment: Fragment() {
 
-    private lateinit var binding: LoginBinding;
+    private lateinit var binding: LoginBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginBinding.inflate(layoutInflater)
-        val rootView: View = binding.root
+
+        //DATABASE
+        val loginId = 0 //TODO CALL DATABASE TO CHECK FOR USER AND RETURN VALUE
 
         binding.loginRegisterButton.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.show_signup)
@@ -28,11 +30,12 @@ class LoginFragment: Fragment() {
         binding.loginLocalButton.setOnClickListener {
             val data = Intent(activity, StageActivity::class.java)
             startActivity(data)
+            //TODO "NEED TO PUSH THROUGH USER ID BEFORE MOVING AHEAD"
         }
 
 
 
-        return rootView
+        return binding.root
     }
 
     //binding.loginUsernameLayout.error = "TESTING"

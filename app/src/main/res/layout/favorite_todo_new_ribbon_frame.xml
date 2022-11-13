@@ -25,7 +25,7 @@
         app:errorTextAppearance="@color/red_error"
         app:boxStrokeErrorColor="@color/red_error" >
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/new_todo_edit"
+                android:id="@+id/new_favorite_todo_edit"
                 android:inputType="text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -41,12 +41,12 @@
         android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
         >
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/new_todo_chipgroup"
+            android:id="@+id/new_favorite_todo_chipgroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/new_todo_chip_pin"
+                android:id="@+id/new_favorite_todo_chip_pin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:chipIcon="@drawable/ic_baseline_push_pin_24"
@@ -55,7 +55,7 @@
                 />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/new_todo_chip_description"
+                android:id="@+id/new_favorite_todo_chip_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_chip_description_text"
@@ -63,7 +63,7 @@
                 app:chipIcon="@drawable/ic_baseline_description_24" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/new_todo_chip_due"
+                android:id="@+id/new_favorite_todo_chip_due"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/new_chip_due_text"
@@ -75,7 +75,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/new_todo_description_casing"
+        android:id="@+id/new_favorite_todo_description_casing"
         app:counterEnabled="true"
         app:counterMaxLength="250"
         android:layout_marginTop="10dp"
@@ -88,7 +88,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/new_todo_description_edit"
+            android:id="@+id/new_favorite_todo_description_edit"
             android:inputType="textMultiLine"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

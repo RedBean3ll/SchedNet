@@ -26,11 +26,11 @@ class ListFragment: Fragment() {
         binding = ListBinding.inflate(layoutInflater)
 
         binding.listActionbarNewList.setOnClickListener {
-            findNavController(it).navigate(R.id.show_todo_list)
+
         }
 
         val recyclerView = binding.listRecyclerview
-        val lists = mutableListOf<ListModel>()
+        val lists = ArrayList<ListModel>()
         lists.add(ListModel())
         lists.add(ListModel())
         lists.add(ListModel())
@@ -39,11 +39,10 @@ class ListFragment: Fragment() {
             DividerItemDecoration(binding.listRecyclerview.getContext(), DividerItemDecoration.VERTICAL)
         )
 
-        recyclerView.adapter = MenuAdapter(lists)
+        recyclerView.adapter = MenuAdapter(binding.root.context, lists)
 
 
-        val rootView: View = binding.root
-        return rootView
+        return binding.root
     }
 
 

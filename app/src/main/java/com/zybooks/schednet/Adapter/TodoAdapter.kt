@@ -1,89 +1,99 @@
 package com.zybooks.schednet.Adapter
 
-import android.graphics.Color
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.CheckBox
+import android.widget.ImageButton
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.zybooks.schednet.Model.TodoModel
 import com.zybooks.schednet.R
-import com.zybooks.schednet.databinding.TodoRibbonFrameBinding
 
-class TodoAdapter(private var menuList: MutableList<TodoModel>) : ListAdapter<TodoModel, TodoAdapter.TodoViewHolder>(DiffCallback()) {
-    private lateinit var mTodos: List<TodoModel>
+class TodoAdapter(context: Context, list: ArrayList<TodoModel>): RecyclerView.Adapter<TodoAdapter.ViewHolder>()  {
+   //Adapter may drop inp::list: ArrayList<TodoModel> in favor of local management
+    private var spindle: ArrayList<TodoModel> = list
+    private var ctx: Context = context
 
-    init {
-        mTodos = menuList
+    //create holder of ribbons
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.todo_ribbon_frame, parent, false)
+
+        val holder: ViewHolder = ViewHolder(view)
+        return holder
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-        val binding = TodoRibbonFrameBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TodoViewHolder(binding)
+    //bind data to currently displaying ribbons
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.dataBind(spindle[position])
     }
 
-    override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        val item = mTodos[position]
-        holder.bind(item)
-    }
-
+    //gets size of current list
     override fun getItemCount(): Int {
-        return mTodos.size
+        return spindle.size
     }
 
-    fun setTasks(list: MutableList<TodoModel>) {
-        this.mTodos = list
-        notifyDataSetChanged()
+    fun getContext(): Context {
+        return ctx
     }
 
-    inner class TodoViewHolder(private val binding: TodoRibbonFrameBinding) : RecyclerView.ViewHolder(binding.root) {
+    //ribbon Collection [Nick: spool]
+    inner class ViewHolder(viewHolder: View) : RecyclerView.ViewHolder(viewHolder) {
+        val rCheckBox: CheckBox = viewHolder.findViewById(R.id.sample_ribbon_checkbox)
+        val rLabel: TextView = viewHolder.findViewById(R.id.sample_ribbon_title)
+        val rImmBee: ImageButton = viewHolder.findViewById(R.id.sample_ribbon_priority)
+        var rPin: Boolean = false
+        val rBody: ConstraintLayout = viewHolder.findViewById(R.id.sample_ribbon_body)
 
+        val v: View = viewHolder
 
-        fun bind(item: TodoModel) {
-            var pinned: Boolean = false
+        fun dataBind(strand: TodoModel) {
+            //Data
+            rLabel.text = strand.TodoName
+            rPin = strand.TodoPinned
 
-            binding.apply {
-                binding.sampleRibbonCheckbox.isChecked = item.TodoStatus
-                binding.sampleRibbonTitle.text = item.TodoName
-                pinned = item.TodoStatus
+            //Initial Display
+            if(rPin) { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_24) }
 
-                if(item.TodoStatus) sampleRibbonBody.setBackgroundColor(Color.parseColor("#D4D4D4"))
-
-                sampleRibbonCheckbox.setOnCheckedChangeListener { compoundButton, isChecked ->
-                    if(isChecked) {
-                        sampleRibbonBody.setBackgroundColor(Color.parseColor("#D4D4D4"))
-                    } else {
-                        sampleRibbonBody.setBackgroundColor(Color.WHITE)
-                    }
-                    //getItem(layoutPosition)
-                    //notifyItemChanged(layoutPosition)
-
-                }
-                sampleRibbonBody.setOnClickListener {
-                    Navigation.findNavController(it).navigate(R.id.show_todo_edit)
-                    //Log.i("TodoAdapter", "Item named: " + sampleRibbonTitle.text.toString() + " w/ Descr: "+ desc)
-                }
-
-                sampleRibbonPriority.setOnClickListener {
-                    pinned = !pinned
-                    if(pinned) {
-                        binding.sampleRibbonPriority.setImageResource(R.drawable.ic_baseline_push_pin_24)
-                    } else {
-                        binding.sampleRibbonPriority.setImageResource(R.drawable.ic_baseline_push_pin_alt_24)
-                    }
-                }
+            //Interract Functions [Note: may move outside]
+            rImmBee.setOnClickListener {
+                rPin = !rPin
+                if(rPin) { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_24) }
+                else { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_alt_24) }
             }
 
+            rBody.setOnClickListener {
+                Navigation.findNavController(it).navigate(R.id.show_todo_edit)
+            }
         }
     }
 
-    class DiffCallback: DiffUtil.ItemCallback<TodoModel>() {
-        override fun areItemsTheSame(oldItem: TodoModel, newItem: TodoModel) =
-            oldItem.TodoId == newItem.TodoId
-
-        override fun areContentsTheSame(oldItem: TodoModel, newItem: TodoModel) =
-            oldItem.toString() == newItem.toString()
+    fun setOnTiemClickListener(rItemClickListener: AdapterView.OnItemClickListener) {
 
     }
+
+
+    //CRUD OPERATIONS [note: database and sorting will be implemented ]
+    fun removeAt(position: Int) {
+        spindle.removeAt(position)
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, itemCount)
+    }
+
+    fun add(lst: TodoModel) {
+        spindle.add(0, lst)
+        notifyItemInserted(0)
+        notifyItemRangeChanged(0, itemCount)
+    }
+
+    fun updateListExt(arg: ArrayList<TodoModel>) {
+        this.spindle.clear()
+        spindle.addAll(arg)
+        notifyDataSetChanged()
+    }
+
 }

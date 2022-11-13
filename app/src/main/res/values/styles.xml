@@ -25,6 +25,7 @@
         <item name="android:paddingEnd">@dimen/TitleBarPadding</item>
         <item name="android:textSize">40sp</item>
         <item name="android:lines">1</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="ActionBar">
@@ -46,5 +47,16 @@
         <item name="android:background">@drawable/ic_button_background_round</item>
         <item name="android:layout_marginEnd">@dimen/ActionBarElementMarginStart</item>
     </style>
+
+    <style name="SaveButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:text">@string/generic_save_button_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 
 </resources>

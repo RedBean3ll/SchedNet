@@ -13,7 +13,7 @@ import android.content.Intent
 
 class LoginFragment: Fragment() {
 
-    private lateinit var binding: LoginBinding;
+    private lateinit var binding: LoginBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = LoginBinding.inflate(layoutInflater)
@@ -29,9 +29,6 @@ class LoginFragment: Fragment() {
             val data = Intent(activity, StageActivity::class.java)
             startActivity(data)
         }
-
-
-
         return rootView
     }
 

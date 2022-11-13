@@ -12,35 +12,40 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.zybooks.schednet.Model.ListModel
 import com.zybooks.schednet.R
-import com.zybooks.schednet.databinding.MenuRibbonFrameBinding
 
-class FavoriteAdapter(context: Context, list: ArrayList<ListModel>): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>()  {
+class FavoriteAdapter(context: Context, list: ArrayList<ListModel>, mode: Boolean): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>()  {
    //Adapter may drop inp::list: ArrayList<ListModel> in favor of local management
-    private var spindle: ArrayList<ListModel> = list
+    private var stand: ArrayList<ListModel> = list
     private var ctx: Context = context
+
+    //Favorite TDO
+    //private var spindleA: ArrayList<ListModel>
+
+    //Favorite Cal
+    //private var spindleB: ArrayList<ListModel>
+
 
     //create holder of ribbons
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.menu_ribbon_frame, parent, false)
-
-        val holder: ViewHolder = ViewHolder(view)
-        return holder
+        return ViewHolder(view)
     }
 
     //bind data to currently displaying ribbons
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.dataBind(spindle[position])
-        holder.rBody.setOnClickListener {
-            removeAt(position)
-        }
+        holder.dataBind(stand[position])
     }
 
     //gets size of current list
     override fun getItemCount(): Int {
-        return spindle.size
+        return stand.size
     }
 
-    //ribbon Collection [Nick: spool]
+    fun getContext(): Context {
+        return ctx
+    }
+
+    //ribbon Collection [Nick: thread]
     inner class ViewHolder(viewHolder: View) : RecyclerView.ViewHolder(viewHolder) {
         val rCheckBox: CheckBox = viewHolder.findViewById(R.id.sample_ribbon_checkbox)
         val rLabel: TextView = viewHolder.findViewById(R.id.sample_ribbon_title)
@@ -57,7 +62,6 @@ class FavoriteAdapter(context: Context, list: ArrayList<ListModel>): RecyclerVie
 
             //Initial Display
             if(rPin) { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_24) }
-            else { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_alt_24) }
 
             //Interract Functions [Note: may move outside]
             rImmBee.setOnClickListener {
@@ -75,20 +79,24 @@ class FavoriteAdapter(context: Context, list: ArrayList<ListModel>): RecyclerVie
 
     //CRUD OPERATIONS [note: database and sorting will be implemented ]
     fun removeAt(position: Int) {
-        spindle.removeAt(position)
+        stand.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, itemCount)
     }
 
     fun add(lst: ListModel) {
-        spindle.add(0, lst)
+        stand.add(0, lst)
         notifyItemInserted(0)
         notifyItemRangeChanged(0, itemCount)
     }
 
+    fun changeMode(pedal: Boolean) {
+
+    }
+
     fun updateListExt(arg: ArrayList<ListModel>) {
-        this.spindle.clear()
-        spindle.addAll(arg)
+        this.stand.clear()
+        stand.addAll(arg)
         notifyDataSetChanged()
     }
 

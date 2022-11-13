@@ -4,7 +4,7 @@ package com.zybooks.schednet.Model
 
 class TodoModel {
     var TodoId: Int
-    var TodoStatus: Boolean
+    var TodoPinned: Boolean
     var TodoName: String
     var TodoDescription: String
     var TodoPriorityStatus: Boolean
@@ -13,7 +13,7 @@ class TodoModel {
 
     init {
         TodoId = 0
-        TodoStatus = false
+        TodoPinned = false
         TodoName = "NAN"
         TodoDescription = "NAN"
         TodoPriorityStatus = false
@@ -22,7 +22,7 @@ class TodoModel {
     }
 
     override fun toString(): String {
-        return TodoId.toString()+":"+TodoStatus+":"+TodoName+":"+TodoDescription+":"+TodoPriorityStatus+":"+TodoCreateStamp+":"+TodoStatusTimestamp
+        return TodoId.toString()+":"+TodoPinned+":"+TodoName+":"+TodoDescription+":"+TodoPriorityStatus+":"+TodoCreateStamp+":"+TodoStatusTimestamp
     }
 
     fun updateCreateStamp() {

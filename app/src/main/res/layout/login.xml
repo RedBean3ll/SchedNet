@@ -44,10 +44,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/login_username_hint"
         app:hintTextColor="@color/black"
-
         app:startIconDrawable="@drawable/ic_baseline_person_24"
         app:errorIconDrawable="@drawable/ic_baseline_error_24"
-
         app:errorTextColor="@color/red_error"
         app:errorTextAppearance="@color/red_error"
         app:boxStrokeErrorColor="@color/red_error" >

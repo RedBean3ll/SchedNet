@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zybooks.schednet.Adapter.FavoriteAdapter
-import com.zybooks.schednet.Adapter.MenuAdapter
 import com.zybooks.schednet.Model.ListModel
-import com.zybooks.schednet.R
 import com.zybooks.schednet.databinding.FavoriteBinding
 
 class FavoriteFragment: Fragment() {
@@ -19,6 +17,7 @@ class FavoriteFragment: Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FavoriteBinding.inflate(layoutInflater)
+        var mode = false
 
         //GET LIST DATA
         val list = ArrayList<ListModel>()
@@ -30,15 +29,11 @@ class FavoriteFragment: Fragment() {
 
         //VIEW SETUP AND CLICK LISTENERS
         binding.apply {
-            val adapter = FavoriteAdapter(root.context, list)
+            val adapter = FavoriteAdapter(root.context, list, mode)
 
             var cnt: Int = 0
             favoriteActionbarNewList.setOnClickListener {
-                cnt++
-                var shl: ListModel = ListModel()
-                shl.ListName = "Item No."+cnt
 
-                adapter.add(shl)
             }
             favoriteRecyclerview.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.VERTICAL, false)
             favoriteRecyclerview.addItemDecoration(
