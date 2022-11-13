@@ -5,22 +5,18 @@
     <item
         android:id="@+id/todo_hub_fragment"
         android:icon="@drawable/ic_baseline_checklist_24"
-        android:iconTint="@color/green_menu"
         android:title="@string/nm_todo_hub" />
     <item
         android:id="@+id/calendar_fragment"
         android:icon="@drawable/ic_baseline_calendar_month_24"
-        android:iconTint="@color/blue_menu"
         android:title="@string/nm_calendar" />
     <item
         android:id="@+id/favorite_fragment"
         android:icon="@drawable/ic_baseline_favorite_24"
-        android:iconTint="@color/red_menu"
         android:title="@string/nm_favorite" />
     <item
         android:id="@+id/settings_fragment"
         android:icon="@drawable/ic_baseline_settings_24"
-        android:iconTint="@color/gray_menu"
         android:title="@string/nm_settings"
         />
 
