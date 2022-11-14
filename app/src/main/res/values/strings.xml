@@ -34,22 +34,36 @@
     <string name="forgot_label_title">Forgot Password</string>
 
     <!-- STAGE ACTIVITY -->
-
     <!-- Action Bar -->
     <string name="generic_dots_description">Extra Actions</string>
 
+    <!-- Lists -->
+    <string name="list_label_text">Lists</string>
+
+    <!-- Tdo List -->
+    <string name="todo_label_text">_listname_</string>
+    <string name="new_chip_due_text">Due</string>
+
+    <!-- Calendar -->
+    <string name="calendar_label_text">Calendar</string>
+    <string name="new_chip_description_range">Event Range</string>
+
+    <!-- Favorite -->
+    <string name="favorite_label_text">Favorites</string>
+    <string name="favorite_actionbar_switch_description">Switch List</string>
+
+    <!-- Shared -->
+    <string name="menu_ribbon_pin_description">Pin to top</string>
+    <string name="generic_save_button_text">save</string>
+    <string name="generic_add_element_description">Create List Item</string>
+    <string name="generic_task_description_hint">Description</string>
+    <string name="general_task_name_hint">Task Name</string>
+    <string name="new_chip_pin_text">Pin</string>
+    <string name="new_chip_description_text">Description</string>
+
+
     <!-- TEMPORARY LOCATION -->
     <string name="temp_text">TEMP</string>
-    <string name="favorite_label_text">Favorites</string>
-    <string name="list_label_text">Lists</string>
-    <string name="todo_label_text">_listname_</string>
-
-
-    <!-- home -->
-    <string name="name1">TMP</string>
-    <string name="personal_hub">TMP</string>
-    <string name="generic_save_button_text">save</string>
-
 
     <string-array name="number_remind">
         <item>0</item>
@@ -63,19 +77,9 @@
         <item>Monthly</item>
         <item>Yearly</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="menu_ribbon_pin_description">Pin to top</string>
 
-    <string name="generic_add_element_description">Create List Item</string>
-    <string name="new_chip_pin_text">Pin</string>
-    <string name="new_chip_description_text">Description</string>
-    <string name="new_chip_due_text">Due</string>
-    <string name="general_task_name_hint">Task Name</string>
-    <string name="general_task_description_hint">Description</string>
-    <string name="favorite_actionbar_switch_description">Swap Mode</string>
-    <string name="new_chip_description_range">Event Range</string>
+
 
 
 </resources>

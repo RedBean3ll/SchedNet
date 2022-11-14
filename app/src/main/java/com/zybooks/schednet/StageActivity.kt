@@ -23,10 +23,8 @@ class StageActivity: AppCompatActivity() {
 
         //window.navigationBarColor(resources.getColor(R.color.red_menu))
 
-        if(navHostFragment != null) {
-            val navController: NavController = navHostFragment.navController
-            NavigationUI.setupWithNavController(bottom, navController)
-        }
+        val navController: NavController = navHostFragment.navController
+        NavigationUI.setupWithNavController(bottom, navController)
 
     }
 

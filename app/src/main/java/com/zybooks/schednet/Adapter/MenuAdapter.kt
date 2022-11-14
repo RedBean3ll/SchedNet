@@ -22,9 +22,7 @@ class MenuAdapter(context: Context, list: ArrayList<ListModel>): RecyclerView.Ad
     //create holder of ribbons
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.menu_ribbon_frame, parent, false)
-
-        val holder: ViewHolder = ViewHolder(view)
-        return holder
+        return ViewHolder(view)
     }
 
     //bind data to currently displaying ribbons
@@ -93,10 +91,11 @@ class MenuAdapter(context: Context, list: ArrayList<ListModel>): RecyclerView.Ad
 
     }
 
-    fun updateListExt(arg: ArrayList<ListModel>) {
+    /*fun updateListExt(arg: ArrayList<ListModel>) {
         this.spindle.clear()
         spindle.addAll(arg)
-        notifyDataSetChanged()
+        //notifyDataSetChanged()
     }
+     */
 
 }

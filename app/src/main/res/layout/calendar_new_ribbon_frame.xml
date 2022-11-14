@@ -74,7 +74,7 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/general_task_description_hint"
+        android:hint="@string/generic_task_description_hint"
         android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
         android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
         >

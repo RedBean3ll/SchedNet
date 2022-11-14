@@ -46,7 +46,6 @@
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/favorite_actionbar_switch"
             style="@style/ActionBar.Element"
-
             android:contentDescription="@string/favorite_actionbar_switch_description"
             app:layout_constraintStart_toEndOf="@id/favorite_actionbar_dots"
             app:layout_constraintTop_toTopOf="parent"

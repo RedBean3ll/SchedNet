@@ -9,21 +9,19 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_lanucher_round"
+        android:appCategory="productivity"
         android:supportsRtl="true"
         android:theme="@style/Theme.SchedNet"
-        tools:targetApi="31"
-        >
+        tools:targetApi="31" >
 
         <activity
             android:name=".StageActivity"
-            android:exported="false"
-            />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

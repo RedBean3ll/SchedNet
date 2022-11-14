@@ -31,7 +31,7 @@
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar.xml" value="0.23428815733219324" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_main.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_new_ribbon_frame.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite.xml" value="0.28730226592560926" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite.xml" value="0.33" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_calendar_new_ribbon_frame.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_todo_new_ribbon_frame.xml" value="0.28815733219324496" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorites_activity.xml" value="0.22" />
@@ -53,7 +53,10 @@
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_ribbon_frame.xml" value="0.18" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/trash_activity.xml" value="0.25" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1470713980333476" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/mipmap-anydpi-v26/ic_lanucher.xml" value="0.159" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/mipmap-anydpi-v26/ic_lanucher_round.xml" value="0.159" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3525" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.159" />
       </map>
     </option>
   </component>

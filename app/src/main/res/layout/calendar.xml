@@ -6,43 +6,27 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cdm_top_menu_cl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        style="@style/ActionBar"
+        android:id="@+id/calendar_top_menu_cl"
         android:background="@color/purple_700"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" >
 
 
         <ImageButton
-            android:id="@+id/cdm_delete_calendar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="10dp"
+            style="@style/ActionBar.Element"
+            android:id="@+id/calendar_delete_calendar"
             android:background="@drawable/ic_button_background_round"
             android:contentDescription="Delete Selection Mode"
-            app:layout_constraintRight_toLeftOf="@+id/cdm_select_share_calendar"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_uknn_tmp_ico" />
 
         <ImageButton
-            android:id="@+id/cdm_select_share_calendar"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_button_background_round"
-            android:contentDescription="Share List"
-            app:layout_constraintRight_toLeftOf="@+id/cdm_menu_button"
-            app:layout_constraintTop_toTopOf="parent"
-            />
-
-        <ImageButton
-            android:id="@+id/cdm_menu_button"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/ic_button_background_round"
+            style="@style/ActionBar.AddElement"
+            android:id="@+id/calendar_menu_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_plus_24"
@@ -51,47 +35,22 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/cdm_title_calendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="_blank calendar_"
-        android:textSize="35sp"
+        style="@style/TitleBar"
+        android:id="@+id/calendar_title_calendar"
+        android:text="@string/calendar_label_text"
         android:textColor="@color/white"
         android:background="@color/purple_700"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cdm_top_menu_cl" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <ScrollView
-        android:id="@+id/cdm_task_space"
+        android:id="@+id/calendar_task_space"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="ExtraText" />
 
-    <View
-        android:id="@+id/tmp_calda_spcc"
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:background="@color/black"
-        android:backgroundTint="@color/temptheme_alpha_heavy"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cdm_title_calendar" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tmp_calda_spcc"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="TITLE w/ QUICK BUTTONS > TASK RIBBONS" />
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
