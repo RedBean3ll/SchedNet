@@ -7,10 +7,4 @@ class TodoViewModel: ViewModel() {
     var TodoTitle = MutableLiveData<String>()
     var TodoDescription = MutableLiveData<String>()
     var TodoStatus = MutableLiveData<Boolean>()
-
-    fun reset() {
-        TodoTitle.value = ""
-        TodoDescription.value = ""
-        TodoStatus.value = false
-    }
 }

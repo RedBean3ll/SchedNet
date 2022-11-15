@@ -43,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_username_hint"
+
         app:hintTextColor="@color/black"
         app:startIconDrawable="@drawable/ic_baseline_person_24"
         app:errorIconDrawable="@drawable/ic_baseline_error_24"
@@ -73,12 +74,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/login_password_hint"
+
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        app:endIconDrawable="@drawable/ic_baseline_visibility_24"
         app:errorIconDrawable="@drawable/ic_baseline_error_24"
         app:endIconCheckable="true"
         app:endIconMode="password_toggle"
-
         app:errorTextColor="@color/red_error"
         app:errorTextAppearance="@color/red_error"
         app:boxStrokeErrorColor="@color/red_error"
@@ -110,6 +110,23 @@
         android:background="@color/transparent"
         android:text="@string/login_register_text"
         android:layout_gravity="end"
+
+        />
+
+    <Button
+        android:id="@+id/test_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:background="@color/transparent"
+        android:text="add sample users"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/login_check_box_remember"
+        android:buttonTint="@color/purple_700"
+        android:text="Remember"
 
         />
 

@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper
 import com.zybooks.schednet.Model.TodoModel
 import com.zybooks.schednet.Model.TodoModelFull
 
-class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VERSION) {
+class DatabaseHandlerFirst(context: Context) : SQLiteOpenHelper(context, DB_NAME, null, VERSION) {
 
     companion object {
         //DATABASE
@@ -76,13 +76,6 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, nul
         private const val REMIND_TIME: String = "remindtime"
 
         //COMMANDS ----------------------------------------------
-        private const val CREATE_TABLE_USERS = "CREATE TABLE IF NOT EXISTS 'Users' ('user' INTEGER PRIMARY KEY, 'username' TEXT DEFAULT 'EMERGENCY' NOT NULL, 'password' TEXT DEFAULT 'EMERGENCY' NOT NULL, 'frequencycleancal' TEXT DEFAULT 'week' NOT NULL, 'frequencycleantdo' TEXT DEFAULT 'month' NOT NULL, 'defaultlogin' INTEGER DEFAULT 0 NOT NULL, 'loggedin' INTEGER DEFAULT 0 NOT NULL)"
-        private const val CREATE_TABLE_LISTS = "CREATE TABLE IF NOT EXISTS 'TodoLists' ('user' INTEGER DEFAULT 0 NOT NULL, 'list' INTEGER PRIMARY KEY, 'listtitle' TEXT DEFAULT 'TITLE' NOT NULL)"
-        private const val CREATE_TABLE_TODO = "CREATE TABLE IF NOT EXISTS 'TodoMain' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'list' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'description' TEXT, 'due' TEXT, 'remindone' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT, 'statusstamp' TEXT, 'createstamp' INTEGER, 'priority' INTEGER DEFAULT 0 NOT NULL)"
-        private const val CREATE_TABLE_CALENDAR = "CREATE TABLE IF NOT EXISTS 'CalendarMain' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'eventlocation' TEXT, 'description' TEXT, 'allday' INTEGER DEFAULT 1 NOT NULL, 'datestart' TEXT, 'dateend' TEXT, 'remind' INTEGER DEFAULT 0 NOT NULL, 'remindone' TEXT, 'remindtwo' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT, 'statusstamp' TEXT, 'createstamp' INTEGER)"
-        private const val CREATE_TABLE_FAV_TODO = "CREATE TABLE IF NOT EXISTS 'FavoriteTodo' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'description' TEXT, 'due' TEXT, 'remindone' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT)"
-        private const val CREATE_TABLE_FAV_CALENDAR = "CREATE TABLE IF NOT EXISTS 'FavoriteCalendar' ( 'user' INTEGER DEFAULT 0 NOT NULL, 'id' INTEGER PRIMARY KEY, 'title' TEXT, 'eventlocation' TEXT, 'description' TEXT, 'allday' INTEGER DEFAULT 1 NOT NULL, 'datestart' TEXT, 'dateend' TEXT, 'remind' INTEGER DEFAULT 0 NOT NULL, 'remindone' TEXT, 'remindtwo' TEXT, 'repeattype' INTEGER DEFAULT 0 NOT NULL, 'repeattime' TEXT)"
-        private const val CREATE_TABLE_ACTIVEEVENTS = "CREATE TABLE IF NOT EXISTS 'ActiveReminders' ( 'remind' INTEGER PRIMARY KEY, 'user' INTEGER, 'id' INTEGER, 'source' TEXT, 'remindtime' TEXT)"
 
         private const val DROP_TABLE_GLOB = "DROP TABLE IF EXISTS "
     }
@@ -91,13 +84,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DB_NAME, nul
         private var databaseInvoke: SQLiteDatabase? = null
 
         override fun onCreate(db: SQLiteDatabase?) {
-            db?.execSQL(CREATE_TABLE_USERS)
-            db?.execSQL(CREATE_TABLE_LISTS)
-            db?.execSQL(CREATE_TABLE_TODO)
-            db?.execSQL(CREATE_TABLE_CALENDAR)
-            db?.execSQL(CREATE_TABLE_FAV_TODO)
-            db?.execSQL(CREATE_TABLE_FAV_CALENDAR)
-            db?.execSQL(CREATE_TABLE_ACTIVEEVENTS)
+
         }
 
         override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

@@ -10,16 +10,26 @@ import com.zybooks.schednet.R
 import com.zybooks.schednet.StageActivity
 import com.zybooks.schednet.databinding.LoginBinding
 import android.content.Intent
+import android.widget.Toast
+import com.zybooks.schednet.Utils.DatabaseManager
 
 class LoginFragment: Fragment() {
 
     private lateinit var binding: LoginBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val attemptAlpha = DatabaseManager(requireContext()).checkPreferredLogin()
+        if(attemptAlpha > -1) {
+            val intent = Intent(activity, StageActivity::class.java)
+            intent.putExtra(StageActivity.MAGIC_NUMBER, attemptAlpha)
+            startActivity(intent)
+        }
+
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginBinding.inflate(layoutInflater)
-
-        //DATABASE
-        val loginId = 0 //TODO CALL DATABASE TO CHECK FOR USER AND RETURN VALUE
 
         binding.loginRegisterButton.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.show_signup)
@@ -28,12 +38,39 @@ class LoginFragment: Fragment() {
             Navigation.findNavController(it).navigate(R.id.show_forgot)
         }
         binding.loginLocalButton.setOnClickListener {
-            val data = Intent(activity, StageActivity::class.java)
-            startActivity(data)
-            //TODO "NEED TO PUSH THROUGH USER ID BEFORE MOVING AHEAD"
+            //Return default error state
+            binding.loginUsernameLayout.error = ""
+            binding.loginPasswordLayout.error = ""
+            //Set error state if empty
+            val lengthA = binding.loginUsernameEdit.text.toString().length
+            val lengthB = binding.loginPasswordEdit.text.toString().length
+            if(lengthA == 0 || lengthB == 0 ) {
+                if(lengthA == 0) {
+                    binding.loginUsernameLayout.error = "Username field is empty"
+                }
+                if(lengthB == 0) {
+                    binding.loginPasswordLayout.error = "Password field is empty"
+                }
+                return@setOnClickListener
+            }
+
+            val dbm = DatabaseManager(requireContext())
+            val attempt = dbm.readUser(binding.loginUsernameEdit.text.toString(), binding.loginPasswordEdit.text.toString())
+            if(attempt > -1) {
+                //Toast.makeText(requireContext(), "SUCCESS!! with ID: $attempt", Toast.LENGTH_LONG).show()
+                if(binding.loginCheckBoxRemember.isChecked) {
+                    dbm.updatePreferredLogin(attempt, true)
+                }
+                val intent = Intent(activity, StageActivity::class.java)
+                intent.putExtra(StageActivity.MAGIC_NUMBER, attempt)
+                startActivity(intent)
+            }
         }
 
-
+        binding.testButton.setOnClickListener {
+            //val dbm = DatabaseManager(requireContext())
+            //dbm.insertTestUsers()
+        }
 
         return binding.root
     }

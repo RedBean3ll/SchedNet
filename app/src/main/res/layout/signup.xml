@@ -44,10 +44,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/signup_username_hint"
         app:hintTextColor="@color/black"
-
         app:startIconDrawable="@drawable/ic_baseline_person_24"
         app:errorIconDrawable="@drawable/ic_baseline_error_24"
-
         app:errorTextColor="@color/red_error"
         app:errorTextAppearance="@color/red_error"
         app:boxStrokeErrorColor="@color/red_error" >
@@ -76,11 +74,9 @@
         android:layout_height="wrap_content"
         android:hint="@string/signup_password_hint"
         app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        app:endIconDrawable="@drawable/ic_baseline_visibility_24"
         app:errorIconDrawable="@drawable/ic_baseline_error_24"
         app:endIconCheckable="true"
         app:endIconMode="password_toggle"
-
         app:errorTextColor="@color/red_error"
         app:errorTextAppearance="@color/red_error"
         app:boxStrokeErrorColor="@color/red_error"
@@ -106,15 +102,13 @@
         />
 
 
-
     <Button
         android:id="@+id/signup_local_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signup_local_text"
-        android:textStyle="bold"
-        android:textSize="25sp"
         android:layout_gravity="bottom|center"
-        />
+        android:text="@string/signup_local_text"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
 </GridLayout>
