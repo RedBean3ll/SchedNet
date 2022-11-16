@@ -4,29 +4,27 @@ package com.zybooks.schednet.Model
 
 class TodoModel {
     var TodoId: Int
-    var TodoPinned: Boolean
     var TodoName: String
     var TodoDescription: String
-    var TodoPriorityStatus: Boolean
-    var TodoCreateStamp: Long
-    var TodoStatusTimestamp: String
+    var TodoSelected: Boolean
+    var TodoPinned: Boolean
+    var TodoTimestamp: Long
 
     init {
         TodoId = 0
         TodoPinned = false
+        TodoSelected = false
         TodoName = "NAN"
-        TodoDescription = "NAN"
-        TodoPriorityStatus = false
-        TodoCreateStamp = System.currentTimeMillis()
-        TodoStatusTimestamp = "NAN"
+        TodoDescription = ""
+        TodoTimestamp = System.currentTimeMillis()
     }
 
     override fun toString(): String {
-        return TodoId.toString()+":"+TodoPinned+":"+TodoName+":"+TodoDescription+":"+TodoPriorityStatus+":"+TodoCreateStamp+":"+TodoStatusTimestamp
+        return TodoId.toString()+":"+TodoPinned+":"+TodoName+":"+TodoDescription+":"+":"+":"+TodoTimestamp
     }
 
     fun updateCreateStamp() {
-        TodoCreateStamp = System.currentTimeMillis()
+        TodoTimestamp = System.currentTimeMillis()
     }
 
 }

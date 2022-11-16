@@ -38,7 +38,7 @@ class SignupFragment: Fragment() {
             val dbm = DatabaseManager(requireContext())
             if(dbm.insertUser(binding.signupUsernameEdit.text.toString(), binding.signupPasswordEdit.text.toString())) {
                 //Animation?
-                Toast.makeText(requireContext(), "Welcom to SchedNet!", Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), "Welcome to SchedNet!", Toast.LENGTH_LONG).show()
                 parentFragmentManager.popBackStackImmediate()
             }
 

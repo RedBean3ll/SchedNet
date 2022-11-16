@@ -1,28 +1,29 @@
 package com.zybooks.schednet.Adapter
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.zybooks.schednet.Fragments.TodoFragment
 import com.zybooks.schednet.Model.ListModel
 import com.zybooks.schednet.R
 import com.zybooks.schednet.Utils.DatabaseManager
 
 
-class MenuAdapter(context: Context, measure: Int): RecyclerView.Adapter<MenuAdapter.ViewHolder>()  {
+class MenuAdapter(context: Context, id: Int): RecyclerView.Adapter<MenuAdapter.ViewHolder>()  {
     //Adapter may drop inp::list: ArrayList<ListModel> in favor of local management
 
-    private lateinit var spindle: ArrayList<ListModel>
-    private var ctx: Context = context
+    private var spindle: ArrayList<ListModel>
+    private var ctx: Context
     private var clock: Long = 0
+    private var measuringTape: Int = 0
 
     //create holder of ribbons
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,17 +35,10 @@ class MenuAdapter(context: Context, measure: Int): RecyclerView.Adapter<MenuAdap
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.dataBind(spindle[position])
         holder.rBody.setOnClickListener {
-            findNavController(it).navigate(R.id.show_todo_list)
+            val bundle = Bundle()
+            bundle.putInt(TodoFragment.LISTKEY, holder.rId)
+            findNavController(it).navigate(R.id.show_todo_list, bundle)
         }
-    }
-
-    //gets size of current list
-    override fun getItemCount(): Int {
-        return spindle.size
-    }
-
-    fun getContext(): Context {
-        return ctx
     }
 
     //ribbon Collection [Nick: thread]
@@ -66,30 +60,32 @@ class MenuAdapter(context: Context, measure: Int): RecyclerView.Adapter<MenuAdap
             //Initial Display
             if(rPin) { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_24) }
 
-            //Interract Functions [Note: may move outside]
+            //Interact Functions [Note: may move outside]
             rImmBee.setOnClickListener {
                 rPin = !rPin
-
-                val obj: ListModel = ListModel()
-                obj.isPinned = rPin
-                obj.ListId = rId
-
-                val hey = DatabaseManager(ctx)
-                hey.updateListPinValue(obj)
+                val dbm = DatabaseManager(ctx)
+                dbm.updateListPinValue(rId, rPin)
                 if(rPin) { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_24) }
                 else { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_alt_24) }
             }
         }
     }
 
-
     //CRUD OPERATIONS [note: database and sorting will be implemented ]
     fun removeAt(position: Int) {
-        val toRemove = ListModel()
-        DatabaseManager(ctx).deleteListItem(spindle[position].ListId)
+        DatabaseManager(ctx).deleteList(spindle[position].ListId)
         spindle.removeAt(position)
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, itemCount)
+        //clock = threadCurrentTime()
+    }
+
+    fun callUpdateSpinner() {
+        val updateSpinner = DatabaseManager(ctx).readListUpdate(measuringTape, clock)
+        clock = threadCurrentTime()
+        updateSpinner.forEach { thread ->
+            add(thread)
+        }
     }
 
     fun add(lst: ListModel) {
@@ -98,31 +94,31 @@ class MenuAdapter(context: Context, measure: Int): RecyclerView.Adapter<MenuAdap
         notifyItemRangeChanged(0, itemCount)
     }
 
-    fun callSpinner(context: Context, measure: Int): ArrayList<ListModel> {
-        val spinner = DatabaseManager(context).readLists(measure)
+    //INITIALIZATION LOGIC
+    init {
+        ctx = context
+        measuringTape = id
+        clock = threadCurrentTime()
+        spindle = callSpinner()
+    }
+
+    fun callSpinner(): ArrayList<ListModel> {
+        val spinner = DatabaseManager(ctx).readLists(measuringTape)
+        clock = threadCurrentTime()
         return spinner
     }
 
-    fun callUpdateSpinner() {
-        val updateSpinner = DatabaseManager(ctx).readListUpdate(clock)
-        clock = System.currentTimeMillis()
-        updateSpinner.forEach { thread ->
-            add(thread)
-        }
-
+    //GENERAL LOGIC
+    fun threadCurrentTime(): Long {
+        return System.currentTimeMillis()
     }
 
-    //INITIALIZATION LOGIC
-    init {
-        spindle = callSpinner(context, measure)
-        clock = System.currentTimeMillis()
+    override fun getItemCount(): Int {
+        return spindle.size
     }
 
-    /*fun updateListExt(arg: ArrayList<ListModel>) {
-        this.spindle.clear()
-        spindle.addAll(arg)
-        //notifyDataSetChanged()
+    fun getContext(): Context {
+        return ctx
     }
-     */
 
 }

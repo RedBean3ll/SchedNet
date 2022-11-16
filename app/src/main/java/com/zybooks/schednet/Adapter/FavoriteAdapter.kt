@@ -63,7 +63,7 @@ class FavoriteAdapter(context: Context, list: ArrayList<ListModel>, mode: Boolea
             //Initial Display
             if(rPin) { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_24) }
 
-            //Interract Functions [Note: may move outside]
+            //Interact Functions [Note: may move outside]
             rImmBee.setOnClickListener {
                 rPin = !rPin
                 if(rPin) { rImmBee.setImageResource(R.drawable.ic_baseline_push_pin_24) }
@@ -71,11 +71,6 @@ class FavoriteAdapter(context: Context, list: ArrayList<ListModel>, mode: Boolea
             }
         }
     }
-
-    fun setOnTiemClickListener(rItemClickListener: AdapterView.OnItemClickListener) {
-
-    }
-
 
     //CRUD OPERATIONS [note: database and sorting will be implemented ]
     fun removeAt(position: Int) {

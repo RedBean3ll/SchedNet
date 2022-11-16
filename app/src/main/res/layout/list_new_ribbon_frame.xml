@@ -24,10 +24,10 @@
         >
 
         <com.google.android.material.textfield.TextInputLayout
-
+            android:id="@+id/new_list_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="@string/general_task_name_hint"
+            android:hint="@string/general_list_name_hint"
             app:hintTextColor="@color/black"
             android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
             app:layout_constraintEnd_toStartOf="@id/new_list_priority"

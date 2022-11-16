@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
@@ -11,27 +12,67 @@
         android:layout_height="@dimen/new_ribbon_frame_banner"
         android:background="@color/purple_700" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="10dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/new_todo_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/general_task_name_hint"
-        app:hintTextColor="@color/black"
-        android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
-        android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
+        android:paddingEnd="10dp"
+        android:paddingStart="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        >
 
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:errorTextColor="@color/red_error"
-        app:errorTextAppearance="@color/red_error"
-        app:boxStrokeErrorColor="@color/red_error" >
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/new_todo_name_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/general_task_name_hint"
+            app:hintTextColor="@color/black"
+            android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
+            app:layout_constraintEnd_toStartOf="@id/new_todo_priority"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:errorIconDrawable="@drawable/ic_baseline_error_24"
+            app:errorTextColor="@color/red_error"
+            app:errorTextAppearance="@color/red_error"
+            app:boxStrokeErrorColor="@color/red_error" >
+
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/new_todo_edit"
-                android:inputType="text"
+                android:id="@+id/new_todo_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/new_todo_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:maxLines="2"
+            android:paddingStart="10dp"
+            android:paddingEnd="0dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/new_todo_priority"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/new_todo_priority"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/menu_ribbon_pin_description"
+            android:src="@drawable/ic_baseline_push_pin_alt_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -44,15 +85,6 @@
             android:id="@+id/new_todo_chipgroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/new_todo_chip_pin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:chipIcon="@drawable/ic_baseline_push_pin_24"
-                app:iconStartPadding="@dimen/general_chip_icon_padding"
-                android:text="@string/new_chip_pin_text"
-                />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/new_todo_chip_description"

@@ -33,12 +33,10 @@ class StageActivity: AppCompatActivity() {
         val test = intent.extras
         if(savedInstanceState != null) {
             mNumber = savedInstanceState.getInt(MAGIC_NUMBER)
-            Log.i(TAG, "MAGIC NUMBER SET")
             //Toast.makeText(this, "AAMAGIC NUMBER IS $mNumber", Toast.LENGTH_LONG).show()
         } else if(test != null) {
             mNumber = savedInstanceState?.getInt(MAGIC_NUMBER) ?:
             Log.i(TAG, "MAGIC NUMBER SET")
-            //Toast.makeText(this, "BBMAGIC NUMBER IS $mNumber", Toast.LENGTH_LONG).show()
         }
 
         val bottom: BottomNavigationView = binding.navView

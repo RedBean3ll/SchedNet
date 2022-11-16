@@ -64,6 +64,7 @@
 
     <!-- TEMPORARY LOCATION -->
     <string name="temp_text">TEMP</string>
+    <string name="general_list_name_hint">List Name</string>
 
     <!-- TRANSITIONS -->
 

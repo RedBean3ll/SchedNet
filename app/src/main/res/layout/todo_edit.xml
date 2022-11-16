@@ -12,16 +12,12 @@
         android:layout_height="wrap_content"
 
         android:orientation="vertical"
-        android:padding="10dp"
         >
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="X"
-            />
-
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/new_ribbon_frame_banner"
+            android:background="@color/purple_700" />
 
         <TextView
             android:text="General:"
@@ -75,16 +71,18 @@
         <CheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Priority"
+            android:text="is pinned"
             />
 
         <TextView
+            android:visibility="gone"
             android:text="Due:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:visibility="gone"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:hint="Due"
             android:layout_marginTop="5dp"
@@ -106,6 +104,7 @@
 
 
         <TextView
+            android:visibility="gone"
             android:text="Repeat"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
@@ -113,14 +112,17 @@
             />
 
         <androidx.appcompat.widget.AppCompatSpinner
+            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
+            android:paddingStart="0dp"
             android:paddingEnd="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:visibility="gone"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:hint="Day"
             android:paddingStart="10dp"
@@ -143,6 +145,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatSpinner
+            android:visibility="gone"
             style=""
             android:entries="@array/number_remind"
 
@@ -152,6 +155,7 @@
             />
 
         <TextView
+            android:visibility="gone"
             android:text="Remind"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
@@ -159,9 +163,9 @@
             />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:visibility="gone"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:hint="Day"
-            android:layout_columnSpan="2"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:layout_marginTop="5dp"

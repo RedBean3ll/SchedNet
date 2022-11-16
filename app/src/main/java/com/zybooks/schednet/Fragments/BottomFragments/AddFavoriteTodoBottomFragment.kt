@@ -2,10 +2,7 @@ package com.zybooks.schednet.Fragments.BottomFragments
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.activityViewModels
-
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.zybooks.schednet.Model.TodoViewModel
 
 import com.zybooks.schednet.databinding.FavoriteTodoNewRibbonFrameBinding
 
@@ -13,8 +10,6 @@ import com.zybooks.schednet.databinding.FavoriteTodoNewRibbonFrameBinding
 class AddFavoriteTodoBottomFragment: BottomSheetDialogFragment() {
     private lateinit var binding: FavoriteTodoNewRibbonFrameBinding
     private var pinned: Boolean = false
-
-    private val viewModel: TodoViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FavoriteTodoNewRibbonFrameBinding.inflate(inflater, container, false)
@@ -38,8 +33,6 @@ class AddFavoriteTodoBottomFragment: BottomSheetDialogFragment() {
     }
 
     private fun saveAction() {
-        viewModel.TodoTitle.value = binding.newFavoriteTodoEdit.text.toString()
-        viewModel.TodoStatus.value = pinned
     }
 
 

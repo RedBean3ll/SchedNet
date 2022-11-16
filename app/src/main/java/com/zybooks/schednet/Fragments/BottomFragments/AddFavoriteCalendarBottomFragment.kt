@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.zybooks.schednet.Model.TodoViewModel
 import com.zybooks.schednet.R
 import com.zybooks.schednet.databinding.FavoriteCalendarNewRibbonFrameBinding
 
@@ -17,7 +16,6 @@ class AddFavoriteCalendarBottomFragment: BottomSheetDialogFragment() {
         pinned = false
     }
 
-    private val viewModel: TodoViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +47,6 @@ class AddFavoriteCalendarBottomFragment: BottomSheetDialogFragment() {
     }
 
     private fun saveAction() {
-        viewModel.TodoTitle.value = binding.newFavoriteCalendarEdit.text.toString()
-        viewModel.TodoStatus.value = pinned
     }
 
 

@@ -25,6 +25,9 @@
         <action
             android:id="@+id/show_todo_edit"
             app:destination="@id/todo_edit_fragment" />
+        <argument
+            android:name="list.ky"
+            app:argType="integer" />
     </fragment>
 
     <fragment

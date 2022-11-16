@@ -11,12 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.zybooks.schednet.Model.ListModel
 import com.zybooks.schednet.Model.StateViewModel
-import com.zybooks.schednet.Model.TodoViewModel
 import com.zybooks.schednet.R
 import com.zybooks.schednet.Utils.DatabaseManager
 import com.zybooks.schednet.databinding.ListNewRibbonFrameBinding
-import com.zybooks.schednet.databinding.TodoNewRibbonFrameBinding
-import kotlin.ClassCastException
 
 class AddListBottomFragment(MagicNumberInstance: Int): BottomSheetDialogFragment() {
 
@@ -30,19 +27,17 @@ class AddListBottomFragment(MagicNumberInstance: Int): BottomSheetDialogFragment
         magicNumber = MagicNumberInstance
     }
 
-    private val viewModel: TodoViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = ListNewRibbonFrameBinding.inflate(inflater, container, false)
 
         binding.genericSaveButton.setOnClickListener {
-            saveAction(binding.newListEdit.text.toString(), pinned, magicNumber)
-            state.PageState.value = true
-            dismiss()
+            if(binding.newListEdit.text.toString().length > 0) {
+                saveAction(binding.newListEdit.text.toString(), pinned, magicNumber)
+                state.PageState.value = true
+                dismiss()
+            } else {
+                binding.newListLayout.error = "Name field is empty"
+            }
         }
 
         binding.newListPriority.setOnClickListener {
@@ -72,3 +67,4 @@ class AddListBottomFragment(MagicNumberInstance: Int): BottomSheetDialogFragment
 
 
 }
+

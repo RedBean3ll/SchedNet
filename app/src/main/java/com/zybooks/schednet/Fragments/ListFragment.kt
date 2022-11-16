@@ -31,9 +31,12 @@ class ListFragment: Fragment() {
         super.onCreate(savedInstanceState)
         var activityIntent = requireActivity().intent.extras
         mMagicNumber = activityIntent!!.getInt(StageActivity.MAGIC_NUMBER)
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
+
         binding = ListBinding.inflate(layoutInflater)
 
         binding.listActionbarNewList.setOnClickListener {
@@ -54,7 +57,6 @@ class ListFragment: Fragment() {
         state.PageState.observe(viewLifecycleOwner) {
             if(state.PageState.value == true) {
                 mAdapter.callUpdateSpinner()
-                Toast.makeText(requireContext(), "Returned value: ",Toast.LENGTH_LONG).show()
                 state.PageState.value = false
             }
         }
