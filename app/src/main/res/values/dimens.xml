@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="ActionBarElementSize">50dp</dimen>
     <dimen name="ActionBarElementMarginStart">20dp</dimen>
     <dimen name="ActionBarPadding">10dp</dimen>
 
+    <dimen name="GenericBarElementSize">50dp</dimen>
+
     <dimen name="TitleBarPadding">10dp</dimen>
+
     <dimen name="general_chip_icon_padding">4dp</dimen>
     <dimen name="chip_group_holder_horizontal_margin">10dp</dimen>
     <dimen name="new_ribbon_frame_banner">50dp</dimen>
+    <dimen name="calendar_detail_element_text_size">16sp</dimen>
+    <dimen name="generic_auto_width">0dp</dimen>
 </resources>

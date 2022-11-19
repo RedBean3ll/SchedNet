@@ -1,5 +1,6 @@
 package com.zybooks.schednet.Fragments.BottomFragments
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,7 +23,7 @@ class AddTodoBottomFragment(MagicNumberInstance: Int, AltMagicNumberInstance: In
     private var pinned: Boolean
     private var magicNumber: Int
     private var altMagicNumber: Int
-    private val viewModel: StateViewModelTodo by activityViewModels()
+    private val state: StateViewModelTodo by activityViewModels()
 
     init {
         pinned = false
@@ -35,7 +36,7 @@ class AddTodoBottomFragment(MagicNumberInstance: Int, AltMagicNumberInstance: In
         binding.genericSaveButton.setOnClickListener {
             if(binding.newTodoNameEdit.text.toString().length > 0) {
                 saveAction(magicNumber, altMagicNumber, binding.newTodoNameEdit.text.toString(), binding.newTodoDescriptionEdit.text.toString(), pinned )
-                viewModel.PageState.value = true
+                state.PageState.value = true
                 dismiss()
             } else {
                 binding.newTodoNameLayout.error = "Name field is empty"
@@ -72,6 +73,11 @@ class AddTodoBottomFragment(MagicNumberInstance: Int, AltMagicNumberInstance: In
     //Guarantee flip
     private fun toggleDescriptionVisible() {
         binding.newTodoDescriptionCasing.isVisible = !binding.newTodoDescriptionCasing.isVisible
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        state.AccessState.value = true
     }
 
 

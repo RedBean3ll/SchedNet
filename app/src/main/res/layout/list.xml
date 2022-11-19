@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/list_label"
         app:layout_constraintBottom_toTopOf="@id/list_actionbar"
-        tools:listitem="@layout/menu_ribbon_frame"
+        tools:listitem="@layout/list_ribbon_menu"
         tools:itemCount="20"
         />
 
@@ -39,7 +39,7 @@
 
         <ImageButton
             android:id="@+id/list_actionbar_dots"
-            style="@style/ActionBar.Element"
+            style="@style/ActionBarElement"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
 
         <ImageButton
             android:id="@+id/list_actionbar_delete_mass"
-            style="@style/ActionBar.Element"
+            style="@style/ActionBarElement"
             android:contentDescription=""
             app:layout_constraintStart_toEndOf="@id/list_actionbar_dots"
             app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +56,7 @@
 
         <ImageButton
             android:id="@+id/list_actionbar_new_list"
-            style="@style/ActionBar.AddElement"
+            style="@style/ActionBarAddElement"
             android:contentDescription="@string/generic_add_element_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

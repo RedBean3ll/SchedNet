@@ -1,6 +1,7 @@
 package com.zybooks.schednet.Fragments.BottomFragments
 
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
 import androidx.core.os.bundleOf
@@ -52,14 +53,13 @@ class AddListBottomFragment(MagicNumberInstance: Int): BottomSheetDialogFragment
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        state.AccessState.value = true
     }
 
     private fun saveAction(listName: String, isPinned: Boolean, magicNumber: Int) {
-        val obj = ListModel()
-        obj.ListName = listName
-        obj.isPinned = isPinned
+        val obj = ListModel(0, listName, isPinned, null)
         val dbm = DatabaseManager(requireContext())
         dbm.insertList(obj, magicNumber)
     }

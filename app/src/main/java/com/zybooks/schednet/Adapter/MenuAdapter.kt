@@ -27,7 +27,7 @@ class MenuAdapter(context: Context, id: Int): RecyclerView.Adapter<MenuAdapter.V
 
     //create holder of ribbons
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(ctx).inflate(R.layout.menu_ribbon_frame, parent, false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.list_ribbon_menu, parent, false)
         return ViewHolder(view)
     }
 
@@ -39,6 +39,8 @@ class MenuAdapter(context: Context, id: Int): RecyclerView.Adapter<MenuAdapter.V
             bundle.putInt(TodoFragment.LISTKEY, holder.rId)
             findNavController(it).navigate(R.id.show_todo_list, bundle)
         }
+
+
     }
 
     //ribbon Collection [Nick: thread]
@@ -53,6 +55,7 @@ class MenuAdapter(context: Context, id: Int): RecyclerView.Adapter<MenuAdapter.V
 
         fun dataBind(strand: ListModel) {
             //Data
+
             rLabel.text = strand.ListName
             rPin = strand.isPinned
             rId = strand.ListId

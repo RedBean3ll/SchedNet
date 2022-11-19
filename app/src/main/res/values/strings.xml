@@ -41,16 +41,15 @@
     <string name="list_label_text">Lists</string>
 
     <!-- Tdo List -->
-    <string name="todo_label_text">_listname_</string>
+    <string name="todo_label_text">listname</string>
     <string name="new_chip_due_text">Due</string>
 
     <!-- Calendar -->
     <string name="calendar_label_text">Calendar</string>
-    <string name="new_chip_description_range">Event Range</string>
+    <string name="new_chip_description_range">event range</string>
 
     <!-- Favorite -->
     <string name="favorite_label_text">Favorites</string>
-    <string name="favorite_actionbar_switch_description">Switch List</string>
 
     <!-- Shared -->
     <string name="menu_ribbon_pin_description">Pin to top</string>
@@ -58,13 +57,14 @@
     <string name="generic_add_element_description">Create List Item</string>
     <string name="generic_task_description_hint">Description</string>
     <string name="general_task_name_hint">Task Name</string>
+    <string name="general_list_name_hint">List Name</string>
+    <string name="generic_actionbar_switch_description">change mode</string>
     <string name="new_chip_pin_text">Pin</string>
     <string name="new_chip_description_text">Description</string>
 
 
     <!-- TEMPORARY LOCATION -->
     <string name="temp_text">TEMP</string>
-    <string name="general_list_name_hint">List Name</string>
 
     <!-- TRANSITIONS -->
 
@@ -83,6 +83,24 @@
 
 
 
+    <!-- login -->
+    <string name="login">Login</string>
+    <string name="forward"><![CDATA[->]]></string>
+    <string name="back"><![CDATA[<-]]></string>
+
+    <!-- home -->
+    <string name="name1">TMP</string>
+    <string name="personal_hub">TMP</string>
+    <string name="calendar_weekday_sun">SUN</string>
+    <string name="calendar_weekday_mon">MON</string>
+    <string name="calendar_weekday_tue">TUE</string>
+    <string name="calendar_weekday_wed">WED</string>
+    <string name="calendar_weekday_thur">THUR</string>
+    <string name="calendar_weekday_fri">FRI</string>
+    <string name="calendar_weekday_sat">SAT</string>
+    <string name="generic_previous_description">previous</string>
+    <string name="generic_forward_description">forward</string>
+    <string name="generic_date_description">Month Year</string>
 
 
 </resources>

@@ -3,7 +3,7 @@
     <style name="Theme.SchedNet" parent="Theme.MaterialComponents.DayNight.NoActionBar" >
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/temptheme_alpha</item>
-        <item name="colorPrimaryVariant">@color/temptheme_beta</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/black</item>

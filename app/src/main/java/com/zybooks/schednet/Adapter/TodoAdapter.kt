@@ -2,11 +2,9 @@ package com.zybooks.schednet.Adapter
 
 import android.content.Context
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
@@ -14,7 +12,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.zybooks.schednet.Model.ListModel
 import com.zybooks.schednet.Model.TodoModel
 import com.zybooks.schednet.R
 import com.zybooks.schednet.Utils.DatabaseManager
@@ -28,11 +25,9 @@ class TodoAdapter(context: Context, id: Int, listId: Int): RecyclerView.Adapter<
     private var measuringTape: Int //User
     private var ruler: Int //List
 
-
-
     //create holder of ribbons
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(ctx).inflate(R.layout.todo_ribbon_frame, parent, false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.list_ribbon_todo, parent, false)
         return ViewHolder(view)
     }
 
@@ -49,8 +44,6 @@ class TodoAdapter(context: Context, id: Int, listId: Int): RecyclerView.Adapter<
         var rPin: Boolean = false
         var rId: Int = 0
         val rBody: ConstraintLayout = viewHolder.findViewById(R.id.sample_ribbon_body)
-
-        val v: View = viewHolder
 
         fun dataBind(strand: TodoModel) {
             //Data
@@ -111,7 +104,6 @@ class TodoAdapter(context: Context, id: Int, listId: Int): RecyclerView.Adapter<
     fun getContext(): Context {
         return ctx
     }
-
 
     //CRUD OPERATIONS [note: database and sorting will be implemented ]
     fun removeAt(position: Int) {

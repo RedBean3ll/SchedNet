@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
@@ -27,7 +26,7 @@ class FavoriteAdapter(context: Context, list: ArrayList<ListModel>, mode: Boolea
 
     //create holder of ribbons
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(ctx).inflate(R.layout.menu_ribbon_frame, parent, false)
+        val view: View = LayoutInflater.from(ctx).inflate(R.layout.list_ribbon_menu, parent, false)
         return ViewHolder(view)
     }
 

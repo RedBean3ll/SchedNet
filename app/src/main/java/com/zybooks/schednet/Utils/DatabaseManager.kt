@@ -168,11 +168,8 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
             if(cursor.moveToFirst()) {
                 val spindle = ArrayList<ListModel>()
                 do {
-                    val thread = ListModel()
-                    thread.ListId = cursor.getInt(cursor.getColumnIndex(LIST_ID))
-                    thread.ListName = cursor.getString(cursor.getColumnIndex(LIST_NAME))
-                    thread.isPinned = cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1
-                    thread.timeStamp = cursor.getLong(cursor.getColumnIndex(LIST_TOUCH))
+                    val thread = ListModel(
+                    cursor.getInt(cursor.getColumnIndex(LIST_ID)), cursor.getString(cursor.getColumnIndex(LIST_NAME)), cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1, cursor.getLong(cursor.getColumnIndex(LIST_TOUCH)))
                     spindle.add(thread)
                 } while (cursor.moveToNext())
                 return spindle
@@ -193,7 +190,6 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
     fun insertList(@NonNull obj: ListModel, @NonNull id: Int) {
         val db = this.writableDatabase
         val cv = ContentValues()
-
         cv.put(USER_ID, id)
         cv.put(LIST_NAME, obj.ListName)
         cv.put(LIST_PINNED, obj.isPinned)
@@ -213,11 +209,7 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
             if(cursor.moveToFirst()) {
                 val spindle = ArrayList<ListModel>()
                 do {
-                    val thread = ListModel()
-                    thread.ListId = cursor.getInt(cursor.getColumnIndex(LIST_ID))
-                    thread.ListName = cursor.getString(cursor.getColumnIndex(LIST_NAME))
-                    thread.isPinned = cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1
-                    thread.timeStamp = cursor.getLong(cursor.getColumnIndex(LIST_TOUCH))
+                    val thread = ListModel(cursor.getInt(cursor.getColumnIndex(LIST_ID)), cursor.getString(cursor.getColumnIndex(LIST_NAME)), cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1, cursor.getLong(cursor.getColumnIndex(LIST_TOUCH)))
                     spindle.add(thread)
                 } while (cursor.moveToNext())
                 return spindle
@@ -302,7 +294,9 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
 
     fun deleteTodo(todoNumber: Int): Boolean {
         val db = writableDatabase
-        return db.delete(TBL_TODO, "$EVENT_ID=?", arrayOf(todoNumber.toString())) > 0
+        val result = db.delete(TBL_TODO, "$EVENT_ID=?", arrayOf(todoNumber.toString())) > 0
+        db.close()
+        return result
     }
 
     @SuppressLint("Range")
@@ -312,7 +306,6 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         val cursor = db.query(TBL_TODO, arrayOf(EVENT_ID, EVENT_NAME, EVENT_DESCRIPTION, EVENT_ISPINNED, EVENT_ISCOMPLETED, EVENT_CREATESTAMP), "$USER_ID=? AND $LIST_ID=?", arrayOf(id.toString(), listId.toString()),null,null,null, null)
         try{
             if(cursor.moveToFirst()) {
-
                 val spindle = ArrayList<TodoModel>()
                 do {
                     val thread = TodoModel()
@@ -345,8 +338,7 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         db.close()
     }
 
-    fun editTodo() {
-
+    fun editTodo() { //TODO: Edit Todo Transaction
     }
 
     @SuppressLint("Range")

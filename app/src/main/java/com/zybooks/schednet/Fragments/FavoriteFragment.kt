@@ -27,10 +27,7 @@ class FavoriteFragment: Fragment() {
 
         //GET LIST DATA
         val list = ArrayList<ListModel>()
-        list.add(ListModel())
-        list.add(ListModel())
-        list.add(ListModel())
-        list.add(ListModel())
+        //TODO: ANY TEST LISTMODEL NEEDS ID FIRST!!
 
         //VIEW SETUP AND CLICK LISTENERS
         binding.apply {

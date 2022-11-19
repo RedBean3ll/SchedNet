@@ -1,56 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        style="@style/ControlPane"
+        android:id="@+id/calendar_control_bar"
+        android:background="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/control_pane_left"
+            style="@style/ElementLeft"
+            android:contentDescription="@string/generic_previous_description"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        <TextView
+            android:id="@+id/control_pane_label"
+            style="@style/ElementLabel"
+            android:text="@string/generic_date_description"
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/control_pane_right"
+            style="@style/ElementRight"
+            android:contentDescription="@string/generic_forward_description"
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calendar_detail_pane"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar_control_bar" >
+
+        <TextView
+            style="@style/DetailPane.Element"
+            android:text="@string/calendar_weekday_sun" />
+        <TextView
+            style="@style/DetailPane.Element"
+            android:text="@string/calendar_weekday_mon" />
+        <TextView
+            style="@style/DetailPane.Element"
+            android:text="@string/calendar_weekday_tue" />
+        <TextView
+            style="@style/DetailPane.Element"
+            android:text="@string/calendar_weekday_wed" />
+        <TextView
+            style="@style/DetailPane.Element"
+            android:text="@string/calendar_weekday_thur" />
+        <TextView
+            style="@style/DetailPane.Element"
+            android:text="@string/calendar_weekday_fri" />
+        <TextView
+            style="@style/DetailPane.Element"
+            android:text="@string/calendar_weekday_sat" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendar_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calendar_detail_pane"
+        app:layout_constraintBottom_toTopOf="@id/calendar_action_bar"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/ActionBar"
-        android:id="@+id/calendar_top_menu_cl"
+        android:id="@+id/calendar_action_bar"
         android:background="@color/purple_700"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" >
 
 
+
         <ImageButton
-            style="@style/ActionBar.Element"
-            android:id="@+id/calendar_delete_calendar"
-            android:background="@drawable/ic_button_background_round"
-            android:contentDescription="Delete Selection Mode"
+            style="@style/ActionBarElement"
+            android:id="@+id/calendar_mode"
+            android:contentDescription="@string/generic_actionbar_switch_description"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_uknn_tmp_ico" />
+            app:srcCompat="@drawable/ic_baseline_swap_vert_24"
+            />
 
         <ImageButton
-            style="@style/ActionBar.AddElement"
+            android:id="@+id/temp_testy"
+            style="@style/ActionBarElement"
+            app:srcCompat="@drawable/ic_uknn_tmp_ico"
+            app:layout_constraintStart_toEndOf="@id/calendar_mode"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            style="@style/ActionBarAddElement"
             android:id="@+id/calendar_menu_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_plus_24"
-            android:contentDescription="Action Menu" />
+            android:contentDescription="@string/generic_add_element_description" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        style="@style/TitleBar"
-        android:id="@+id/calendar_title_calendar"
-        android:text="@string/calendar_label_text"
-        android:textColor="@color/white"
-        android:background="@color/purple_700"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <ScrollView
-        android:id="@+id/calendar_task_space"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ExtraText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,5 @@ import androidx.lifecycle.ViewModel
 
 class StateViewModelTodo: ViewModel() {
     var PageState = MutableLiveData<Boolean>()
+    var AccessState = MutableLiveData<Boolean>()
 }
