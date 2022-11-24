@@ -29,7 +29,7 @@
             android:hint="@string/general_task_name_hint"
             app:hintTextColor="@color/black"
             android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
-            app:layout_constraintEnd_toStartOf="@id/new_todo_priority"
+            app:layout_constraintEnd_toStartOf="@id/new_todo_pin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
 
@@ -47,29 +47,19 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/new_todo_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
 
-            android:maxLines="2"
-            android:paddingStart="10dp"
-            android:paddingEnd="0dp"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/new_todo_priority"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/new_todo_priority"
+            android:id="@+id/new_todo_pin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:backgroundTint="@color/transparent"
             android:contentDescription="@string/menu_ribbon_pin_description"
             android:src="@drawable/ic_baseline_push_pin_alt_24"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="6dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/new_todo_name_layout"
+
             tools:ignore="TouchTargetSizeCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -95,6 +85,7 @@
                 app:chipIcon="@drawable/ic_baseline_description_24" />
 
             <com.google.android.material.chip.Chip
+                android:visibility="gone"
                 android:id="@+id/new_todo_chip_due"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,7 +98,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/new_todo_description_casing"
+        android:id="@+id/new_todo_description_layout"
         app:counterEnabled="true"
         app:counterMaxLength="250"
         android:layout_marginTop="10dp"
@@ -130,9 +121,35 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        style="@style/SaveButton"
-        android:id="@+id/generic_save_button"
-        />
+    <LinearLayout
+        android:id="@+id/action_bar_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/generic_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/red_menu"
+            app:srcCompat="@drawable/ic_cancel_24_ico"
+            android:contentDescription="@string/generic_cancel_button_description"
+            android:tint="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/generic_confirm_button"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/green_menu"
+            app:srcCompat="@drawable/ic_baseline_check_24"
+            android:contentDescription="@string/generic_confirm_button_description"
+            android:tint="@color/white"
+            />
+    </LinearLayout>
 
 </LinearLayout>

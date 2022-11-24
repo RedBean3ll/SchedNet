@@ -11,28 +11,42 @@
         android:layout_height="@dimen/new_ribbon_frame_banner"
         android:background="@color/purple_700" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginTop="10dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/new_calendar_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/general_task_name_hint"
-        app:hintTextColor="@color/black"
-        android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
-        android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
-
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:errorTextColor="@color/red_error"
-        app:errorTextAppearance="@color/red_error"
-        app:boxStrokeErrorColor="@color/red_error"
+        android:paddingEnd="10dp"
+        android:paddingStart="0dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
         >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/new_calendar_name_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
+            android:hint="@string/general_task_name_hint"
+            app:boxStrokeErrorColor="@color/red_error"
+            app:errorIconDrawable="@drawable/ic_baseline_error_24"
+            app:errorTextAppearance="@color/red_error"
+
+            app:errorTextColor="@color/red_error"
+            app:hintTextColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/new_calendar_edit"
-                android:inputType="text"
+                android:id="@+id/new_calendar_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -42,17 +56,9 @@
         android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
         >
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/new_calendar_chip_group"
+            android:id="@+id/new_calendar_chipgroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/new_calendar_chip_due"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/new_chip_description_range"
-                app:iconStartPadding="@dimen/general_chip_icon_padding"
-                app:chipIcon="@drawable/ic_baseline_date_range_24" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/new_calendar_chip_description"
@@ -62,12 +68,22 @@
                 app:iconStartPadding="@dimen/general_chip_icon_padding"
                 app:chipIcon="@drawable/ic_baseline_description_24" />
 
+            <com.google.android.material.chip.Chip
+                android:id="@+id/new_calendar_chip_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_chip_date"
+                app:iconStartPadding="@dimen/general_chip_icon_padding"
+                app:chipIcon="@drawable/ic_baseline_date_range_24"
+                app:closeIcon="@drawable/ic_cancel_24_ico"
+                />
+
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/new_calendar_description_casing"
+        android:id="@+id/new_calendar_description_layout"
         app:counterEnabled="true"
         app:counterMaxLength="250"
         android:layout_marginTop="10dp"
@@ -90,16 +106,49 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/new_calendar_range_group"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/new_calendar_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" />
-
-    <Button
-        style="@style/SaveButton"
-        android:id="@+id/generic_save_button"
+        android:text="*No date specified"
+        android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
+        android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
+        android:textColor="@color/red_error"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:visibility="gone"
         />
+
+
+    <LinearLayout
+        android:id="@+id/action_bar_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/generic_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/red_menu"
+            app:srcCompat="@drawable/ic_cancel_24_ico"
+            android:contentDescription="@string/generic_cancel_button_description"
+            android:tint="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/generic_confirm_button"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/green_menu"
+            app:srcCompat="@drawable/ic_baseline_check_24"
+            android:contentDescription="@string/generic_confirm_button_description"
+            android:tint="@color/white"
+            />
+    </LinearLayout>
 
 </LinearLayout>

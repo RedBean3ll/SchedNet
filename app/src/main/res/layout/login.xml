@@ -1,143 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
-    android:columnCount="1"
-    android:padding="20dp"
-    android:useDefaultMargins="true"
+    android:orientation="vertical"
     tools:context=".Fragments.LoginFragment">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/LoginTitleBar"
         android:id="@+id/login_label_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_label_text"
-        android:textSize="35sp"
-        android:textStyle="bold"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center_horizontal"
-
-        android:layout_marginBottom="50dp"
         />
 
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:columnCount="2"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_label_title">
 
-    <TextView
-        android:id="@+id/login_username_label"
-        android:text="@string/login_username_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/LoginLabels"
+            android:id="@+id/login_username_label"
+            android:layout_columnSpan="2"
+            android:layout_marginTop="10dp"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        />
+            android:text="@string/login_username_text"
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_username_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/login_username_hint"
 
-        app:hintTextColor="@color/black"
-        app:startIconDrawable="@drawable/ic_baseline_person_24"
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:errorTextColor="@color/red_error"
-        app:errorTextAppearance="@color/red_error"
-        app:boxStrokeErrorColor="@color/red_error" >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_username_edit"
-            android:inputType="text"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_username_layout"
+            android:hint="@string/login_username_hint"
+            android:layout_columnSpan="2"
 
-    <TextView
-        android:id="@+id/login_password_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login_password_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_password_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/login_password_hint"
-
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:endIconCheckable="true"
-        app:endIconMode="password_toggle"
-        app:errorTextColor="@color/red_error"
-        app:errorTextAppearance="@color/red_error"
-        app:boxStrokeErrorColor="@color/red_error"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_password_edit"
-            android:inputType="textPassword"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:minWidth="550dp"
+
+            app:boxStrokeColor="@color/purple_700"
+            app:boxStrokeErrorColor="@color/red_error"
+            app:errorIconDrawable="@drawable/ic_baseline_error_24"
+            app:errorTextAppearance="@color/red_error"
+            app:errorTextColor="@color/red_error"
+            app:hintTextColor="@color/black"
+
+            app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_username_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="20sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/LoginLabels"
+            android:id="@+id/login_password_label"
+            android:layout_columnSpan="2"
+            android:text="@string/login_password_text"
             />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_password_layout"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="2"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/login_password_hint"
+            android:maxWidth="600dp"
+            android:minWidth="550dp"
+            app:boxStrokeColor="@color/purple_700"
+            app:boxStrokeErrorColor="@color/red_error"
+            app:endIconCheckable="true"
+            app:errorIconDrawable="@drawable/ic_baseline_error_24"
+            app:errorTextAppearance="@color/red_error"
+            app:errorTextColor="@color/red_error"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
-    <Button
-        android:id="@+id/login_forgot_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:text="@string/login_forgot_text"
-        android:layout_gravity="end"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_password_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textSize="20sp" />
 
-        />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/login_register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:text="@string/login_register_text"
-        android:layout_gravity="end"
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/login_check_box_remember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:buttonTint="@color/purple_700"
+            android:text="Remember"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
-        />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_forgot_button"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_columnSpan="1"
+            android:layout_gravity="end"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/transparent"
+            android:padding="10dp"
+            android:text="@string/login_forgot_text"
+            android:textAllCaps="true"
+            android:textSize="15sp"
+            android:textStyle="bold"
 
-    <Button
-        android:id="@+id/test_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:background="@color/transparent"
-        android:text="add sample users"
+            />
 
-        />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="2"
+            android:layout_gravity="end"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@color/transparent"
+            android:padding="10dp"
+            android:text="@string/login_register_text"
+            android:textAllCaps="true"
+            android:textSize="15sp"
+            android:textStyle="bold"
 
-    <androidx.appcompat.widget.AppCompatCheckBox
-        android:id="@+id/login_check_box_remember"
-        android:buttonTint="@color/purple_700"
-        android:text="Remember"
+            />
 
-        />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_local_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnSpan="2"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@color/purple_700"
+            android:gravity="center"
+            android:paddingStart="25dp"
+            android:paddingTop="15dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="15dp"
+            android:text="@string/login_local_text"
+            android:textColor="@color/text_white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+    </GridLayout>
 
-    <Button
-        android:id="@+id/login_local_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/login_local_text"
-        android:textStyle="bold"
-        android:textSize="25sp"
-        android:layout_gravity="bottom|center"
-        />
 
-</GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

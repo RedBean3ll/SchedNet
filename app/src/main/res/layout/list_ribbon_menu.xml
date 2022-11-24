@@ -46,9 +46,8 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:visibility="invisible"
             android:id="@+id/sample_ribbon_priority"
-            android:layout_width="1dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_baseline_push_pin_alt_24"
             android:backgroundTint="@color/transparent"

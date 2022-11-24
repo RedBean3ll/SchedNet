@@ -85,24 +85,24 @@
 
         <ImageButton
             style="@style/ActionBarElement"
-            android:id="@+id/calendar_mode"
+            android:id="@+id/calendar_list"
             android:contentDescription="@string/generic_actionbar_switch_description"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_swap_vert_24"
+            app:srcCompat="@drawable/ic_baseline_format_list_bulleted_24"
             />
 
         <ImageButton
-            android:id="@+id/temp_testy"
+            android:id="@+id/calendar_unknown"
             style="@style/ActionBarElement"
             app:srcCompat="@drawable/ic_uknn_tmp_ico"
-            app:layout_constraintStart_toEndOf="@id/calendar_mode"
+            app:layout_constraintStart_toEndOf="@id/calendar_list"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             style="@style/ActionBarAddElement"
-            android:id="@+id/calendar_menu_button"
+            android:id="@+id/new_calendar_event_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_plus_24"

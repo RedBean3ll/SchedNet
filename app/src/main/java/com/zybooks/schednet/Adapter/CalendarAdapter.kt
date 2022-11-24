@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zybooks.schednet.R
 import java.time.LocalDate
 
-class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: onItemListener, eventPositions: ArrayList<Boolean?>): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
+class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: OnItemListener, eventPositions: ArrayList<Boolean?>): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
     private var dayList: ArrayList<LocalDate?>
-    private val itemListener: onItemListener
+    private val itemListener: OnItemListener
     private val eventList: ArrayList<Boolean?> = eventPositions
 
     override fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): CalendarViewHolder {
@@ -35,7 +35,7 @@ class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: onItemList
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
-        val date: LocalDate? = dayList.get(position)
+        val date: LocalDate? = dayList[position]
 
         holder.cellDot.visibility = View.GONE
         if(date == null) {
@@ -44,7 +44,10 @@ class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: onItemList
         } else {
             holder.cellLabel.text = date.dayOfMonth.toString()
             holder.cellRoot.setBackgroundColor(Color.WHITE)
-            if(date.equals(LocalDate.now())) {
+            holder.cellRoot.setOnClickListener {
+                holder.onItemListener.onItemClick(holder.absoluteAdapterPosition, dayList[holder.absoluteAdapterPosition])
+            }
+            if(date == LocalDate.now()) {
                 holder.cellRoot.setBackgroundColor(ContextCompat.getColor(holder.cellRoot.context, R.color.purple_500))
                 holder.cellLabel.setTextColor(ContextCompat.getColor(holder.cellRoot.context, R.color.text_white))
                 holder.cellLabel.setTypeface(holder.cellLabel.typeface, Typeface.BOLD)
@@ -55,23 +58,24 @@ class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: onItemList
         }
     }
 
-    inner class CalendarViewHolder(@NonNull itemView: View, onItemListener: onItemListener): RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class CalendarViewHolder(@NonNull itemView: View, onItemListener: OnItemListener): RecyclerView.ViewHolder(itemView) {
         val cellRoot: View
         val cellLabel: TextView
         val cellDot: ImageView
-        private val onItemListener: onItemListener
+        val onItemListener: OnItemListener
 
         init {
             cellRoot = itemView.findViewById(R.id.cell_root)
             cellLabel = itemView.findViewById(R.id.cell_label)
             cellDot = itemView.findViewById(R.id.cell_dot)
             this.onItemListener = onItemListener
-            itemView.setOnClickListener(this)
+            //itemView.setOnClickListener(this)
         }
 
+        /*
         override fun onClick(v: View?) {
-            onItemListener.onItemClick(absoluteAdapterPosition, dayList.get(absoluteAdapterPosition))
-        }
+            onItemListener.onItemClick(absoluteAdapterPosition, dayList[absoluteAdapterPosition])
+        }*/
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -80,15 +84,8 @@ class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: onItemList
         notifyDataSetChanged()
     }
 
-    fun updateClickPosition(newPosition: Int, oldPosition: Int): Int {
-
-
-        if(oldPosition > -1) {
-
-        }
-        return newPosition
-
-        //update
+    fun updateClickPosition(position: Int) {
+        //animation
     }
 
     override fun getItemCount(): Int {
@@ -100,7 +97,7 @@ class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: onItemList
         itemListener = onItemListener
     }
 
-    interface onItemListener {
+    interface OnItemListener {
         fun onItemClick(position: Int, date: LocalDate?)
         fun onItemLongClick(position: Int)
     }

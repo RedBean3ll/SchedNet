@@ -13,8 +13,7 @@
         tools:layout="@layout/list" >
         <action
             android:id="@+id/show_todo_list"
-            app:destination="@id/todo_list_fragment"
-            />
+            app:destination="@id/todo_list_fragment" />
     </fragment>
 
     <fragment
@@ -27,7 +26,8 @@
             app:destination="@id/todo_edit_fragment" />
         <argument
             android:name="list.ky"
-            app:argType="integer" />
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
 
     <fragment
@@ -35,14 +35,47 @@
         android:name="com.zybooks.schednet.Fragments.TodoEditFragment"
         android:label="@string/nav_todo_edit"
         tools:layout="@layout/todo_edit"
-        />
+        >
+        <argument
+            android:name="event.ky"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
 
     <fragment
         android:id="@+id/calendar_fragment"
         android:name="com.zybooks.schednet.Fragments.CalendarFragment"
         android:label="@string/nm_calendar"
-        tools:layout="@layout/calendar"
-        />
+        tools:layout="@layout/calendar" >
+        <action
+            android:id="@+id/show_list_calendar"
+            app:destination="@id/calendar_list_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendar_list_fragment"
+        android:name="com.zybooks.schednet.Fragments.CalendarListFragment"
+        android:label="Calendar List"
+        tools:layout="@layout/calendar_list">
+        <action
+            android:id="@+id/show_calendar_edit"
+            app:destination="@id/calendar_edit_fragment" />
+        <argument
+            android:name="year.ky"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendar_edit_fragment"
+        android:name="com.zybooks.schednet.Fragments.CalendarEditFragment"
+        android:label="Calendar Edit"
+        tools:layout="@layout/calendar_edit" >
+        <argument
+            android:name="event.ky"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 
     <fragment
         android:id="@+id/favorite_fragment"

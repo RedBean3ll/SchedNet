@@ -4,11 +4,9 @@ import android.os.Build
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
-import java.time.LocalDate
-import java.time.LocalTime
+import java.time.*
 
-@RequiresApi(Build.VERSION_CODES.O)
-class CalendarEvent(@Nullable idInput: Int, @Nullable nameInput: String?, @Nullable dateInput: LocalDate?, @Nullable timeInput: LocalTime?) {
+class CalendarEvent(@Nullable idInput: Int, @Nullable nameInput: String?, @Nullable descriptionInput: String?, @Nullable timestamp: Long?) {
     /*companion object {
         var eventList: ArrayList<Event> = ArrayList()
 
@@ -20,16 +18,15 @@ class CalendarEvent(@Nullable idInput: Int, @Nullable nameInput: String?, @Nulla
         }
     }*/
 
-    var id: Int
-    var name: String
-    var date: LocalDate
-    var time: LocalTime
+    var eventId: Int
+    var eventName: String
+    var eventDescription: String
+    var eventDateTime: Long
 
     init {
-
-        id = idInput ?: -1
-        name = nameInput ?: "NAN"
-        date = dateInput ?: LocalDate.of(1500, 1, 1)
-        time = timeInput ?: LocalTime.now()
+        eventId = idInput
+        eventName = nameInput ?: "NAN"
+        eventDescription = descriptionInput ?: ""
+        eventDateTime = timestamp ?: 0
     }
 }

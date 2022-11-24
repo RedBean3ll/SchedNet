@@ -17,6 +17,7 @@
 
         <activity
             android:name=".StageActivity"
+            android:configChanges=""
             android:exported="false" />
         <activity
             android:name=".MainActivity"

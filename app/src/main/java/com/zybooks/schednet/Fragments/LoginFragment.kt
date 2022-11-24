@@ -17,17 +17,6 @@ class LoginFragment: Fragment() {
 
     private lateinit var binding: LoginBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val attemptAlpha = DatabaseManager(requireContext()).checkPreferredLogin()
-        if(attemptAlpha > -1) {
-            val intent = Intent(activity, StageActivity::class.java)
-            intent.putExtra(StageActivity.MAGIC_NUMBER, attemptAlpha)
-            startActivity(intent)
-        }
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = LoginBinding.inflate(layoutInflater)
 
@@ -65,11 +54,6 @@ class LoginFragment: Fragment() {
                 intent.putExtra(StageActivity.MAGIC_NUMBER, attempt)
                 startActivity(intent)
             }
-        }
-
-        binding.testButton.setOnClickListener {
-            //val dbm = DatabaseManager(requireContext())
-            //dbm.insertTestUsers()
         }
 
         return binding.root

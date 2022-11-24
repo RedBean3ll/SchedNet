@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.zybooks.schednet.Utils.DatabaseManager
 import com.zybooks.schednet.databinding.ActivityStageBinding
 import java.lang.Exception
 
@@ -19,28 +20,21 @@ class StageActivity: AppCompatActivity() {
     companion object {
         val MAGIC_NUMBER = "login.ky"
     }
-
     private val TAG = "StageActivity"
 
     private var mNumber: Int = -1
     private lateinit var binding: ActivityStageBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityStageBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_stage)
 
-
-        val test = intent.extras
-        if(savedInstanceState != null) {
-            mNumber = savedInstanceState.getInt(MAGIC_NUMBER)
-            //Toast.makeText(this, "AAMAGIC NUMBER IS $mNumber", Toast.LENGTH_LONG).show()
-        } else if(test != null) {
-            mNumber = savedInstanceState?.getInt(MAGIC_NUMBER) ?:
-            Log.i(TAG, "MAGIC NUMBER SET")
+        mNumber = intent.extras?.getInt(MAGIC_NUMBER)!!
+        if(mNumber > 0) {
+            DatabaseManager(this).resetCalendarDate(mNumber)
         }
 
-        val bottom: BottomNavigationView = binding.navView
-        val navHostFragment: NavHostFragment = supportFragmentManager.findFragmentById(R.id.nav_graph_stage_fragment, ) as NavHostFragment
+        val bottom: BottomNavigationView = findViewById(R.id.nav_view)
+        val navHostFragment: NavHostFragment = supportFragmentManager.findFragmentById(R.id.nav_graph_stage_fragment) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         navController.setGraph(R.navigation.nav_graph_stage)
         NavigationUI.setupWithNavController(bottom, navController)

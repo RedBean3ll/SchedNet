@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical"
+        >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/new_ribbon_frame_banner"
+            android:background="@color/purple_700" />
+
+        <TextView
+            android:text="General:"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:id="@+id/ribbon_name_casing"
+            android:hint="Task Name"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:errorTextAppearance="@color/red_error"
+            app:errorIconDrawable="@drawable/ic_baseline_error_24"
+            app:errorIconTint="@color/red_error"
+            app:boxStrokeErrorColor="@color/red_error"
+            app:errorTextColor="@color/red_error"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ribbon_name"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="30"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ribbon_description_casing"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:hint="Description"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ribbon_description"
+                android:inputType="textMultiLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:maxLength="100"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date:"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/ribbon_date_casing"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:hint="Time Result"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:errorIconTint="@color/red_error"
+                app:boxStrokeErrorColor="@color/red_error"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ribbon_date"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/date_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:srcCompat="@drawable/ic_baseline_date_range_24"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="10dp"
+
+                />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/action_bar_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="bottom"
+
+            >
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/generic_cancel_button"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@color/red_menu"
+                app:srcCompat="@drawable/ic_cancel_24_ico"
+                android:contentDescription="@string/generic_cancel_button_description"
+                android:tint="@color/white"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/generic_confirm_button"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_weight="1"
+                android:background="@color/green_menu"
+                app:srcCompat="@drawable/ic_baseline_check_24"
+                android:contentDescription="@string/generic_confirm_button_description"
+                android:tint="@color/white"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

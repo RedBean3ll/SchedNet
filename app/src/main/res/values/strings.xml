@@ -101,6 +101,10 @@
     <string name="generic_previous_description">previous</string>
     <string name="generic_forward_description">forward</string>
     <string name="generic_date_description">Month Year</string>
+    <string name="generic_confirm_button_description">confirm</string>
+    <string name="generic_cancel_button_description">cancel</string>
+    <string name="generic_calendar_empty_text">no events yet</string>
+    <string name="new_chip_date">Date</string>
 
 
 </resources>

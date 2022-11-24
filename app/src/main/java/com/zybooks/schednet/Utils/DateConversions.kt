@@ -3,37 +3,33 @@ package com.zybooks.schednet.Utils
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import java.time.DayOfWeek
-import java.time.LocalDate
-import java.time.LocalTime
-import java.time.YearMonth
+import java.time.*
 import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
+import kotlin.collections.ArrayList
 
 class DateConversions {
 
     companion object {
         //TODO: SUBSTITUTE IN BETTER COMPATIBLE DATETIME
 
-        @RequiresApi(Build.VERSION_CODES.O)
         fun formatDate(date: LocalDate): String {
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
             return date.format(formatter)
         }
 
-        @RequiresApi(Build.VERSION_CODES.O)
         fun formatTime(time: LocalTime): String {
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("hh:mm::ss a")
             return time.format(formatter)
         }
 
-        @RequiresApi(Build.VERSION_CODES.O)
         fun formatMonthYear(date: LocalDate): String {
             val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
             return date.format(formatter)
         }
 
         //TODO: May break from null in collection
-        @RequiresApi(Build.VERSION_CODES.O)
         fun daysInMonth(date: LocalDate): ArrayList<LocalDate?> {
             val monthCollection: ArrayList<LocalDate?> = ArrayList()
 
@@ -53,33 +49,17 @@ class DateConversions {
             return monthCollection
         }
 
-        @RequiresApi(Build.VERSION_CODES.O)
         fun eventDaysInMonth(date: LocalDate): ArrayList<Boolean?> {
 
             val eventDayCollection: ArrayList<LocalDate> = ArrayList()
-
-            val whereEventList: ArrayList<Boolean?> = ArrayList()
+            val whereEventList: ArrayList<Boolean?> = arrayListOf(false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false)
             val weekday = date.withDayOfMonth(1).dayOfWeek.value
-
-            var count = 0
-            while(count < 42) {
-                whereEventList.add(false)
-                count++
-            }
 
             for(item: LocalDate in eventDayCollection) {
                whereEventList[item.dayOfMonth+weekday-1] = true
             }
 
             return whereEventList
-        }
-
-        @RequiresApi(Build.VERSION_CODES.O)
-        fun testLoc(gridNumber: Int, date: LocalDate) {
-            val firstOfMonth = date.withDayOfMonth(1)
-            val weekday = firstOfMonth.dayOfWeek.value
-
-            Log.i("DateConversions", "At position: $gridNumber and weekday + day# = ${date.dayOfMonth+weekday-1}")
         }
 
         /*
@@ -98,7 +78,11 @@ class DateConversions {
         }
          */
 
-        @RequiresApi(Build.VERSION_CODES.O)
+        fun dateTimeConversion(dateTime: ZonedDateTime): String {
+            val formatter: DateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+            return dateTime.format(formatter)
+        }
+
         fun ukn(current: LocalDate): LocalDate? {
             val previousWeek = current.minusWeeks(1)
             var localCurrent = current

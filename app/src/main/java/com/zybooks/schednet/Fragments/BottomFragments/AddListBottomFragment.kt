@@ -1,67 +1,98 @@
 package com.zybooks.schednet.Fragments.BottomFragments
 
-import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
-import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
-import androidx.lifecycle.ViewModelProvider
+import android.widget.ImageButton
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.zybooks.schednet.Model.ListModel
-import com.zybooks.schednet.Model.StateViewModel
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.zybooks.schednet.Model.TodoList
 import com.zybooks.schednet.R
 import com.zybooks.schednet.Utils.DatabaseManager
-import com.zybooks.schednet.databinding.ListNewRibbonFrameBinding
 
-class AddListBottomFragment(MagicNumberInstance: Int): BottomSheetDialogFragment() {
+class AddListBottomFragment(): BottomSheetDialogFragment() {
 
-    private lateinit var binding: ListNewRibbonFrameBinding
+    private lateinit var listEditText: TextInputEditText
+    private lateinit var listEditLayout: TextInputLayout
+    private lateinit var cancelButton: ImageButton
+    private lateinit var confirmButton: ImageButton
+    private lateinit var pinButton: ImageButton
+    private var gId: Int
     private var pinned: Boolean
-    private var magicNumber: Int
-    private val state: StateViewModel by activityViewModels()
+    private var onDismissInteraction: OnDismissInteraction?
 
     init {
+        gId = -1
         pinned = false
-        magicNumber = MagicNumberInstance
+        this.onDismissInteraction = null
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = ListNewRibbonFrameBinding.inflate(inflater, container, false)
+        val rootView = inflater.inflate(R.layout.list_new_ribbon_frame, container, false)
 
-        binding.genericSaveButton.setOnClickListener {
-            if(binding.newListEdit.text.toString().length > 0) {
-                saveAction(binding.newListEdit.text.toString(), pinned, magicNumber)
-                state.PageState.value = true
+        if(dialog is BottomSheetDialog) {
+            val behaviour = (dialog as BottomSheetDialog).behavior
+            behaviour.state = BottomSheetBehavior.STATE_EXPANDED
+            behaviour.isDraggable = false
+        }
+
+        listEditText = rootView.findViewById(R.id.new_list_edit)
+        listEditLayout = rootView.findViewById(R.id.new_list_layout)
+        pinButton = rootView.findViewById(R.id.new_list_pin)
+        cancelButton = rootView.findViewById(R.id.generic_cancel_button)
+        confirmButton = rootView.findViewById(R.id.generic_confirm_button)
+        initializer()
+
+        return rootView
+    }
+
+    private fun initializer() {
+        cancelButton.setOnClickListener {
+            dismiss()
+        }
+
+        confirmButton.setOnClickListener {
+            if(listEditText.text.toString().isNotEmpty()) {
+                val obj = TodoList(0, listEditText.text.toString(), pinned, null)
+                DatabaseManager(requireContext()).insertList(obj, gId)
+
+                obj.listId = DatabaseManager(requireContext()).readNewListId(gId, obj.timestamp)
+                onDismissInteraction?.confirmChange(obj)
                 dismiss()
             } else {
-                binding.newListLayout.error = "Name field is empty"
+                listEditLayout.error = "Name field is empty"
             }
         }
 
-        binding.newListPriority.setOnClickListener {
+        pinButton.setOnClickListener {
             pinned = !pinned
             if(pinned) {
-                binding.newListPriority.setImageResource(R.drawable.ic_baseline_push_pin_24)
+                pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
             } else {
-                binding.newListPriority.setImageResource(R.drawable.ic_baseline_push_pin_alt_24)
+                pinButton.setImageResource(R.drawable.ic_baseline_push_pin_alt_24)
             }
         }
-
-        return binding.root
     }
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        state.AccessState.value = true
+        onDismissInteraction?.cancelChange()
     }
 
-    private fun saveAction(listName: String, isPinned: Boolean, magicNumber: Int) {
-        val obj = ListModel(0, listName, isPinned, null)
-        val dbm = DatabaseManager(requireContext())
-        dbm.insertList(obj, magicNumber)
+    interface OnDismissInteraction {
+        fun confirmChange(listModel: TodoList)
+        fun cancelChange()
+    }
+
+    fun setInterface(onDismissInteraction: OnDismissInteraction) {
+        this.onDismissInteraction = onDismissInteraction
+    }
+
+    fun setId(id: Int) {
+        gId = id
     }
 
 

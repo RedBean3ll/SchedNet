@@ -12,6 +12,29 @@
 
     </style>
 
+    <style name="LoginTitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">180dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:gravity">bottom|center</item>
+        <item name="android:background">@drawable/walpaper</item>
+        <item name="android:text">@string/login_label_text</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+
+    <style name="LoginLabels">
+        <item name="android:minWidth">550dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+
+    </style>
+
     <style name="DialogStyle">
         <item name="android:windowIsFloating">false</item>
         <item name="android:statusBarColor">@color/transparent</item>
