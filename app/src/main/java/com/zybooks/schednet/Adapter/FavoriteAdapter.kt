@@ -9,12 +9,12 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import com.zybooks.schednet.Model.TodoList
+import com.zybooks.schednet.Model.ListObject
 import com.zybooks.schednet.R
 
-class FavoriteAdapter(context: Context, list: ArrayList<TodoList>, mode: Boolean): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>()  {
+class FavoriteAdapter(context: Context, list: ArrayList<ListObject>, mode: Boolean): RecyclerView.Adapter<FavoriteAdapter.ViewHolder>()  {
    //Adapter may drop inp::list: ArrayList<ListModel> in favor of local management
-    private var stand: ArrayList<TodoList> = list
+    private var stand: ArrayList<ListObject> = list
     private var ctx: Context = context
 
     //Favorite TDO
@@ -54,7 +54,7 @@ class FavoriteAdapter(context: Context, list: ArrayList<TodoList>, mode: Boolean
 
         val v: View = viewHolder
 
-        fun dataBind(strand: TodoList) {
+        fun dataBind(strand: ListObject) {
             //Data
             rLabel.text = strand.listName
             rPin = strand.isPinned
@@ -78,7 +78,7 @@ class FavoriteAdapter(context: Context, list: ArrayList<TodoList>, mode: Boolean
         notifyItemRangeChanged(position, itemCount)
     }
 
-    fun add(lst: TodoList) {
+    fun add(lst: ListObject) {
         stand.add(0, lst)
         notifyItemInserted(0)
         notifyItemRangeChanged(0, itemCount)
@@ -88,7 +88,7 @@ class FavoriteAdapter(context: Context, list: ArrayList<TodoList>, mode: Boolean
 
     }
 
-    fun updateListExt(arg: ArrayList<TodoList>) {
+    fun updateListExt(arg: ArrayList<ListObject>) {
         this.stand.clear()
         stand.addAll(arg)
         notifyDataSetChanged()

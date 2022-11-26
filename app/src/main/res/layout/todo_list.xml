@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/todo_label"
         style="@style/TitleBar"
         android:background="@color/purple_700"
@@ -37,6 +37,7 @@
 
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:visibility="gone"
             android:id="@+id/todo_actionbar_dots"
             style="@style/ActionBarElement"
             android:layout_marginStart="10dp"
@@ -46,6 +47,7 @@
             app:srcCompat="@drawable/ic_menu_dot_settings_ico" />
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:visibility="gone"
             android:id="@+id/todo_actionbar_delete_mass"
             style="@style/ActionBarElement"
             app:layout_constraintStart_toEndOf="@id/todo_actionbar_dots"

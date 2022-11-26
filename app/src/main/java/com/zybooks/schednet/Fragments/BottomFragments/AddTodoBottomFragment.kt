@@ -13,7 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.zybooks.schednet.Model.TodoEvent
+import com.zybooks.schednet.Model.TodoObject
 import com.zybooks.schednet.R
 import com.zybooks.schednet.Utils.DatabaseManager
 
@@ -21,7 +21,7 @@ import com.zybooks.schednet.Utils.DatabaseManager
  * If chip box filled, change color of chip on action of value updated
  */
 
-class AddTodoBottomFragment(): BottomSheetDialogFragment() {
+class AddTodoBottomFragment: BottomSheetDialogFragment() {
     private lateinit var cancelButton: ImageButton
     private lateinit var confirmButton: ImageButton
     private lateinit var nameEditText: TextInputEditText
@@ -35,15 +35,7 @@ class AddTodoBottomFragment(): BottomSheetDialogFragment() {
     private var pinned: Boolean
     private var gId: Int
     private var gListId: Int
-    private var onPageDismiss: onDismissInteraction?
-
-
-    init {
-        pinned = false
-        gId = -1
-        gListId = -1
-        this.onPageDismiss = null
-    }
+    private var onPageDismiss: OnDismissInteraction?
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.todo_new_ribbon_frame, container, false)
@@ -62,31 +54,60 @@ class AddTodoBottomFragment(): BottomSheetDialogFragment() {
         descriptionEditCasing = rootView.findViewById(R.id.new_todo_description_layout)
         descriptionChip = rootView.findViewById(R.id.new_todo_chip_description)
         pinButton = rootView.findViewById(R.id.new_todo_pin)
+        initializer()
 
-        intitializeControls()
         return rootView
     }
 
-    private fun intitializeControls() {
+    //Guarantee flip
+    private fun toggleDescriptionVisible() {
+        descriptionEditCasing.isVisible = !descriptionEditCasing.isVisible
+    }
+
+    //RESET CONTROL
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onPageDismiss?.cancelChange()
+    }
+
+    //INIT
+    init {
+        pinned = false
+        gId = -1
+        gListId = -1
+        this.onPageDismiss = null
+    }
+
+    fun setInterface(onPageDismiss: OnDismissInteraction) {
+        this.onPageDismiss = onPageDismiss
+    }
+    fun setId(id: Int) {
+        gId = id
+    }
+    fun setListId(listId: Int) {
+        gListId = listId
+    }
+
+    private fun initializer() {
         cancelButton.setOnClickListener {
             onPageDismiss?.cancelChange()
             dismiss()
         }
 
         confirmButton.setOnClickListener {
-            if(nameEditText.text.toString().isNotEmpty()) {
-                val obj = TodoEvent()
-                obj.eventName = nameEditText.text.toString()
-                obj.eventDescription = descriptionEditText.text.toString()
-                obj.isPinned = pinned
-                DatabaseManager(requireContext()).insertTodo(gId, gListId, obj)
-
-                obj.eventId = DatabaseManager(requireContext()).readNewTodoId(gId, gListId, obj.eventTimestamp)
-                onPageDismiss?.confirmChange(obj)
-                dismiss()
-            } else {
+            nameEditCasing.error = ""
+            if(nameEditText.text.toString().isEmpty()) {
                 nameEditCasing.error = "Name field is empty"
+                return@setOnClickListener
             }
+
+            val event = TodoObject(-1, nameEditText.text.toString(), descriptionEditText.text.toString(), false, pinned, null)
+            DatabaseManager(requireContext()).insertTodo(gId, gListId, event)
+
+            event.eventId = DatabaseManager(requireContext()).readNewTodoId(gId, gListId, event.eventTimestamp)
+            onPageDismiss?.confirmChange(event)
+            dismiss()
+
         }
 
         descriptionChip.setOnClickListener {
@@ -103,31 +124,8 @@ class AddTodoBottomFragment(): BottomSheetDialogFragment() {
         }
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        onPageDismiss?.cancelChange()
-    }
-
-    //Guarantee flip
-    private fun toggleDescriptionVisible() {
-        descriptionEditCasing.isVisible = !descriptionEditCasing.isVisible
-    }
-
-    interface onDismissInteraction {
-        fun confirmChange(todoEvent: TodoEvent)
+    interface OnDismissInteraction {
+        fun confirmChange(newEvent: TodoObject)
         fun cancelChange()
     }
-
-    fun setInterface(onPageDismiss: onDismissInteraction) {
-        this.onPageDismiss = onPageDismiss
-    }
-
-    fun setId(id: Int) {
-        gId = id
-    }
-    fun setListId(listId: Int) {
-        gListId = listId
-    }
-
-
 }

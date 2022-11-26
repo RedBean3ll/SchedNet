@@ -1,6 +1,5 @@
 package com.zybooks.schednet.Fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,20 +7,20 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.zybooks.schednet.Adapter.AdapterTouchHelper.RecyclerTodoTouchHelper
+import com.zybooks.schednet.Adapter.AdapterTouchHelper.RecyclerViewTouchHelper
 import com.zybooks.schednet.Adapter.TodoAdapter
 import com.zybooks.schednet.Fragments.BottomFragments.AddTodoBottomFragment
-import com.zybooks.schednet.Model.TodoEvent
+import com.zybooks.schednet.Model.TodoObject
 import com.zybooks.schednet.R
 import com.zybooks.schednet.StageActivity
 import com.zybooks.schednet.Utils.DatabaseManager
 
-class TodoFragment : Fragment(), AddTodoBottomFragment.onDismissInteraction, TodoAdapter.OnRibbonListener {
+class TodoFragment : Fragment(), AddTodoBottomFragment.OnDismissInteraction, TodoAdapter.OnRibbonListener, RecyclerViewTouchHelper.onSwipeInterraction {
 
     private lateinit var gAdapter: TodoAdapter
 
@@ -31,7 +30,15 @@ class TodoFragment : Fragment(), AddTodoBottomFragment.onDismissInteraction, Tod
 
     private var gId: Int
     private var gListId: Int
+
+    private lateinit var gList: MutableList<TodoObject>
     private var control: Boolean
+
+    init {
+        gId = -1
+        gListId = -1
+        control = true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,60 +54,83 @@ class TodoFragment : Fragment(), AddTodoBottomFragment.onDismissInteraction, Tod
         listName = rootView.findViewById(R.id.todo_label)
         recyclerview = rootView.findViewById(R.id.todo_recyclerview)
         newEventButton = rootView.findViewById(R.id.todo_actionbar_new_todo)
-        initializer(rootView.context)
+        initializer()
 
         return rootView
     }
 
-    private fun initializer(context: Context) {
-        //List name
+    private fun initializer() {
         listName.text = DatabaseManager(requireContext()).readListName(gListId)
 
-        //Recyclerview
-        recyclerview.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerview.addItemDecoration( DividerItemDecoration(recyclerview.context, DividerItemDecoration.VERTICAL))
-        gAdapter = TodoAdapter(context, gId, gListId, this)
-        recyclerview.adapter = gAdapter
-        ItemTouchHelper(RecyclerTodoTouchHelper(gAdapter)).attachToRecyclerView(recyclerview)
+        recyclerview.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            gAdapter = TodoAdapter(this@TodoFragment)
+            adapter = gAdapter
+            ItemTouchHelper(RecyclerViewTouchHelper(requireContext(), this@TodoFragment)).attachToRecyclerView(this)
+            addItemDecoration( DividerItemDecoration(recyclerview.context, DividerItemDecoration.VERTICAL))
+        }
+
+        gList = DatabaseManager(requireContext()).readTodos(gId, gListId)
+        gAdapter.submitNewList(gList.toList())
 
         //Click events
         newEventButton.setOnClickListener {
             if(control) {
                 control = false
-                callBottomDialogue()
+
+                val fragment = AddTodoBottomFragment()
+                fragment.setInterface(this)
+                fragment.id = gId
+                fragment.setListId(gListId)
+                fragment.show(childFragmentManager, "bottomSheet")
             }
         }
     }
 
-    private fun callBottomDialogue() {
-        val fragment = AddTodoBottomFragment()
-        fragment.setInterface(this)
-        fragment.id = gId
-        fragment.setListId(gListId)
-        fragment.show(childFragmentManager, "bottomSheet")
-    }
-
-    init {
-        gId = -1
-        gListId = -1
-        control = true
-    }
-
-    companion object {
-        const val LISTKEY = "list.ky"
-    }
-
-    override fun confirmChange(todoEvent: TodoEvent) {
-        control = true
-        gAdapter.add(todoEvent)
+    override fun confirmChange(newEvent: TodoObject) {
+        gList.add(0, newEvent)
+        gAdapter.submitNewList(gList.toList())
     }
 
     override fun cancelChange() {
         control = true
     }
 
-    override fun onClick(view: View) {
-
-        Navigation.findNavController(view).navigate(R.id.show_todo_edit)
+    override fun onClick(event: TodoObject) {
+        val bundle = Bundle()
+        bundle.putInt(TodoEditFragment.EVENTKEY, event.eventId)
+        findNavController().navigate(R.id.show_todo_edit, bundle)
     }
+
+    override fun onPin(position: Int, event: TodoObject) {
+        event.eventTimestamp = DatabaseManager(requireContext()).updateTodoPinValue(event.eventId, event)
+        if(event.isPinned && !event.isChecked) {
+            gList.removeAt(position)
+            gList.add(0, event)
+            gAdapter.submitNewList(gList.toList())
+        }
+    }
+
+    override fun onCheck(position: Int, event: TodoObject) {
+        event.eventTimestamp = DatabaseManager(requireContext()).updateTodoCheckboxValue(event.eventId, event)
+        if(event.isChecked) {
+            gList.removeAt(position)
+            gList.add(event)
+            gAdapter.submitNewList(gList.toList())
+        }
+    }
+
+    override fun onSwipeLeft(position: Int) {
+        DatabaseManager(requireContext()).deleteTodo(gList[position].eventId)
+        if(gList.size > 0) {
+            gList.removeAt(position)
+            gAdapter.submitNewList(gList.toList())
+        }
+    }
+
+    companion object {
+        const val LISTKEY = "list.ky"
+    }
+
+    //1669496
 }

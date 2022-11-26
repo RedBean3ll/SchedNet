@@ -1,25 +1,20 @@
 package com.zybooks.schednet.Adapter.AdapterTouchHelper
 
+import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.util.Log
 import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.zybooks.schednet.Adapter.TodoAdapter
 import com.zybooks.schednet.R
 
 
-class RecyclerTodoTouchHelper(adapterIn: TodoAdapter):
+class RecyclerViewTouchHelper(private val context: Context, private val swipeInterraction: onSwipeInterraction):
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-
-    private lateinit var adapter: TodoAdapter;
-
-    init {
-        adapter = adapterIn;
-    }
 
     override fun onMove(@NonNull recyclerView: RecyclerView, @NonNull viewHolder: RecyclerView.ViewHolder,
                         @NonNull target: RecyclerView.ViewHolder): Boolean {
@@ -30,7 +25,8 @@ class RecyclerTodoTouchHelper(adapterIn: TodoAdapter):
     override fun onSwiped(@NonNull viewHolder: RecyclerView.ViewHolder, direction: Int) {
         val position: Int = viewHolder.bindingAdapterPosition
         if(direction == ItemTouchHelper.LEFT) {
-            adapter.removeAt(position)
+            Log.i("clickTest", "Swipe @ position: $position")
+            swipeInterraction.onSwipeLeft(position)
         }
         else {
 
@@ -38,6 +34,8 @@ class RecyclerTodoTouchHelper(adapterIn: TodoAdapter):
         }
     }
 
+
+    //NOTE: context may break ribbon
     override fun onChildDraw(@NonNull c: Canvas, recyclerView: RecyclerView,
             viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float,
             actionState: Int, isCurrentlyActive: Boolean) {
@@ -52,13 +50,13 @@ class RecyclerTodoTouchHelper(adapterIn: TodoAdapter):
 
         //TODO: TINKER WITH COLOR LATER
         if(dX > 0) {
-            icon = ContextCompat.getDrawable(adapter.getContext(),
+            icon = ContextCompat.getDrawable(context,
                 R.drawable.ic_menu_dot_settings_ico
             )!!
             background = ColorDrawable(Color.GREEN)
         }
         else {
-            icon = ContextCompat.getDrawable(adapter.getContext(), R.drawable.ic_baseline_delete_24)!!
+            icon = ContextCompat.getDrawable(context, R.drawable.ic_baseline_delete_24)!!
             background = ColorDrawable(Color.RED)
         }
 
@@ -83,6 +81,10 @@ class RecyclerTodoTouchHelper(adapterIn: TodoAdapter):
         background.draw(c)
         icon.draw(c)
 
+    }
+
+    interface onSwipeInterraction {
+        fun onSwipeLeft(position: Int)
     }
 
 }

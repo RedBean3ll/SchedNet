@@ -16,6 +16,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.DialogInterface
 import android.util.Log
+import android.view.WindowManager
 import android.widget.*
 import com.zybooks.schednet.Model.CalendarEvent
 import com.zybooks.schednet.Utils.DatabaseManager
@@ -99,7 +100,7 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment(), DatePickerDialog
             val obj = CalendarEvent(0, nameEditText.text.toString(), descriptionEditText.text.toString(), gTime?.atZone(currentZone)?.toInstant()?.toEpochMilli())
             DatabaseManager(requireContext()).insertCalendarEvent(gId, obj)
 
-            onPageDismiss?.confirmChange()
+            onPageDismiss?.confirmChange(gTime?.atZone(ZoneId.systemDefault())!!)
             dismiss()
         }
 
@@ -124,7 +125,7 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment(), DatePickerDialog
 
     //Interface
     interface onDismissInteraction {
-        fun confirmChange()
+        fun confirmChange(dateTime: ZonedDateTime)
         fun cancelChange()
     }
 

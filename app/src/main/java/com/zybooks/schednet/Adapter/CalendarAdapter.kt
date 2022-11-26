@@ -16,11 +16,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zybooks.schednet.R
 import java.time.LocalDate
 
-class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: OnItemListener, eventPositions: ArrayList<Boolean?>): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
+class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: OnItemListener, eventPositions: ArrayList<Boolean>): RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
     private var dayList: ArrayList<LocalDate?>
     private val itemListener: OnItemListener
-    private val eventList: ArrayList<Boolean?> = eventPositions
+    private var eventList: ArrayList<Boolean> = eventPositions
 
     override fun onCreateViewHolder(@NonNull parent: ViewGroup, viewType: Int): CalendarViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -33,7 +33,6 @@ class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: OnItemList
         return CalendarViewHolder(view, itemListener)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
         val date: LocalDate? = dayList[position]
 
@@ -69,13 +68,16 @@ class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: OnItemList
             cellLabel = itemView.findViewById(R.id.cell_label)
             cellDot = itemView.findViewById(R.id.cell_dot)
             this.onItemListener = onItemListener
-            //itemView.setOnClickListener(this)
         }
+    }
 
-        /*
-        override fun onClick(v: View?) {
-            onItemListener.onItemClick(absoluteAdapterPosition, dayList[absoluteAdapterPosition])
-        }*/
+    fun updateDots(dotList: ArrayList<Boolean>) {
+        this.eventList = dotList
+    }
+
+    fun updateDotAt(position: Int) {
+        eventList[position] = true
+        notifyItemChanged(position)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -84,9 +86,7 @@ class CalendarAdapter(dayList: ArrayList<LocalDate?>, onItemListener: OnItemList
         notifyDataSetChanged()
     }
 
-    fun updateClickPosition(position: Int) {
-        //animation
-    }
+
 
     override fun getItemCount(): Int {
         return  dayList.size

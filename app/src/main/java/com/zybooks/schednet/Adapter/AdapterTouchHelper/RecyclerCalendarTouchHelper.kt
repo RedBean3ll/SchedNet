@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.zybooks.schednet.Adapter.CalendarEventAdapter
-import com.zybooks.schednet.Adapter.MenuAdapter
 import com.zybooks.schednet.R
 
 

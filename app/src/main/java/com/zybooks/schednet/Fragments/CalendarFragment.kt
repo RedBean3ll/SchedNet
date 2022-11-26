@@ -2,6 +2,7 @@ package com.zybooks.schednet.Fragments
 
 import android.media.Image
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +29,7 @@ class CalendarFragment: Fragment(), CalendarAdapter.OnItemListener, AddCalendarB
     private lateinit var listButton: ImageButton
     private lateinit var gAdapter: CalendarAdapter
     private lateinit var newEventButton: ImageButton
-    private lateinit var backToCurrentButton: ImageButton
+    private lateinit var resetDateButton: ImageButton
 
     private var control: Boolean = true
 
@@ -49,7 +50,7 @@ class CalendarFragment: Fragment(), CalendarAdapter.OnItemListener, AddCalendarB
         val temp: Int = DatabaseManager(requireContext()).readCalendarDate(gId).toInt()
         if(temp == 0) {
             val tempDate = LocalDate.now()
-            val zoneDT = ZonedDateTime.of(tempDate.year, tempDate.monthValue, tempDate.dayOfMonth, 0, 0, 0,0, ZoneId.systemDefault()).toInstant().toEpochMilli()
+            val zoneDT = ZonedDateTime.of(tempDate.year, tempDate.monthValue, 1, 0, 0, 0,0, ZoneId.systemDefault()).toInstant().toEpochMilli()
             DatabaseManager(requireContext()).updateCalendarDate(gId, zoneDT)
         }
 
@@ -63,6 +64,7 @@ class CalendarFragment: Fragment(), CalendarAdapter.OnItemListener, AddCalendarB
         forwardButton = rootView.findViewById(R.id.control_pane_right)
         listButton = rootView.findViewById(R.id.calendar_list)
         newEventButton = rootView.findViewById(R.id.new_calendar_event_button)
+        resetDateButton = rootView.findViewById(R.id.calendar_reset_date)
 
         //TODO: ADD RESET DATE BUTTON
 
@@ -73,6 +75,16 @@ class CalendarFragment: Fragment(), CalendarAdapter.OnItemListener, AddCalendarB
 
         listButton.setOnClickListener {
             findNavController().navigate(R.id.show_list_calendar)
+        }
+
+        resetDateButton.setOnClickListener {
+            val tempDate = LocalDate.now()
+            val date = ZonedDateTime.of(tempDate.year, tempDate.monthValue, tempDate.dayOfMonth, 0, 0, 0, 0, ZoneId.systemDefault())
+            DatabaseManager(requireContext()).updateCalendarDate(gId, date.toInstant().toEpochMilli())
+            timeKeeper = date.toLocalDate()
+            controlLabel.text = DateConversions.formatMonthYear(timeKeeper)
+            gAdapter.updateDots(updateDataPoints())
+            gAdapter.updateList(DateConversions.daysInMonth(timeKeeper))
         }
 
         newEventButton.setOnClickListener {
@@ -100,7 +112,9 @@ class CalendarFragment: Fragment(), CalendarAdapter.OnItemListener, AddCalendarB
         //Year Text
         controlLabel.text = DateConversions.formatMonthYear(timeKeeper)
 
-        val adapter = CalendarAdapter(DateConversions.daysInMonth(timeKeeper), this, DateConversions.eventDaysInMonth(timeKeeper))
+        val dateTime = ZonedDateTime.of(timeKeeper.year, timeKeeper.monthValue, 1, 0, 0, 0, 0, ZoneId.systemDefault())
+        val datePoints = DatabaseManager(requireContext()).readMonthlyEventTimestamp(gId, dateTime.toInstant().toEpochMilli(), YearMonth.of(dateTime.year, dateTime.monthValue).lengthOfMonth())
+        val adapter = CalendarAdapter(DateConversions.daysInMonth(timeKeeper), this, DateConversions.eventDaysInMonth(datePoints, timeKeeper))
         gAdapter = adapter
         recyclerview.layoutManager = GridLayoutManager(this.context, 7)
         recyclerview.adapter = adapter
@@ -114,6 +128,7 @@ class CalendarFragment: Fragment(), CalendarAdapter.OnItemListener, AddCalendarB
         DatabaseManager(requireContext()).updateCalendarDate(gId, tempZonedDateTime.toInstant().toEpochMilli())
 
         controlLabel.text = DateConversions.formatMonthYear(timeKeeper)
+        gAdapter.updateDots(updateDataPoints())
         //TODO: ADD UPDATE TO PULL CURRENT EVENTS
         gAdapter.updateList(DateConversions.daysInMonth(timeKeeper))
         //updateMonthView()
@@ -127,31 +142,37 @@ class CalendarFragment: Fragment(), CalendarAdapter.OnItemListener, AddCalendarB
 
         controlLabel.text = DateConversions.formatMonthYear(timeKeeper)
         //TODO: ADD UPDATE TO PULL CURRENT EVENTS
+
+        gAdapter.updateDots(updateDataPoints())
         gAdapter.updateList(DateConversions.daysInMonth(timeKeeper))
         //updateMonthView()
     }
 
+    fun updateDataPoints(): ArrayList<Boolean> {
+        val dateTimey = ZonedDateTime.of(timeKeeper.year, timeKeeper.monthValue, 1, 0, 0, 0, 0, ZoneId.systemDefault())
+        val mult: Long = 86400000
+        Log.i("CalendarFragment", "Day in month: ${YearMonth.of(dateTimey.year, dateTimey.dayOfMonth).lengthOfMonth()} and Start epoch: ${dateTimey.toInstant().toEpochMilli()} and End epoch: ${mult * YearMonth.of(dateTimey.year, dateTimey.dayOfMonth).lengthOfMonth()}")
+        val datePointss = DatabaseManager(requireContext()).readMonthlyEventTimestamp(gId, dateTimey.toInstant().toEpochMilli(), YearMonth.of(dateTimey.year, dateTimey.dayOfMonth).lengthOfMonth())
+        return DateConversions.eventDaysInMonth(datePointss, timeKeeper)
+    }
+
     override fun onItemClick(position: Int, date: LocalDate?) {
         if (date != null) {
-            //Toast.makeText(requireContext(), "Postion: ${DateConversions.formatDate(date)}", Toast.LENGTH_SHORT).show()
-
             val passover = LocalDateTime.of(date.year, date.monthValue, date.dayOfMonth, 0, 0, 0, 0).atZone(ZoneId.systemDefault())
-
-            //Log.i("test", "TST: ${passover.toInstant().toEpochMilli()}")
 
             val bundle = Bundle()
             bundle.putLong(CalendarListFragment.TYPEKEY, passover.toInstant().toEpochMilli())
             findNavController().navigate(R.id.show_list_calendar, bundle)
         }
-        //DateConversions.testLoc(position, timeKeeper)
-        //fun setClicked (result > dropdown bar with events from that day)
     }
 
     override fun onItemLongClick(position: Int) {
     }
 
-    override fun confirmChange() {
-        //TODO("Not yet implemented")
+    override fun confirmChange(dateTime: ZonedDateTime) {
+        val position = DateConversions.eventDayPosition(dateTime, timeKeeper)
+        gAdapter.updateDotAt(position)
+
         control = true
     }
 

@@ -1,5 +1,6 @@
 package com.zybooks.schednet.Utils
 
+import android.content.Context
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -49,17 +50,29 @@ class DateConversions {
             return monthCollection
         }
 
-        fun eventDaysInMonth(date: LocalDate): ArrayList<Boolean?> {
+        fun eventDaysInMonth(dateList: ArrayList<ZonedDateTime>, date: LocalDate): ArrayList<Boolean> {
+            val eventDayCollection: ArrayList<ZonedDateTime> = dateList
 
-            val eventDayCollection: ArrayList<LocalDate> = ArrayList()
-            val whereEventList: ArrayList<Boolean?> = arrayListOf(false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false)
+            val whereEventList: ArrayList<Boolean> = arrayListOf(false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false)
             val weekday = date.withDayOfMonth(1).dayOfWeek.value
 
-            for(item: LocalDate in eventDayCollection) {
+            Log.i("DateConversions", "Collection Size: ${eventDayCollection.size}")
+            for(item: ZonedDateTime in eventDayCollection) {
                whereEventList[item.dayOfMonth+weekday-1] = true
+               Log.i("DateConversions", "Item: ${item.dayOfMonth}")
             }
 
             return whereEventList
+        }
+
+        fun eventDayPosition(date: ZonedDateTime, month: LocalDate): Int {
+            val timeInDay: Long = 86_400_000
+            val daysInMonth = YearMonth.of(month.year, month.monthValue)
+            val weekday = month.dayOfWeek.value
+
+            return date.dayOfMonth+weekday-1
+
+
         }
 
         /*

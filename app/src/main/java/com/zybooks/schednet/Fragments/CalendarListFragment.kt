@@ -1,22 +1,17 @@
 package com.zybooks.schednet.Fragments
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zybooks.schednet.Adapter.AdapterTouchHelper.RecyclerCalendarTouchHelper
-import com.zybooks.schednet.Adapter.AdapterTouchHelper.RecyclerListTouchHelper
 import com.zybooks.schednet.Adapter.CalendarEventAdapter
 import com.zybooks.schednet.Model.CalendarEvent
 import com.zybooks.schednet.R
@@ -74,6 +69,7 @@ class CalendarListFragment(): Fragment(), CalendarEventAdapter.OnRibbonClick {
 
 
         recyclerview.layoutManager = LinearLayoutManager(rootView.context, LinearLayoutManager.VERTICAL, false)
+        recyclerview.addItemDecoration( DividerItemDecoration(recyclerview.context, DividerItemDecoration.VERTICAL) )
         gAdapter = CalendarEventAdapter(requireContext(), this, list)
         recyclerview.adapter = gAdapter
         ItemTouchHelper(RecyclerCalendarTouchHelper(gAdapter)).attachToRecyclerView(recyclerview)

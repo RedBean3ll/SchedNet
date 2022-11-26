@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="4dp"
+    app:cardElevation="0dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +23,7 @@
             android:buttonTint="@color/purple_700"
             android:maxLength="65"
             android:paddingStart="10dp"
+            android:paddingEnd="0dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +37,7 @@
             android:layout_height="wrap_content"
 
             android:textSize="20sp"
+            android:textStyle="bold"
             android:maxLines="3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/sample_ribbon_priority"

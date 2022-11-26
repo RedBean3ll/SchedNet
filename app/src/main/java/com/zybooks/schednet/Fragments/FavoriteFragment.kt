@@ -12,7 +12,7 @@ import com.zybooks.schednet.Adapter.AdapterTouchHelper.RecyclerFavoriteTouchHelp
 import com.zybooks.schednet.Adapter.FavoriteAdapter
 import com.zybooks.schednet.Fragments.BottomFragments.AddFavoriteCalendarBottomFragment
 import com.zybooks.schednet.Fragments.BottomFragments.AddFavoriteTodoBottomFragment
-import com.zybooks.schednet.Model.TodoList
+import com.zybooks.schednet.Model.ListObject
 import com.zybooks.schednet.databinding.FavoriteBinding
 
 class FavoriteFragment: Fragment() {
@@ -26,7 +26,7 @@ class FavoriteFragment: Fragment() {
         val mode = false
 
         //GET LIST DATA
-        val list = ArrayList<TodoList>()
+        val list = ArrayList<ListObject>()
         //TODO: ANY TEST LISTMODEL NEEDS ID FIRST!!
 
         //VIEW SETUP AND CLICK LISTENERS

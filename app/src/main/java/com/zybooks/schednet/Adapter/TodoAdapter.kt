@@ -1,6 +1,5 @@
 package com.zybooks.schednet.Adapter
 
-import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -8,110 +7,89 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.res.ResourcesCompat
+import androidx.annotation.Nullable
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.zybooks.schednet.Model.TodoEvent
+import com.zybooks.schednet.Model.TodoObject
 import com.zybooks.schednet.R
-import com.zybooks.schednet.Utils.DatabaseManager
 
-class TodoAdapter(context: Context, id: Int, listId: Int, onRibbonClick: OnRibbonListener): RecyclerView.Adapter<TodoAdapter.ViewHolder>()  {
-    private var spindle: ArrayList<TodoEvent>
-    private var ctx: Context
-    private var gId: Int
-    private var gListId: Int
-    private var gOnRibbonClick: OnRibbonListener
+class TodoAdapter(@Nullable private val onRibbonListener: OnRibbonListener?): RecyclerView.Adapter<RecyclerView.ViewHolder>()  {
 
-    //create holder of ribbons
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(ctx).inflate(R.layout.list_ribbon_todo, parent, false)
-        return ViewHolder(view)
+    private val diffCallback: DiffUtil.ItemCallback<TodoObject> = object : DiffUtil.ItemCallback<TodoObject>() {
+        override fun areItemsTheSame(oldItem: TodoObject, newItem: TodoObject): Boolean {
+            return oldItem.eventId == newItem.eventId
+        }
+
+        override fun areContentsTheSame(oldItem: TodoObject, newItem: TodoObject): Boolean {
+            return oldItem.toString() == newItem.toString()
+        }
+    }
+    private val differ: AsyncListDiffer<TodoObject> = AsyncListDiffer(this, diffCallback)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return TodoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.list_ribbon_todo, parent, false), onRibbonListener)
     }
 
-    //bind data to currently displaying ribbons
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.rLabel.text = spindle[position].eventName
-        holder.rPin = spindle[position].isPinned
-        holder.rId = spindle[position].eventId
-        holder.rCheckBox.isChecked = spindle[position].isSelected
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        if(holder.rCheckBox.isChecked) {
-            holder.rBody.setBackgroundColor(ResourcesCompat.getColor(ctx.resources, R.color.gray_classic, null))
-        }
-        if(holder.rPin) { holder.rPinButton.setImageResource(R.drawable.ic_baseline_push_pin_24) }
-        holder.dataBind()
 
-        holder.rBody.setOnClickListener {
-            gOnRibbonClick.onClick(it)
+        if(holder is TodoViewHolder) {
+            holder.bind(differ.currentList[position])
         }
     }
 
-    //ribbon Collection [Nick: spool]
-    inner class ViewHolder(viewHolder: View) : RecyclerView.ViewHolder(viewHolder) {
-        val rBody: ConstraintLayout = viewHolder.findViewById(R.id.sample_ribbon_body)
-        val rCheckBox: CheckBox = viewHolder.findViewById(R.id.sample_ribbon_checkbox)
-        val rLabel: TextView = viewHolder.findViewById(R.id.sample_ribbon_title)
-        var rId: Int = 0
-        var rPin: Boolean = false
-        val rPinButton: ImageButton = viewHolder.findViewById(R.id.sample_ribbon_priority)
-
-        fun dataBind() {
-            /* Interact Functions [Note: may move outside] */
-            rPinButton.setOnClickListener {
-                rPin = !rPin
-                DatabaseManager(ctx).updateTodoPinValue(rId, rPin)
-                if(rPin) { rPinButton.setImageResource(R.drawable.ic_baseline_push_pin_24) }
-                else { rPinButton.setImageResource(R.drawable.ic_baseline_push_pin_alt_24) }
-            }
-
-            rCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                DatabaseManager(ctx).updateTodoCheckboxValue(rId, rCheckBox.isChecked)
-                if(rCheckBox.isChecked) { rBody.setBackgroundColor(ResourcesCompat.getColor(ctx.resources, R.color.gray_classic, null)) }
-                else { rBody.setBackgroundColor(Color.WHITE)}
-            }
-        }
-    }
-
-    //INITIALIZATION LOGIC
-    init {
-        ctx = context
-        gId = id
-        gListId = listId
-        spindle = callSpinner()
-        gOnRibbonClick = onRibbonClick
-    }
-
-    fun callSpinner(): ArrayList<TodoEvent> {
-        val spinner = DatabaseManager(ctx).readTodos(gId, gListId)
-        return  spinner
-    }
-
-    //GENERAL LOGIC
     override fun getItemCount(): Int {
-        return spindle.size
+        return differ.currentList.size
     }
 
-    fun getContext(): Context {
-        return ctx
+    fun submitNewList(list: List<TodoObject>) {
+        differ.submitList(list)
     }
 
-    //CRUD OPERATIONS [note: database and sorting will be implemented ]
-    fun removeAt(position: Int) {
-        DatabaseManager(ctx).deleteTodo(spindle[position].eventId)
-        spindle.removeAt(position)
-        notifyItemRemoved(position)
-        notifyItemRangeChanged(position, itemCount)
-    }
+    class TodoViewHolder constructor(
+        self: View, @Nullable private val onRibbonListener: OnRibbonListener?
+    ): RecyclerView.ViewHolder(self) {
+        fun bind(todo: TodoObject) {
+            //View Click Listeners
+            itemView.setOnClickListener {
+                onRibbonListener?.onClick(todo)
+            }
 
-    fun add(event: TodoEvent) {
-        spindle.add(0, event)
-        notifyItemInserted(0)
-        notifyItemRangeChanged(0, itemCount)
+            //DATA
+            val checkBox: CheckBox = itemView.findViewById(R.id.sample_ribbon_checkbox)
+            val label: TextView = itemView.findViewById(R.id.sample_ribbon_title)
+            val pinButton: ImageButton = itemView.findViewById(R.id.sample_ribbon_priority)
+            label.text = todo.eventName
+
+            if(todo.isPinned) pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
+            else pinButton.setImageResource(R.drawable.ic_baseline_push_pin_alt_24)
+
+            checkBox.isChecked = todo.isChecked
+            if(todo.isChecked) itemView.setBackgroundColor(Color.parseColor("#EBEBEB"))
+            else itemView.setBackgroundColor(Color.WHITE)
+
+            pinButton.setOnClickListener {
+                todo.isPinned = !todo.isPinned
+                onRibbonListener?.onPin(absoluteAdapterPosition, todo)
+
+                if(todo.isPinned) pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)
+                else pinButton.setImageResource(R.drawable.ic_baseline_push_pin_alt_24)
+            }
+
+            checkBox.setOnCheckedChangeListener { _,isCheck ->
+                todo.isChecked = isCheck
+                onRibbonListener?.onCheck(absoluteAdapterPosition, todo)
+
+                if(todo.isChecked) itemView.setBackgroundColor(Color.parseColor("#EBEBEB"))
+                else itemView.setBackgroundColor(Color.WHITE)
+            }
+        }
     }
 
     interface OnRibbonListener {
-        fun onClick(view: View)
+        fun onClick(event: TodoObject)
+        fun onPin(position: Int, event: TodoObject)
+        fun onCheck(position: Int, event: TodoObject)
     }
-
-
 }

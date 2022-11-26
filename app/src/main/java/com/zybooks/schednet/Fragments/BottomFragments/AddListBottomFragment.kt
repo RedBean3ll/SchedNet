@@ -9,11 +9,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.zybooks.schednet.Model.TodoList
+import com.zybooks.schednet.Model.ListObject
 import com.zybooks.schednet.R
 import com.zybooks.schednet.Utils.DatabaseManager
 
-class AddListBottomFragment(): BottomSheetDialogFragment() {
+class AddListBottomFragment: BottomSheetDialogFragment() {
 
     private lateinit var listEditText: TextInputEditText
     private lateinit var listEditLayout: TextInputLayout
@@ -22,13 +22,7 @@ class AddListBottomFragment(): BottomSheetDialogFragment() {
     private lateinit var pinButton: ImageButton
     private var gId: Int
     private var pinned: Boolean
-    private var onDismissInteraction: OnDismissInteraction?
-
-    init {
-        gId = -1
-        pinned = false
-        this.onDismissInteraction = null
-    }
+    private var onDismissInteraction: OnDismissAddInteraction?
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.list_new_ribbon_frame, container, false)
@@ -49,6 +43,26 @@ class AddListBottomFragment(): BottomSheetDialogFragment() {
         return rootView
     }
 
+    //RESET CONTROL
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismissInteraction?.cancelAddition()
+    }
+
+    //INIT
+    init {
+        gId = -1
+        pinned = false
+        this.onDismissInteraction = null
+    }
+
+    fun setInterface(onDismissInteraction: OnDismissAddInteraction) {
+        this.onDismissInteraction = onDismissInteraction
+    }
+    fun setId(id: Int) {
+        gId = id
+    }
+
     private fun initializer() {
         cancelButton.setOnClickListener {
             dismiss()
@@ -56,11 +70,11 @@ class AddListBottomFragment(): BottomSheetDialogFragment() {
 
         confirmButton.setOnClickListener {
             if(listEditText.text.toString().isNotEmpty()) {
-                val obj = TodoList(0, listEditText.text.toString(), pinned, null)
+                val obj = ListObject(0, listEditText.text.toString(), pinned, null)
                 DatabaseManager(requireContext()).insertList(obj, gId)
-
                 obj.listId = DatabaseManager(requireContext()).readNewListId(gId, obj.timestamp)
-                onDismissInteraction?.confirmChange(obj)
+
+                onDismissInteraction?.confirmAddition(obj)
                 dismiss()
             } else {
                 listEditLayout.error = "Name field is empty"
@@ -77,25 +91,9 @@ class AddListBottomFragment(): BottomSheetDialogFragment() {
         }
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        onDismissInteraction?.cancelChange()
+    interface OnDismissAddInteraction {
+        fun confirmAddition(newList: ListObject)
+        fun cancelAddition()
     }
-
-    interface OnDismissInteraction {
-        fun confirmChange(listModel: TodoList)
-        fun cancelChange()
-    }
-
-    fun setInterface(onDismissInteraction: OnDismissInteraction) {
-        this.onDismissInteraction = onDismissInteraction
-    }
-
-    fun setId(id: Int) {
-        gId = id
-    }
-
-
-
 }
 

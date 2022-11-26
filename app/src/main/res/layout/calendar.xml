@@ -94,9 +94,9 @@
             />
 
         <ImageButton
-            android:id="@+id/calendar_unknown"
+            android:id="@+id/calendar_reset_date"
             style="@style/ActionBarElement"
-            app:srcCompat="@drawable/ic_uknn_tmp_ico"
+            app:srcCompat="@drawable/ic_baseline_rotate_left_24"
             app:layout_constraintStart_toEndOf="@id/calendar_list"
             app:layout_constraintTop_toTopOf="parent" />
 
