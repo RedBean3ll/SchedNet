@@ -7,15 +7,13 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import androidx.annotation.NonNull
-import com.zybooks.schednet.Model.CalendarEvent
-import com.zybooks.schednet.Model.TodoObject
-import com.zybooks.schednet.Model.ListObject
+import com.zybooks.schednet.Model.*
 import java.time.*
 
 class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null, VERSION_NO) {
 
     companion object {
-        private const val VERSION_NO: Int = 9
+        private const val VERSION_NO: Int = 11
         private const val DB_NAME: String = "BeeMovie"
 
         private const val TBL_USERS = "Users"
@@ -30,6 +28,7 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         private const val USER_NAME: String = "username" //NOT EMAIL
         private const val USER_PASSWORD: String = "password"
         private const val DEFAULT_LOGIN: String = "defaultlogin"
+        private const val DEFAULT_FAVORITE: String = "prefered_favorite"
 
         //LIST TABLE
         private const val LIST_ID: String = "list"
@@ -46,17 +45,12 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         private const val EVENT_ISCOMPLETED: String = "completion"
         private const val EVENT_SORTPRIORITY: String = "priority_level"
 
-        //private const val EVENT_ALLDAY: String = "allday" //IS ALL DAY?
         private const val EVENT_EVENTSTART: String = "datestart" //START TIME (EVENT TIME IF ALL DAY) <<NOTE: ONLY TIME IN FAVORITES>>
-        private const val EVENT_EVENTEND: String = "dateend" //END TIME (MAY NOT EXIST)
-        private const val EVENT_LOCATION: String = "eventlocation"
-
+        //private const val EVENT_EVENTEND: String = "dateend" //END TIME (MAY NOT EXIST)
+        //private const val EVENT_LOCATION: String = "eventlocation"
         private const val CALENDAR_DATE: String = "calendar_date"
 
-        //private const val EVENT_REMINDNUMBER: String = "remind" //IS REMIND?
-        //private const val EVENT_REMINDONE: String = "remindone"
-        //private const val EVENT_REMINDTWO: String = "remindtwo"
-        //private const val EVENT_REPEATTYPE: String = "repeattype" //DAILY, WEEKLY, MONTHLY
+        private const val FAVORITE_NAME: String = "favorite_name"
 
         //ALL
         private const val SECRET: String = "hush"
@@ -65,12 +59,12 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
     val TAG = "DatabaseManager"
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_USERS (user INTEGER PRIMARY KEY, username TEXT DEFAULT 'NAN' NOT NULL, password TEXT DEFAULT 'NAN' NOT NULL, hush TEXT DEFAULT 'drink bleach' NOT NULL, frequencycleancal TEXT DEFAULT 'week' NOT NULL, frequencycleantdo TEXT DEFAULT 'month' NOT NULL, defaultlogin INTEGER DEFAULT 0 NOT NULL, loggedin INTEGER DEFAULT 0 NOT NULL, calendar_date INTEGER DEFAULT 0 NOT NULL)")
-        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_LISTS (user INTEGER DEFAULT 0 NOT NULL, list INTEGER PRIMARY KEY, listtitle TEXT DEFAULT 'TITLE' NOT NULL, ispinned INTEGER DEFAULT 0 NOT NULL, touchtimestamp INTEGER DEFAULT -1 NOT NULL, priority_level INTEGER DEFAULT 0 NOT NULL)")
-        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_TODO (user INTEGER DEFAULT 0 NOT NULL, list INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, title TEXT, description TEXT, due TEXT, remindone TEXT, repeattype INTEGER DEFAULT 0 NOT NULL, repeattime TEXT, statusstamp TEXT, createstamp INTEGER DEFAULT 0 NOT NULL, priority INTEGER DEFAULT 0 NOT NULL, completion INTEGER DEFAULT 0 NOT NULL, priority_level INTEGER DEFAULT 0 NOT NULL)")
-        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_CALENDAR (user INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, title TEXT DEFAULT 'TITLE' NOT NULL, eventlocation TEXT DEFAULT '' NOT NULL, description TEXT DEFAULT '' NOT NULL, datestart INTEGER DEFAULT 0 NOT NULL, dateend INTEGER DEFAULT 0 NOT NULL)")
-        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_FAVORITE_TODO (user INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, title TEXT, description TEXT, due TEXT, remindone TEXT, repeattype INTEGER DEFAULT 0 NOT NULL, repeattime TEXT)")
-        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_FAVORITE_CALENDAR (user INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, title TEXT, eventlocation TEXT, description TEXT, allday INTEGER DEFAULT 1 NOT NULL, datestart TEXT, dateend TEXT, remind INTEGER DEFAULT 0 NOT NULL, remindone TEXT, remindtwo TEXT, repeattype INTEGER DEFAULT 0 NOT NULL, repeattime TEXT)")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_USERS (user INTEGER PRIMARY KEY, username TEXT DEFAULT 'NAN' NOT NULL, password TEXT DEFAULT 'NAN' NOT NULL, clean_calendar_frequency INT DEFAULT 3 NOT NULL, clean_todo_frequency INT DEFAULT 4 NOT NULL, defaultlogin INTEGER DEFAULT 0 NOT NULL, loggedin INTEGER DEFAULT 0 NOT NULL, calendar_date INTEGER DEFAULT 0 NOT NULL, prefered_favorite INTEGER DEFAULT 0 NOT NULL)")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_LISTS (user INTEGER DEFAULT 0 NOT NULL, list INTEGER PRIMARY KEY, listtitle TEXT DEFAULT 'TITLE' NOT NULL, ispinned INTEGER DEFAULT 0 NOT NULL, touchtimestamp INTEGER DEFAULT -1 NOT NULL)")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_TODO (user INTEGER DEFAULT 0 NOT NULL, list INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, title TEXT, description TEXT DEFAULT 0 NOT NULL, createstamp INTEGER DEFAULT 0 NOT NULL, priority INTEGER DEFAULT 0 NOT NULL, completion INTEGER DEFAULT 0 NOT NULL, priority_level INTEGER DEFAULT 0 NOT NULL)")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_CALENDAR (user INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, title TEXT DEFAULT 'TITLE' NOT NULL, description TEXT DEFAULT '' NOT NULL, datestart INTEGER DEFAULT 0 NOT NULL, createstamp INTEGER DEFAULT 0 NOT NULL, priority INTEGER DEFAULT 0 NOT NULL)")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_FAVORITE_TODO (user INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, favorite_name DEFAULT 'TEMP TITLE' , title TEXT DEFAULT 'TITLE' NOT NULL, description TEXT DEFAULT '' NOT NULL, touchtimestamp INTEGER DEFAULT 0 NOT NULL, ispinned INTEGER DEFAULT 0 NOT NULL)")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_FAVORITE_CALENDAR (user INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, favorite_name DEFAULT 'TEMP TITLE', title TEXT DEFAULT 'TITLE' NOT NULL, description TEXT DEFAULT '' NOT NULL, touchtimestamp INTEGER DEFAULT 0 NOT NULL, ispinned INTEGER DEFAULT 0 NOT NULL)")
         /* db.execSQL("CREATE TABLE IF NOT EXISTS ActiveReminders ( remind INTEGER PRIMARY KEY, user INTEGER, id INTEGER, source TEXT, remindtime TEXT)") */
     }
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -166,43 +160,62 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
     }
 
     @SuppressLint("Range")
-    fun readLists(@NonNull id: Int): MutableList<ListObject> {
-        val db = this.readableDatabase
+    fun readPreferredFavorite(id: Int): Boolean {
+        val db = readableDatabase
         db.beginTransaction()
 
-        val cursor = db.query(TBL_LISTS, arrayOf(LIST_ID, LIST_NAME, LIST_PINNED, LIST_TOUCH, EVENT_SORTPRIORITY), "$USER_ID=?", arrayOf(id.toString()), null, null, "$EVENT_SORTPRIORITY DESC, $LIST_TOUCH DESC", null)
+        val cursor = db.query(TBL_USERS, arrayOf(DEFAULT_FAVORITE), "$USER_ID=?", arrayOf(id.toString()),null,null,null,null)
         try {
-            if(cursor.moveToFirst()) {
-                val spindle = mutableListOf<ListObject>()
-                do {
-                    val thread = ListObject(
-                    cursor.getInt(cursor.getColumnIndex(LIST_ID)), cursor.getString(cursor.getColumnIndex(LIST_NAME)), cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1, cursor.getLong(cursor.getColumnIndex(LIST_TOUCH)))
-                    spindle.add(thread)
-                } while (cursor.moveToNext())
-                return spindle
-            }
-        } catch(e: Exception) {
+            if(!cursor.moveToFirst()) return false //IF NO RESULT
+            return cursor.getInt(cursor.getColumnIndex(DEFAULT_FAVORITE)) == 1
+        } catch (e: Exception) {
             Log.i(TAG, "Transaction Failed")
-            return ArrayList()
+            return false
         } finally {
             cursor.close()
             db.endTransaction()
             db.close()
         }
-
-        return arrayListOf()
     }
 
-    fun insertList(@NonNull obj: ListObject, @NonNull id: Int) {
+    @SuppressLint("Range")
+    fun readLists(@NonNull id: Int): MutableList<ListObject> {
+        val db = this.readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_LISTS, arrayOf(LIST_ID, LIST_NAME, LIST_PINNED, LIST_TOUCH), "$USER_ID=?", arrayOf(id.toString()), null, null, "$LIST_PINNED DESC, $LIST_TOUCH DESC", null)
+        try {
+            if(cursor.moveToFirst()) {
+                val spindle = mutableListOf<ListObject>()
+                do {
+                    val thread = ListObject(
+                    cursor.getInt(cursor.getColumnIndex(LIST_ID)), cursor.getString(cursor.getColumnIndex(LIST_NAME)), cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1)
+                    spindle.add(thread)
+                } while (cursor.moveToNext())
+                return spindle
+            }
+            return arrayListOf() //IF NO RESULT
+        } catch(e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return arrayListOf()
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    fun insertList(@NonNull obj: ListObject, @NonNull id: Int): Long {
+        val returnValue = System.currentTimeMillis()
         val db = this.writableDatabase
         val cv = ContentValues()
         cv.put(USER_ID, id)
         cv.put(LIST_NAME, obj.listName)
         cv.put(LIST_PINNED, obj.isPinned)
-        cv.put(LIST_TOUCH, obj.timestamp)
-        cv.put(EVENT_SORTPRIORITY, if(obj.isPinned) 1 else 0)
+        cv.put(LIST_TOUCH, returnValue)
         db.insert(TBL_LISTS, null, cv)
         db.close()
+        return returnValue
     }
 
     @SuppressLint("Range")
@@ -247,16 +260,6 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         return "NAN"
     }
 
-    fun updateList(obj: ListObject) {
-        val db = this.writableDatabase
-        val cv = ContentValues()
-        cv.put(LIST_NAME, obj.listName)
-        cv.put(LIST_PINNED, obj.isPinned)
-        cv.put(LIST_TOUCH, obj.timestamp)
-        db.update(TBL_LISTS, cv, "$LIST_ID=?", arrayOf(obj.listId.toString()))
-        db.close()
-    }
-
     fun updateListName(listId: Int, listName: String) {
         val db = writableDatabase
         val cv = ContentValues()
@@ -266,23 +269,19 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         db.close()
     }
 
-    fun updateListPinValue(listId: Int, isPinned: Boolean): Long {
-        val returnValue: Long = System.currentTimeMillis()
+    fun updateListPinValue(listId: Int, isPinned: Boolean) {
         val db = writableDatabase
         val cv = ContentValues()
         cv.put(LIST_PINNED, isPinned)
-        cv.put(LIST_TOUCH, returnValue)
-        cv.put(EVENT_SORTPRIORITY, if(isPinned) 1 else 0)
+        cv.put(LIST_TOUCH, System.currentTimeMillis())
         db.update(TBL_LISTS, cv, "$LIST_ID=?", arrayOf(listId.toString()))
         db.close()
-
-        return returnValue
     }
 
     //WARNING!! USING WILD SQL
     @SuppressLint("Range")
     fun deleteList(listNumber: Int): Boolean {
-        val db = this.writableDatabase
+        val db = writableDatabase
         try {
             db.execSQL("DELETE FROM $TBL_TODO WHERE $LIST_ID='$listNumber'")
             return db.delete(TBL_LISTS, "$LIST_ID=?", arrayOf(listNumber.toString())) > 0
@@ -293,6 +292,29 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
             db.close()
         }
         return false
+    }
+
+    fun deleteUser(id: Int) {
+        val db = writableDatabase
+        try {
+            db.execSQL("DELETE FROM $TBL_LISTS WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_TODO WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_CALENDAR WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_FAVORITE_TODO WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_FAVORITE_CALENDAR WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_USERS WHERE $USER_ID='$id'")
+        } catch (e: Exception) {
+            Log.i(TAG, "Transaction Failed: Delete User")
+        } finally {
+            db.close()
+        }
+    }
+
+    fun revokeAutoLogin(id: Int) {
+        val db = writableDatabase
+        val cv = ContentValues()
+        cv.put(DEFAULT_LOGIN, false)
+        db.update(TBL_USERS, cv, "$USER_ID=?", arrayOf(id.toString()))
     }
 
     fun insertTodo(id: Int, listId: Int, obj: TodoObject) {
@@ -440,13 +462,13 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         return TodoObject(-1,null, null,null,null,null)
     }
 
-    fun insertCalendarEvent(id: Int, obj: CalendarEvent) {
+    fun insertCalendarEvent(id: Int, calendarEvent: CalendarDataObject) {
         val db = writableDatabase
         val cv = ContentValues()
         cv.put(USER_ID, id)
-        cv.put(EVENT_NAME, obj.eventName)
-        cv.put(EVENT_DESCRIPTION, obj.eventDescription)
-        cv.put(EVENT_EVENTSTART, obj.eventDateTime)
+        cv.put(EVENT_NAME, calendarEvent.eventName)
+        cv.put(EVENT_DESCRIPTION, calendarEvent.eventDescription)
+        cv.put(EVENT_EVENTSTART, calendarEvent.eventDateTime)
         db.insert(TBL_CALENDAR, null, cv)
         db.close()
     }
@@ -619,6 +641,185 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
             db.close()
         }
         return ArrayList()
+    }
 
+    fun insertCalendarProfile(id: Int, profileName: String, eventName: String, eventDescription: String, isPinned: Boolean): Long { //id, prof name, name, description, isPinned
+        val returnValue = System.currentTimeMillis()
+        val db = writableDatabase
+        val cv = ContentValues()
+        cv.put(USER_ID, id)
+        cv.put(FAVORITE_NAME, profileName)
+        cv.put(EVENT_NAME, eventName)
+        cv.put(EVENT_DESCRIPTION, eventDescription)
+        cv.put(LIST_PINNED, isPinned)
+        cv.put(LIST_TOUCH, returnValue)
+        db.insert(TBL_FAVORITE_CALENDAR, null, cv)
+        db.close()
+        return returnValue
+    }
+
+    fun insertTodoProfile(id: Int, profileName: String, eventName: String, eventDescription: String, isPinned: Boolean): Long {
+        val returnValue = System.currentTimeMillis()
+        val db = writableDatabase
+        val cv = ContentValues()
+        cv.put(USER_ID, id)
+        cv.put(FAVORITE_NAME, profileName)
+        cv.put(EVENT_NAME, eventName)
+        cv.put(EVENT_DESCRIPTION, eventDescription)
+        cv.put(LIST_PINNED, isPinned)
+        cv.put(LIST_TOUCH, returnValue)
+        db.insert(TBL_FAVORITE_TODO, null, cv)
+        db.close()
+        return returnValue
+    }
+
+    @SuppressLint("Range")
+    fun readNewCalendarProfileId(timestamp: Long): Int {
+        val db = readableDatabase
+        db.beginTransaction()
+        val cursor = db.query(TBL_FAVORITE_CALENDAR, arrayOf(EVENT_ID), "$LIST_TOUCH=?", arrayOf(timestamp.toString()),null,null,null,null)
+        try {
+            if(!cursor.moveToFirst()) return -2
+            return cursor.getInt(cursor.getColumnIndex(EVENT_ID))
+        } catch (e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return -1
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    @SuppressLint("Range")
+    fun readNewTodoProfileId(timestamp: Long): Int {
+        val db = readableDatabase
+        db.beginTransaction()
+        val cursor = db.query(TBL_FAVORITE_TODO, arrayOf(EVENT_ID), "$LIST_TOUCH=?", arrayOf(timestamp.toString()),null,null,null,null)
+        try {
+            if(!cursor.moveToFirst()) return -2
+            return cursor.getInt(cursor.getColumnIndex(EVENT_ID))
+        } catch (e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return -1
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    @SuppressLint("Range")
+    fun readCalendarProfile(id: Int): MutableList<FavoriteObject> {
+        val db = readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_FAVORITE_CALENDAR, arrayOf(EVENT_ID, FAVORITE_NAME, LIST_PINNED), "$USER_ID=?", arrayOf(id.toString()),null,null,"$LIST_PINNED DESC, $LIST_TOUCH DESC", null)
+        try {
+            if(!cursor.moveToFirst()) return mutableListOf()
+            val list = mutableListOf<FavoriteObject>()
+            do {
+                list.add(FavoriteObject(cursor.getInt(cursor.getColumnIndex(EVENT_ID)), cursor.getString(cursor.getColumnIndex(FAVORITE_NAME)), cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1, true))
+            } while (cursor.moveToNext())
+            return  list
+        } catch (e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return mutableListOf()
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    @SuppressLint("Range")
+    fun readTodoProfile(id: Int): MutableList<FavoriteObject> {
+        val db = readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_FAVORITE_TODO, arrayOf(EVENT_ID, FAVORITE_NAME, LIST_PINNED), "$USER_ID=?", arrayOf(id.toString()),null,null,"$LIST_PINNED DESC, $LIST_TOUCH DESC", null)
+        try {
+            if(!cursor.moveToFirst()) return mutableListOf()
+            val list = mutableListOf<FavoriteObject>()
+            do {
+                list.add(FavoriteObject(cursor.getInt(cursor.getColumnIndex(EVENT_ID)), cursor.getString(cursor.getColumnIndex(FAVORITE_NAME)), cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1, false))
+            } while(cursor.moveToNext())
+            return list
+        } catch (e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return mutableListOf()
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    fun deleteFavoriteProfile(favoriteId: Int, profileType: Boolean) {
+        val db = writableDatabase
+        if(profileType) db.delete(TBL_FAVORITE_CALENDAR, "$EVENT_ID=?", arrayOf(favoriteId.toString()))
+        else db.delete(TBL_FAVORITE_TODO, "$EVENT_ID=?", arrayOf(favoriteId.toString()))
+        db.close()
+    }
+
+    //pinAction [updates pin value and touch stamp]
+    fun updateFavoriteProfilePinValue(favoriteId: Int , profileType: Boolean, isPinned: Boolean) {
+        val db = writableDatabase
+        val cv = ContentValues()
+        cv.put(LIST_PINNED, isPinned)
+        cv.put(LIST_TOUCH, System.currentTimeMillis())
+        if(profileType) db.update(TBL_FAVORITE_CALENDAR, cv, "$EVENT_ID=?", arrayOf(favoriteId.toString()))
+        else db.update(TBL_FAVORITE_TODO, cv, "$EVENT_ID=?", arrayOf(favoriteId.toString()))
+        db.close()
+    }
+
+    @SuppressLint("Range")
+    fun readFavoriteCalendarSingle(favoriteId: Int): FavoriteDataObject {
+        val db = readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_FAVORITE_CALENDAR, arrayOf(EVENT_ID, FAVORITE_NAME, EVENT_NAME, EVENT_DESCRIPTION, LIST_PINNED), "$EVENT_ID=?", arrayOf(favoriteId.toString()),null,null,null,null)
+        try {
+            if(!cursor.moveToFirst()) return FavoriteDataObject(-2, null, null, null, null)
+            return FavoriteDataObject(cursor.getInt(cursor.getColumnIndex(EVENT_ID)), cursor.getString(cursor.getColumnIndex(FAVORITE_NAME)), cursor.getString(cursor.getColumnIndex(EVENT_NAME)), cursor.getString(cursor.getColumnIndex(EVENT_DESCRIPTION)), cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1)
+        } catch(e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return FavoriteDataObject(-1, null, null, null, null)
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    @SuppressLint("Range")
+    fun readFavoriteTodoSingle(favoriteId: Int): FavoriteDataObject {
+        val db = readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_FAVORITE_TODO, arrayOf(EVENT_ID, FAVORITE_NAME, EVENT_NAME, EVENT_DESCRIPTION, LIST_PINNED), "$EVENT_ID=?", arrayOf(favoriteId.toString()),null,null,null,null)
+        try {
+            if(!cursor.moveToFirst()) return FavoriteDataObject(-2, null, null, null, null)
+            return FavoriteDataObject(cursor.getInt(cursor.getColumnIndex(EVENT_ID)), cursor.getString(cursor.getColumnIndex(FAVORITE_NAME)), cursor.getString(cursor.getColumnIndex(EVENT_NAME)), cursor.getString(cursor.getColumnIndex(EVENT_DESCRIPTION)), cursor.getInt(cursor.getColumnIndex(LIST_PINNED)) == 1)
+        } catch(e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return FavoriteDataObject(-1, null, null, null, null)
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    fun updateFavoriteProfile(profileType: Boolean, favoriteData: FavoriteDataObject) {
+        val db = writableDatabase
+        val cv = ContentValues()
+        cv.put(FAVORITE_NAME, favoriteData.favoriteName)
+        cv.put(EVENT_NAME, favoriteData.eventName)
+        cv.put(EVENT_DESCRIPTION, favoriteData.eventDescription)
+        cv.put(LIST_PINNED, favoriteData.isPinned)
+        cv.put(LIST_TOUCH, System.currentTimeMillis())
+        if(profileType) db.update(TBL_FAVORITE_CALENDAR, cv, "$EVENT_ID=?", arrayOf(favoriteData.favoriteId.toString()))
+        else db.update(TBL_FAVORITE_TODO, cv, "$EVENT_ID=?", arrayOf(favoriteData.favoriteId.toString()))
     }
 }

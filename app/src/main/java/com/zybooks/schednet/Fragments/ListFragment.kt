@@ -104,11 +104,11 @@ class ListFragment: Fragment(), AddListBottomFragment.OnDismissAddInteraction, L
         val editFragment = EditListBottomFragment()
         editFragment.setInterface(this@ListFragment)
         editFragment.setPosition(position)
-        editFragment.setObject(ListObject(list.listId, list.listName, list.isPinned, list.timestamp))
+        editFragment.setObject(ListObject(list.listId, list.listName, list.isPinned))
         editFragment.show(childFragmentManager, editFragment.tag)
     }
     override fun onPin(position: Int, list: ListObject) {
-        list.timestamp = DatabaseManager(requireContext()).updateListPinValue(list.listId, list.isPinned)
+        DatabaseManager(requireContext()).updateListPinValue(list.listId, list.isPinned)
         if(list.isPinned) {
             gList.removeAt(position)
             gList.add(0, list)

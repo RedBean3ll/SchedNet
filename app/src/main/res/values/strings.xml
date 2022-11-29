@@ -68,18 +68,6 @@
 
     <!-- TRANSITIONS -->
 
-    <string-array name="number_remind">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
-
-    <string-array name="repeat_type">
-        <item>Daily</item>
-        <item>Weekly</item>
-        <item>Monthly</item>
-        <item>Yearly</item>
-    </string-array>
 
 
 
@@ -105,6 +93,26 @@
     <string name="generic_cancel_button_description">cancel</string>
     <string name="generic_calendar_empty_text">no events yet</string>
     <string name="new_chip_date">Date</string>
+    <string name="general_favorite_name_hint">Profile Name</string>
+    <string name="nav_favorite_edit_calendar">Edit Favorite Calendar</string>
+    <string name="nav_favorite_list_select">Favorite List Select</string>
+    <string name="favorite_list_select_text">List Select</string>
+
+    <string-array name="garbage_collector_todo">
+        <item>Instant</item>
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+
+    <string-array name="garbage_collector_calendar">
+        <item>Instant</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
+    </string-array>
+
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.zybooks.schednet
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.zybooks.schednet.Fragments.SettingsFragment
 import com.zybooks.schednet.Utils.DatabaseManager
 import com.zybooks.schednet.databinding.ActivityStageBinding
 import java.lang.Exception

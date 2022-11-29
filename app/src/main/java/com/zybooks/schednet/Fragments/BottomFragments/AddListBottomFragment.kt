@@ -70,9 +70,11 @@ class AddListBottomFragment: BottomSheetDialogFragment() {
 
         confirmButton.setOnClickListener {
             if(listEditText.text.toString().isNotEmpty()) {
-                val obj = ListObject(0, listEditText.text.toString(), pinned, null)
-                DatabaseManager(requireContext()).insertList(obj, gId)
-                obj.listId = DatabaseManager(requireContext()).readNewListId(gId, obj.timestamp)
+                val creationStamp: Long
+                val obj = ListObject(0, listEditText.text.toString(), pinned)
+
+                creationStamp = DatabaseManager(requireContext()).insertList(obj, gId)
+                obj.listId = DatabaseManager(requireContext()).readNewListId(gId, creationStamp)
 
                 onDismissInteraction?.confirmAddition(obj)
                 dismiss()

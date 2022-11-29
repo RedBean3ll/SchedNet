@@ -6,7 +6,7 @@ import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
 import java.time.*
 
-class CalendarEvent(@Nullable idInput: Int, @Nullable nameInput: String?, @Nullable descriptionInput: String?, @Nullable timestamp: Long?) {
+class CalendarDataObject(@Nullable idInput: Int, @Nullable nameInput: String?, @Nullable descriptionInput: String?, @Nullable timestamp: Long?) {
 
     var eventId: Int
     var eventName: String

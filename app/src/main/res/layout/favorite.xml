@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         style="@style/TitleBar"
         android:id="@+id/favorite_label"
         android:text="@string/favorite_label_text"
@@ -23,7 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/favorite_label"
-        tools:listitem="@layout/list_ribbon_menu"
+        tools:listitem="@layout/list_ribbon_favorite"
         tools:itemCount="15"
         />
 
@@ -35,35 +35,19 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/favorite_actionbar_dots"
-            style="@style/ActionBarElement"
-            android:layout_marginStart="10dp"
-            android:contentDescription="@string/generic_dots_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_menu_dot_settings_ico" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/favorite_actionbar_switch"
             style="@style/ActionBarElement"
+            android:layout_marginStart="10dp"
             android:contentDescription="@string/generic_actionbar_switch_description"
-            app:layout_constraintStart_toEndOf="@id/favorite_actionbar_dots"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_swap_vert_24"
 
             />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/favorite_actionbar_delete"
-            style="@style/ActionBarElement"
-            android:contentDescription=""
-            app:layout_constraintStart_toEndOf="@id/favorite_actionbar_switch"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_delete_24" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/favorite_actionbar_new_list"
-            style="@style/ActionBarElement"
+            android:id="@+id/favorite_actionbar_new_profile"
+            style="@style/ActionBarAddElement"
             android:contentDescription="@string/generic_add_element_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

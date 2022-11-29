@@ -47,14 +47,6 @@
             android:contentDescription="@string/generic_dots_description" />
 
         <ImageButton
-            android:id="@+id/list_actionbar_delete_mass"
-            style="@style/ActionBarElement"
-            android:contentDescription=""
-            app:layout_constraintStart_toEndOf="@id/list_actionbar_dots"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_delete_24" />
-
-        <ImageButton
             android:id="@+id/list_actionbar_new_list"
             style="@style/ActionBarAddElement"
             android:contentDescription="@string/generic_add_element_description"

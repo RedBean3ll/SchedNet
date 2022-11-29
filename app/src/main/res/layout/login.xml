@@ -109,7 +109,6 @@
             android:layout_column="0"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:buttonTint="@color/purple_700"
             android:text="Remember"
             android:textSize="15sp"
             android:textStyle="bold" />

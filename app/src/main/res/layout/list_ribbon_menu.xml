@@ -43,12 +43,12 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/sample_ribbon_priority"
+            app:layout_constraintEnd_toStartOf="@id/sample_ribbon_pin"
             app:layout_constraintStart_toEndOf="@id/sample_ribbon_checkbox"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/sample_ribbon_priority"
+            android:id="@+id/sample_ribbon_pin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_baseline_push_pin_alt_24"

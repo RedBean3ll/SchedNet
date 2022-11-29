@@ -12,12 +12,12 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.zybooks.schednet.R
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.DialogInterface
-import android.util.Log
-import android.view.WindowManager
 import android.widget.*
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
+import com.zybooks.schednet.Model.CalendarDataObject
 import com.zybooks.schednet.Model.CalendarEvent
 import com.zybooks.schednet.Utils.DatabaseManager
 import com.zybooks.schednet.Utils.DateConversions
@@ -27,7 +27,8 @@ import java.time.*
  * If chip box filled, change color of chip on action of value updated
  */
 
-class AddCalendarBottomFragment(): BottomSheetDialogFragment(), DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+class AddCalendarBottomFragment(): BottomSheetDialogFragment() {
+
     private lateinit var cancelButton: ImageButton
     private lateinit var confirmButton: ImageButton
     private lateinit var nameEditText: TextInputEditText
@@ -38,8 +39,8 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment(), DatePickerDialog
     private lateinit var dateChip: Chip
     private lateinit var errorText: TextView
 
+    private var gTime: ZonedDateTime?
     private var gId: Int
-    private var gTime: LocalDateTime?
     private var onPageDismiss: onDismissInteraction?
 
     private var currentZone = ZoneId.systemDefault()
@@ -47,12 +48,8 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment(), DatePickerDialog
 
     init {
         gId = -1
-        gTime = null
         onPageDismiss = null
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        gTime = null
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -73,12 +70,12 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment(), DatePickerDialog
         descriptionChip = rootView.findViewById(R.id.new_calendar_chip_description)
         dateChip = rootView.findViewById(R.id.new_calendar_chip_date)
         errorText = rootView.findViewById(R.id.new_calendar_error)
+        intitializer()
 
-        intitializeControls()
         return rootView
     }
 
-    private fun intitializeControls() {
+    private fun intitializer() {
         cancelButton.setOnClickListener {
             onPageDismiss?.cancelChange()
             dismiss()
@@ -95,32 +92,67 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment(), DatePickerDialog
                 if(unSet) errorText.visibility = View.VISIBLE
                 return@setOnClickListener
             }
-            gTime?.atZone(currentZone)?.toInstant()?.toEpochMilli()
+            gTime?.toInstant()?.toEpochMilli()
 
-            val obj = CalendarEvent(0, nameEditText.text.toString(), descriptionEditText.text.toString(), gTime?.atZone(currentZone)?.toInstant()?.toEpochMilli())
+            val obj = CalendarDataObject(0, nameEditText.text.toString(), descriptionEditText.text.toString(), gTime?.toInstant()?.toEpochMilli())
             DatabaseManager(requireContext()).insertCalendarEvent(gId, obj)
 
-            onPageDismiss?.confirmChange(gTime?.atZone(ZoneId.systemDefault())!!)
+            onPageDismiss?.confirmChange(gTime!!)
             dismiss()
         }
 
         descriptionChip.setOnClickListener {
-            toggleDescriptionVisible()
+            descriptionEditCasing.isVisible = !descriptionEditCasing.isVisible
         }
         
         dateChip.setOnClickListener {
             this.gTime = null
             dateChip.text = "Date"
             dateChip.isCloseIconVisible = false
-            val tempDate = LocalDate.now()
-            DatePickerDialog(requireContext(), this, tempDate.year, tempDate.monthValue-1, tempDate.dayOfMonth).show()
+
+            callMaterialDatePicker()
         }
 
     }
 
-    //Guarantee flip
-    private fun toggleDescriptionVisible() {
-        descriptionEditCasing.isVisible = !descriptionEditCasing.isVisible
+    fun callMaterialDatePicker() {
+        val materialDatePicker = MaterialDatePicker.Builder
+            .datePicker()
+            .setTheme(R.style.ThemeOverlay_AppCompat_MaterialCalendar)
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .build()
+
+        materialDatePicker.addOnPositiveButtonClickListener {
+            val result: Long = materialDatePicker.selection!!
+            val zonedResult = ZonedDateTime.ofInstant(Instant.ofEpochMilli(result), ZoneOffset.UTC)
+
+            val myZonedDateTime = ZonedDateTime.of(zonedResult.year, zonedResult.monthValue, zonedResult.dayOfMonth, 0,0,0,0, ZoneId.systemDefault())
+            dateChip.text = DateConversions.dateTimeConversion(myZonedDateTime)
+            dateChip.isCloseIconVisible = true
+            gTime = myZonedDateTime
+
+            callMaterialTimePicker()
+        }
+
+        materialDatePicker.show(childFragmentManager, "TAG")
+    }
+
+    fun callMaterialTimePicker() {
+        val tempTime = LocalTime.now()
+
+        val materialTimePicker = MaterialTimePicker.Builder()
+            .setTimeFormat(TimeFormat.CLOCK_12H)
+            .setHour(tempTime.hour)
+            .setMinute(tempTime.minute)
+            .setTheme(R.style.ThemeOverlay_AppCompat_MaterialTime)
+            .build()
+        materialTimePicker.addOnPositiveButtonClickListener {
+            gTime = gTime?.plusHours(materialTimePicker.hour.toLong())
+                ?.plusMinutes(materialTimePicker.minute.toLong())
+            dateChip.text = DateConversions.dateTimeConversion(gTime ?: ZonedDateTime.now())
+        }
+
+        materialTimePicker.show(childFragmentManager, "AG")
     }
 
     //Interface
@@ -132,29 +164,6 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment(), DatePickerDialog
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
         onPageDismiss?.cancelChange()
-    }
-
-    //Interface Callbacks
-    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        val tempTime = LocalTime.now()
-        this.gTime = LocalDateTime.of(year, month+1, dayOfMonth, tempTime.hour, tempTime.minute, 0, 0)
-
-        val ldt = LocalDateTime.of(year, month+1, dayOfMonth, 0, 0, 0, 0). atZone(currentZone)
-
-        dateChip.text = DateConversions.dateTimeConversion(ldt)
-        dateChip.isCloseIconVisible = true
-        TimePickerDialog(requireContext(), this, tempTime.hour, tempTime.minute, false).show()
-    }
-
-    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        //Toast.makeText(requireContext(), "callback time called", Toast.LENGTH_LONG).show()
-        this.gTime = LocalDateTime.of(gTime!!.year, gTime!!.monthValue, gTime!!.dayOfMonth, hourOfDay, minute, 0, 0)
-        val ldt = LocalDateTime.of(gTime!!.year, gTime!!.monthValue, gTime!!. dayOfMonth,gTime!!.hour, gTime!!.minute, 0, 0).atZone(currentZone)
-        dateChip.text = DateConversions.dateTimeConversion(ldt)
-        dateChip.isCloseIconVisible = true
-
-        Log.i("TimeTest", "Timestamp: ${ldt.toInstant().toEpochMilli()}")
-
     }
 
     fun setInterface(onPageDismiss: onDismissInteraction) {

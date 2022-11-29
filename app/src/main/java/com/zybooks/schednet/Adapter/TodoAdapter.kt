@@ -32,11 +32,7 @@ class TodoAdapter(@Nullable private val onRibbonListener: OnRibbonListener?): Re
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
-
-        if(holder is TodoViewHolder) {
-            holder.bind(differ.currentList[position])
-        }
+        if(holder is TodoViewHolder) holder.bind(differ.currentList[position])
     }
 
     override fun getItemCount(): Int {
@@ -59,7 +55,7 @@ class TodoAdapter(@Nullable private val onRibbonListener: OnRibbonListener?): Re
             //DATA
             val checkBox: CheckBox = itemView.findViewById(R.id.sample_ribbon_checkbox)
             val label: TextView = itemView.findViewById(R.id.sample_ribbon_title)
-            val pinButton: ImageButton = itemView.findViewById(R.id.sample_ribbon_priority)
+            val pinButton: ImageButton = itemView.findViewById(R.id.sample_ribbon_pin)
             label.text = todo.eventName
 
             if(todo.isPinned) pinButton.setImageResource(R.drawable.ic_baseline_push_pin_24)

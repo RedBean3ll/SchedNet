@@ -82,7 +82,41 @@
         android:name="com.zybooks.schednet.Fragments.FavoriteFragment"
         android:label="@string/nm_favorite"
         tools:layout="@layout/favorite"
-        />
+        >
+        <action
+            android:id="@+id/show_favorite_edit"
+            app:destination="@id/favorite_edit_fragment"
+            />
+        <action
+            android:id="@+id/show_favorite_list_select"
+            app:destination="@id/favorite_list_select_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorite_edit_fragment"
+        android:name="com.zybooks.schednet.Fragments.FavoriteEditFragment"
+        android:label="Edit Favorite Todo"
+        tools:layout="@layout/favorite_edit" >
+        <argument
+            android:name="favorite.ky"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="mode.ky"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorite_list_select_fragment"
+        android:name="com.zybooks.schednet.Fragments.FavoriteListSelectFragment"
+        android:label="@string/nav_favorite_list_select"
+        tools:layout="@layout/favorite_list_select" >
+        <argument
+            android:name="favorite.ky"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
 
     <fragment
         android:id="@+id/settings_fragment"
@@ -90,4 +124,6 @@
         android:label="@string/nm_settings"
         tools:layout="@layout/settings"
         />
+
+
 </navigation>

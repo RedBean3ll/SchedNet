@@ -22,6 +22,7 @@ import com.zybooks.schednet.Utils.DatabaseManager
  */
 
 class AddTodoBottomFragment: BottomSheetDialogFragment() {
+
     private lateinit var cancelButton: ImageButton
     private lateinit var confirmButton: ImageButton
     private lateinit var nameEditText: TextInputEditText
@@ -29,13 +30,13 @@ class AddTodoBottomFragment: BottomSheetDialogFragment() {
     private lateinit var descriptionEditText: TextInputEditText
     private lateinit var descriptionEditCasing: TextInputLayout
     private lateinit var descriptionChip: Chip
-
     private lateinit var pinButton: ImageButton
 
-    private var pinned: Boolean
     private var gId: Int
     private var gListId: Int
     private var onPageDismiss: OnDismissInteraction?
+
+    private var pinned: Boolean
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val rootView = inflater.inflate(R.layout.todo_new_ribbon_frame, container, false)
@@ -57,11 +58,6 @@ class AddTodoBottomFragment: BottomSheetDialogFragment() {
         initializer()
 
         return rootView
-    }
-
-    //Guarantee flip
-    private fun toggleDescriptionVisible() {
-        descriptionEditCasing.isVisible = !descriptionEditCasing.isVisible
     }
 
     //RESET CONTROL
@@ -111,7 +107,7 @@ class AddTodoBottomFragment: BottomSheetDialogFragment() {
         }
 
         descriptionChip.setOnClickListener {
-            toggleDescriptionVisible()
+            descriptionEditCasing.isVisible = !descriptionEditCasing.isVisible
         }
 
         pinButton.setOnClickListener {

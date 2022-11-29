@@ -71,8 +71,6 @@ class EditListBottomFragment: BottomSheetDialogFragment() {
                 return@setOnClickListener
             }
             gList.listName = listEditText.text.toString()
-            gList.timestamp = System.currentTimeMillis()
-
             DatabaseManager(requireContext()).updateListName(gList.listId, gList.listName)
             gOnUpdateCompleted.confirmName(gPosition, gList)
             dismiss()
