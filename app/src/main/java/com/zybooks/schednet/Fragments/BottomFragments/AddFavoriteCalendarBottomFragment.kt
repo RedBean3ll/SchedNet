@@ -44,7 +44,7 @@ class AddFavoriteCalendarBottomFragment: BottomSheetDialogFragment() {
     private lateinit var gProfile: FavoriteDataObject
 
     override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout. calendar_new_ribbon_frame, container, false)
+        val rootView = inflater.inflate(R.layout.calendar_new_ribbon_frame, container, false)
 
         if(dialog is BottomSheetDialog) {
             val behaviour = (dialog as BottomSheetDialog).behavior

@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val attemptAlpha = DatabaseManager(this).checkPreferredLogin()
+        val attemptAlpha = DatabaseManager(this).readAutoLoggedUser()
         if(attemptAlpha > -1) {
             val intent = Intent(this, StageActivity::class.java)
             intent.putExtra(StageActivity.MAGIC_NUMBER, attemptAlpha)

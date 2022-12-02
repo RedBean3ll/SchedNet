@@ -49,7 +49,7 @@ class FavoriteFragment: Fragment(), FavoriteAdapter.OnRibbonListener, RecyclerVi
         gId = activityIntent!!.getInt(StageActivity.MAGIC_NUMBER)
 
         //Pull mode from db
-        gMode = DatabaseManager(requireContext()).readPreferredFavorite(gId)
+        gMode = DatabaseManager(requireContext()).readPreferredFavoritePage(gId)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

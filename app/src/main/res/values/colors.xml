@@ -16,10 +16,11 @@
     <color name="red_menu">#FF0000</color>
     <color name="blue_menu">#0000FF</color>
     <color name="green_menu">#27E500</color>
-    <color name="gray_menu">#595959</color>
+    <color name="gray_menu">#A8A8A8</color>
     <color name="calendar_gray">#F5F5F5</color>
     <color name="text_white">#FFFFFFFF</color>
     <color name="text_black">#FF000000</color>
 
+    <color name="default_text_hint">#757575</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:orerride="true">#FF3700B3</color>
 </resources>

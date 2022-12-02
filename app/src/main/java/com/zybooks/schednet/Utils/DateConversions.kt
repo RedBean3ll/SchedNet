@@ -30,6 +30,11 @@ class DateConversions {
             return date.format(formatter)
         }
 
+        fun formatListDate(date: ZonedDateTime): String {
+            val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMM d, y")
+            return date.format(formatter)
+        }
+
         //TODO: May break from null in collection
         fun daysInMonth(date: LocalDate): ArrayList<LocalDate?> {
             val monthCollection: ArrayList<LocalDate?> = ArrayList()

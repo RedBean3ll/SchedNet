@@ -13,7 +13,7 @@ import java.time.*
 class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null, VERSION_NO) {
 
     companion object {
-        private const val VERSION_NO: Int = 11
+        private const val VERSION_NO: Int = 12
         private const val DB_NAME: String = "BeeMovie"
 
         private const val TBL_USERS = "Users"
@@ -27,7 +27,12 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         private const val USER_ID: String = "user" //PRIMARY KEY
         private const val USER_NAME: String = "username" //NOT EMAIL
         private const val USER_PASSWORD: String = "password"
+        private const val ACCOUNT_NAME: String = "name"
         private const val DEFAULT_LOGIN: String = "defaultlogin"
+        private const val SECURITY_ONE: String = "question"
+        private const val SECURITY_TWO: String = "question_two"
+        private const val ANSWER_ONE: String = "answer"
+        private const val ANSWER_TWO: String = "answer_two"
         private const val DEFAULT_FAVORITE: String = "prefered_favorite"
 
         //LIST TABLE
@@ -45,21 +50,17 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         private const val EVENT_ISCOMPLETED: String = "completion"
         private const val EVENT_SORTPRIORITY: String = "priority_level"
 
-        private const val EVENT_EVENTSTART: String = "datestart" //START TIME (EVENT TIME IF ALL DAY) <<NOTE: ONLY TIME IN FAVORITES>>
-        //private const val EVENT_EVENTEND: String = "dateend" //END TIME (MAY NOT EXIST)
-        //private const val EVENT_LOCATION: String = "eventlocation"
+        private const val EVENT_EVENTSTART: String = "datestart"
         private const val CALENDAR_DATE: String = "calendar_date"
 
         private const val FAVORITE_NAME: String = "favorite_name"
-
-        //ALL
-        private const val SECRET: String = "hush"
     }
+
 
     val TAG = "DatabaseManager"
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_USERS (user INTEGER PRIMARY KEY, username TEXT DEFAULT 'NAN' NOT NULL, password TEXT DEFAULT 'NAN' NOT NULL, clean_calendar_frequency INT DEFAULT 3 NOT NULL, clean_todo_frequency INT DEFAULT 4 NOT NULL, defaultlogin INTEGER DEFAULT 0 NOT NULL, loggedin INTEGER DEFAULT 0 NOT NULL, calendar_date INTEGER DEFAULT 0 NOT NULL, prefered_favorite INTEGER DEFAULT 0 NOT NULL)")
+        db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_USERS (user INTEGER PRIMARY KEY, name TEXT DEFAULT 'NAN' NOT NULL, username TEXT DEFAULT 'NAN' NOT NULL, password TEXT DEFAULT 'NAN' NOT NULL, question TEXT DEFAULT 'NAN' NOT NULL, question_two TEXT DEFAULT 'NAN' NOT NULL, answer TEXT DEFAULT 'NAN' NOT NULL, answer_two TEXT DEFAULT 'NAN' NOT NULL, clean_calendar_frequency INT DEFAULT 3 NOT NULL, clean_todo_frequency INT DEFAULT 4 NOT NULL, defaultlogin INTEGER DEFAULT 0 NOT NULL, calendar_date INTEGER DEFAULT 0 NOT NULL, prefered_favorite INTEGER DEFAULT 0 NOT NULL)")
         db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_LISTS (user INTEGER DEFAULT 0 NOT NULL, list INTEGER PRIMARY KEY, listtitle TEXT DEFAULT 'TITLE' NOT NULL, ispinned INTEGER DEFAULT 0 NOT NULL, touchtimestamp INTEGER DEFAULT -1 NOT NULL)")
         db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_TODO (user INTEGER DEFAULT 0 NOT NULL, list INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, title TEXT, description TEXT DEFAULT 0 NOT NULL, createstamp INTEGER DEFAULT 0 NOT NULL, priority INTEGER DEFAULT 0 NOT NULL, completion INTEGER DEFAULT 0 NOT NULL, priority_level INTEGER DEFAULT 0 NOT NULL)")
         db.execSQL("CREATE TABLE IF NOT EXISTS $TBL_CALENDAR (user INTEGER DEFAULT 0 NOT NULL, id INTEGER PRIMARY KEY, title TEXT DEFAULT 'TITLE' NOT NULL, description TEXT DEFAULT '' NOT NULL, datestart INTEGER DEFAULT 0 NOT NULL, createstamp INTEGER DEFAULT 0 NOT NULL, priority INTEGER DEFAULT 0 NOT NULL)")
@@ -115,7 +116,7 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
     }
 
     @SuppressLint("Range")
-    fun checkPreferredLogin(): Int {
+    fun readAutoLoggedUser(): Int {
         val db = this.writableDatabase
         db.beginTransaction()
 
@@ -146,21 +147,23 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
 
     }
 
-    fun insertUser(@NonNull username: String, @NonNull password: String): Boolean {
-        if(readUser(username, password) < 0) {
-            val db = this.writableDatabase
-            val cv = ContentValues()
-            cv.put(USER_NAME, username)
-            cv.put(USER_PASSWORD, password)
-            db.insert(TBL_USERS, null, cv)
-            db.close()
-            return true
-        }
-        return false
+    fun insertNewUser(@NonNull name: String, @NonNull username: String, @NonNull password: String, @NonNull question: String, @NonNull questionTwo: String, @NonNull answer: String, @NonNull answerTwo: String) {
+        val db = writableDatabase
+        val cv = ContentValues()
+        cv.put(ACCOUNT_NAME, name)
+        cv.put(USER_NAME, username)
+        cv.put(USER_PASSWORD, password)
+        cv.put(SECURITY_ONE, question)
+        cv.put(SECURITY_TWO, questionTwo)
+        cv.put(ANSWER_ONE, answer)
+        cv.put(ANSWER_TWO, answerTwo)
+        db.insert(TBL_USERS, null, cv)
+        db.close()
     }
+    //DB (name, username, password, q1, q2, a1, a2)
 
     @SuppressLint("Range")
-    fun readPreferredFavorite(id: Int): Boolean {
+    fun readPreferredFavoritePage(id: Int): Boolean {
         val db = readableDatabase
         db.beginTransaction()
 
@@ -178,9 +181,135 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
         }
     }
 
+    fun deleteUser(id: Int) {
+        val db = writableDatabase
+        try {
+            db.execSQL("DELETE FROM $TBL_LISTS WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_TODO WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_CALENDAR WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_FAVORITE_TODO WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_FAVORITE_CALENDAR WHERE $USER_ID='$id'")
+            db.execSQL("DELETE FROM $TBL_USERS WHERE $USER_ID='$id'")
+        } catch (e: Exception) {
+            Log.i(TAG, "Transaction Failed: Delete User")
+        } finally {
+            db.close()
+        }
+    }
+
+    fun revokeAutoLogin(id: Int) {
+        val db = writableDatabase
+        val cv = ContentValues()
+        cv.put(DEFAULT_LOGIN, false)
+        db.update(TBL_USERS, cv, "$USER_ID=?", arrayOf(id.toString()))
+        db.close()
+    }
+
+    @SuppressLint("Range")
+    fun readUserByName(login: String): Int {
+        val db = readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_USERS, arrayOf(USER_ID), "$USER_NAME=?", arrayOf(login),null,null,null,null)
+        try {
+            if(!cursor.moveToFirst()) return -2
+            return cursor.getInt(cursor.getColumnIndex(USER_ID))
+        } catch(e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return -1
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    @SuppressLint("Range")
+    fun readSecurityQuestion(id: Int): List<String> {
+        val db = readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_USERS, arrayOf(SECURITY_ONE, SECURITY_TWO), "$USER_ID=?", arrayOf(id.toString()),null,null,null,null)
+        try {
+            if(!cursor.moveToFirst()) return listOf("NAN", "NAN")
+            return listOf(cursor.getString(cursor.getColumnIndex(SECURITY_ONE)), cursor.getString(cursor.getColumnIndex(SECURITY_TWO)))
+        } catch(e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return listOf("NAN", "NAN")
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    @SuppressLint("Range")
+    fun checkQuestions(id: Int, answerOne: String, answerTwo: String): Boolean {
+        val db = readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_USERS, arrayOf(USER_ID), "$ANSWER_ONE=? AND $ANSWER_TWO=?", arrayOf(answerOne, answerTwo),null,null,null,null)
+        try {
+            if(!cursor.moveToFirst()) return false
+            do {
+                if(id == cursor.getInt(cursor.getColumnIndex(USER_ID))) return true
+            } while(cursor.moveToNext())
+            return false
+        } catch(e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return false
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    fun updatePassword(id: Int, newKey: String) {
+        val db = writableDatabase
+        val cv = ContentValues()
+        cv.put(USER_PASSWORD, newKey)
+        db.update(TBL_USERS, cv, "$USER_ID=?", arrayOf(id.toString()))
+        db.close()
+    }
+
+    fun checkUserExists(username: String): Boolean {
+        val db = readableDatabase
+        db.beginTransaction()
+
+        val cursor = db.query(TBL_USERS, arrayOf(DEFAULT_LOGIN), "$USER_NAME=?", arrayOf(username),null,null,null,null)
+        try {
+            if(cursor.moveToFirst()) return true
+            return false
+        } catch(e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return false
+        } finally {
+            cursor.close()
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    @SuppressLint("Range")
+    fun readAccountName(@NonNull id: Int): String {
+        val db = readableDatabase
+        val cursor = db.query(TBL_USERS, arrayOf(ACCOUNT_NAME), "$USER_ID=?", arrayOf(id.toString()),null,null,null,null)
+        try {
+            if(!cursor.moveToFirst()) return "DNE"
+            return cursor.getString(cursor.getColumnIndex(ACCOUNT_NAME))
+        } catch (e: Exception) {
+            Log.i(TAG, "Transaction Failed")
+            return "NAN"
+        } finally {
+            cursor.close()
+            db.close()
+        }
+    }
+
     @SuppressLint("Range")
     fun readLists(@NonNull id: Int): MutableList<ListObject> {
-        val db = this.readableDatabase
+        val db = readableDatabase
         db.beginTransaction()
 
         val cursor = db.query(TBL_LISTS, arrayOf(LIST_ID, LIST_NAME, LIST_PINNED, LIST_TOUCH), "$USER_ID=?", arrayOf(id.toString()), null, null, "$LIST_PINNED DESC, $LIST_TOUCH DESC", null)
@@ -292,29 +421,6 @@ class DatabaseManager(context: Context): SQLiteOpenHelper(context, DB_NAME, null
             db.close()
         }
         return false
-    }
-
-    fun deleteUser(id: Int) {
-        val db = writableDatabase
-        try {
-            db.execSQL("DELETE FROM $TBL_LISTS WHERE $USER_ID='$id'")
-            db.execSQL("DELETE FROM $TBL_TODO WHERE $USER_ID='$id'")
-            db.execSQL("DELETE FROM $TBL_CALENDAR WHERE $USER_ID='$id'")
-            db.execSQL("DELETE FROM $TBL_FAVORITE_TODO WHERE $USER_ID='$id'")
-            db.execSQL("DELETE FROM $TBL_FAVORITE_CALENDAR WHERE $USER_ID='$id'")
-            db.execSQL("DELETE FROM $TBL_USERS WHERE $USER_ID='$id'")
-        } catch (e: Exception) {
-            Log.i(TAG, "Transaction Failed: Delete User")
-        } finally {
-            db.close()
-        }
-    }
-
-    fun revokeAutoLogin(id: Int) {
-        val db = writableDatabase
-        val cv = ContentValues()
-        cv.put(DEFAULT_LOGIN, false)
-        db.update(TBL_USERS, cv, "$USER_ID=?", arrayOf(id.toString()))
     }
 
     fun insertTodo(id: Int, listId: Int, obj: TodoObject) {

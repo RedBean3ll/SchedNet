@@ -10,57 +10,67 @@ import com.zybooks.schednet.R
 import com.zybooks.schednet.StageActivity
 import com.zybooks.schednet.databinding.LoginBinding
 import android.content.Intent
-import android.widget.Toast
+import android.widget.Button
+import android.widget.CheckBox
+import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.zybooks.schednet.Utils.DatabaseManager
 
 class LoginFragment: Fragment() {
 
-    private lateinit var binding: LoginBinding
+    private lateinit var usernameEdit: TextInputEditText
+    private lateinit var usernameLayout: TextInputLayout
+    private lateinit var passwordEdit: TextInputEditText
+    private lateinit var passwordLayout: TextInputLayout
+    private lateinit var rememberCheckBox: CheckBox
+    private lateinit var forgotButton: Button
+    private lateinit var registerButton: Button
+    private lateinit var loginButton: Button
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = LoginBinding.inflate(layoutInflater)
+        val rootView = inflater.inflate(R.layout.login, container, false)
+        usernameEdit = rootView.findViewById(R.id.login_username_edit)
+        usernameLayout = rootView.findViewById(R.id.login_username_layout)
+        passwordEdit = rootView.findViewById(R.id.login_password_edit)
+        passwordLayout = rootView.findViewById(R.id.login_password_layout)
+        rememberCheckBox = rootView.findViewById(R.id.login_check_box_remember)
+        forgotButton = rootView.findViewById(R.id.login_forgot_button)
+        registerButton = rootView.findViewById(R.id.login_register_button)
+        loginButton = rootView.findViewById(R.id.login_button)
+        initializer()
 
-        binding.loginRegisterButton.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.show_signup)
-        }
-        binding.loginForgotButton.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.show_forgot)
-        }
-        binding.loginLocalButton.setOnClickListener {
-            //Return default error state
-            binding.loginUsernameLayout.error = ""
-            binding.loginPasswordLayout.error = ""
-            //Set error state if empty
-            val lengthA = binding.loginUsernameEdit.text.toString().length
-            val lengthB = binding.loginPasswordEdit.text.toString().length
-            if(lengthA == 0 || lengthB == 0 ) {
-                if(lengthA == 0) {
-                    binding.loginUsernameLayout.error = "Username field is empty"
-                }
-                if(lengthB == 0) {
-                    binding.loginPasswordLayout.error = "Password field is empty"
-                }
+        return rootView
+    }
+
+    fun initializer() {
+        registerButton.setOnClickListener { findNavController().navigate(R.id.show_signup) }
+        forgotButton.setOnClickListener { findNavController().navigate(R.id.show_forgot) }
+
+        loginButton.setOnClickListener {
+            usernameLayout.error = ""
+            passwordLayout.error = ""
+
+            val usernameEmpty = usernameEdit.text.toString().length
+            val passwordEmpty = passwordEdit.text.toString().length
+            if(usernameEmpty == 0 || passwordEmpty == 0 ) {
+                if(usernameEmpty == 0) usernameLayout.error = "Username field is empty"
+                if(passwordEmpty == 0) passwordLayout.error = "Password field is empty"
                 return@setOnClickListener
             }
 
-            val dbm = DatabaseManager(requireContext())
-            val attempt = dbm.readUser(binding.loginUsernameEdit.text.toString(), binding.loginPasswordEdit.text.toString())
+            val attempt = DatabaseManager(requireContext()).readUser(usernameEdit.text.toString(), passwordEdit.text.toString())
             if(attempt > -1) {
-                //Toast.makeText(requireContext(), "SUCCESS!! with ID: $attempt", Toast.LENGTH_LONG).show()
-                if(binding.loginCheckBoxRemember.isChecked) {
-                    dbm.updatePreferredLogin(attempt, true)
+                if(rememberCheckBox.isChecked) {
+                    DatabaseManager(requireContext()).updatePreferredLogin(attempt, true)
                 }
+
                 val intent = Intent(activity, StageActivity::class.java)
                 intent.putExtra(StageActivity.MAGIC_NUMBER, attempt)
                 startActivity(intent)
             }
         }
-
-        return binding.root
     }
-
-    //binding.loginUsernameLayout.error = "TESTING"
-    //binding.loginUsernameLayout.error = ""
 }
 
 

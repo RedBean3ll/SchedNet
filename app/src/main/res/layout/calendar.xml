@@ -84,7 +84,7 @@
 
 
         <ImageButton
-            style="@style/ActionBarElement"
+            style="@style/ActionBar.Element"
             android:id="@+id/calendar_list"
             android:contentDescription="@string/generic_actionbar_switch_description"
             android:layout_marginStart="10dp"
@@ -95,13 +95,13 @@
 
         <ImageButton
             android:id="@+id/calendar_reset_date"
-            style="@style/ActionBarElement"
+            style="@style/ActionBar.Element"
             app:srcCompat="@drawable/ic_baseline_rotate_left_24"
             app:layout_constraintStart_toEndOf="@id/calendar_list"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            style="@style/ActionBarAddElement"
+            style="@style/ActionBar.AddElement"
             android:id="@+id/new_calendar_event_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

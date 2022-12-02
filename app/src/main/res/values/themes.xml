@@ -16,7 +16,14 @@
         <item name="android:textViewStyle">@style/RobotoTextViewStyle</item>
         <item name="buttonStyle">@style/RobotoButtonStyle</item>
         <item name="editTextStyle">@style/RobotoTextEditStyle</item>
+    </style>
 
+    <style name="SwitchCompatTheme">
+        <item name="colorSwitchThumbNormal">@color/gray_classic</item>
+        <item name="colorControlActivated">@color/purple_700</item>
+        <item name="trackColorActive">@color/purple_700</item>
+        <item name="trackColorInactive">@color/gray_menu</item>
+        <item name="haloColor">@color/purple_200</item>
     </style>
 
     <style name="ThemeOverlay.AppCompat.MaterialCalendar" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">

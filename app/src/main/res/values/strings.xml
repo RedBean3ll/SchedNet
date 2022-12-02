@@ -26,9 +26,7 @@
     <string name="signup_username_text">Username</string>
     <string name="signup_password_text">Password</string>
     <string name="signup_forgot_text">forgot password</string>
-    <string name="signup_username_hint">new username</string>
-    <string name="signup_password_hint">new password</string>
-    <string name="signup_local_text">Confirm</string>
+    <string name="signup_confirm_text">Confirm</string>
 
     <!-- Forgot Password -->
     <string name="forgot_label_title">Forgot Password</string>
@@ -89,14 +87,34 @@
     <string name="generic_previous_description">previous</string>
     <string name="generic_forward_description">forward</string>
     <string name="generic_date_description">Month Year</string>
-    <string name="generic_confirm_button_description">confirm</string>
-    <string name="generic_cancel_button_description">cancel</string>
+    <string name="generic_confirm_button_description">Confirm</string>
+    <string name="generic_cancel_button_description">Cancel</string>
     <string name="generic_calendar_empty_text">no events yet</string>
     <string name="new_chip_date">Date</string>
     <string name="general_favorite_name_hint">Profile Name</string>
     <string name="nav_favorite_edit_calendar">Edit Favorite Calendar</string>
     <string name="nav_favorite_list_select">Favorite List Select</string>
     <string name="favorite_list_select_text">List Select</string>
+    <string name="login_remember_text">Remember me</string>
+    <string name="signup_account_name_text">Account Name</string>
+    <string name="generic_question_one_text">Question 1</string>
+    <string name="generic_answer_one_text">Answer 1</string>
+    <string name="generic_question_hint">Question</string>
+    <string name="generic_answer_hint">Answer</string>
+    <string name="generic_question_two_text">Question 2</string>
+    <string name="generic_answer_two_text">Answer 2</string>
+    <string name="signup_progress_structure">%1$d of %2$d</string>
+    <string name="signup_account_name_hint">Name</string>
+    <string name="login_forgot_label_text">Forgot Password</string>
+    <string name="forgot_question_two">Q2:</string>
+    <string name="login_question_one">Q1:</string>
+    <string name="signup_continue_button">Continue</string>
+
+    <string name="forgot_question_format">%1$d of %2$s</string>
+    <string name="forgot_answer_error_text">*Answer mismatch</string>
+    <string name="signup_progress_text">1 of 2</string>
+    <string name="signup_already_exists_error_text">*User already exists</string>
+    <string name="signup_forward_text">Next</string>
 
     <string-array name="garbage_collector_todo">
         <item>Instant</item>
@@ -113,6 +131,17 @@
         <item>Yearly</item>
     </string-array>
 
+    <string name="calendar_list_upcoming_text">Upcoming</string>
+    <string name="default_profile_type_text">Default to calendar profiles</string>
+    <string name="settings_update_name_text">Update Name</string>
+    <string name="settings_logout_text">Logout</string>
+    <string name="settings_delete_text">Delete Account</string>
+    <string name="settings_expiration_calendar_text">Calendar Expiration:</string>
+    <string name="settings_expiration_todo_text">Todo Expiration:</string>
+    <string name="settings_event_preference_table_text">Event Preferences</string>
+    <string name="settings_update_question_text">Update SEQ</string>
+    <string name="settings_update_password_button">Update Password</string>
+    <string name="settings_default_name">Name</string>
 
 
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="ActionBarElementMarginStart">20dp</dimen>
+    <dimen name="global_twenty">20dp</dimen>
     <dimen name="ActionBarPadding">10dp</dimen>
 
     <dimen name="GenericBarElementSize">50dp</dimen>

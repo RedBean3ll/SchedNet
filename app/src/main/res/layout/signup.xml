@@ -1,114 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="20dp"
-    android:layout_marginEnd="20dp"
-    android:columnCount="1"
-    android:padding="20dp"
-    android:useDefaultMargins="true"
     tools:context=".Fragments.SignupFragment">
 
-    <TextView
-        android:id="@+id/signup_label_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/signup_label_text"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center_horizontal"
-
-        android:layout_marginBottom="50dp"
-        />
-
-
-    <TextView
-        android:id="@+id/lgn_username_label"
-        android:text="@string/signup_username_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
-
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content" >
 
-        />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signup_username_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_username_hint"
-        app:hintTextColor="@color/black"
-        app:startIconDrawable="@drawable/ic_baseline_person_24"
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:errorTextColor="@color/red_error"
-        app:errorTextAppearance="@color/red_error"
-        app:boxStrokeErrorColor="@color/red_error" >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_username_edit"
-            android:inputType="text"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/SubLoginLabel"
+            android:id="@+id/signup_label"
+            android:text="@string/signup_label_text"
             />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/RegistrationProgress"
+            android:id="@+id/signup_progress_label"
+            android:text="@string/signup_progress_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/signup_label" />
 
-    <TextView
-        android:id="@+id/lgn_password_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/signup_password_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/signup_password_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/signup_password_hint"
-        app:startIconDrawable="@drawable/ic_baseline_lock_24"
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:endIconCheckable="true"
-        app:endIconMode="password_toggle"
-        app:errorTextColor="@color/red_error"
-        app:errorTextAppearance="@color/red_error"
-        app:boxStrokeErrorColor="@color/red_error"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_password_edit"
-            android:inputType="textPassword"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/signup_user_box"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            />
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:layout_marginBottom="0dp"
+                android:text="@string/signup_account_name_text"
+                android:layout_width="match_parent" />
 
-    <Button
-        android:id="@+id/signup_forgot_password_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/transparent"
-        android:text="@string/signup_forgot_text"
-        android:layout_gravity="end"
-        android:visibility="gone"
-        />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/signup_account_name_layout"
+                android:hint="@string/signup_account_name_hint"
+                app:startIconDrawable="@drawable/ic_baseline_person_24" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/signup_account_name_edit"
+                    android:inputType="text"
+                    android:layout_width="match_parent" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:layout_marginBottom="0dp"
+                android:text="@string/signup_username_text" />
 
-    <Button
-        android:id="@+id/signup_local_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="@string/signup_local_text"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/signup_username_layout"
+                app:startIconDrawable="@drawable/ic_baseline_person_24"
+                android:hint="@string/signup_username_text" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/signup_username_edit"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-</GridLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:layout_marginBottom="0dp"
+                android:text="@string/signup_password_text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/signup_password_layout"
+                android:hint="@string/signup_password_text"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24"
+                app:endIconCheckable="true"
+                app:endIconMode="password_toggle" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/signup_password_edit"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/signup_already_exist_error"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minWidth="550dp"
+                android:maxWidth="550dp"
+                android:text="@string/signup_already_exists_error_text"
+                android:textColor="@color/red_error"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/signup_question_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:layout_marginBottom="0dp"
+                android:text="@string/generic_question_one_text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/signup_question_layout"
+                android:hint="@string/generic_question_hint"
+                app:counterEnabled="true"
+                app:counterMaxLength="100" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/signup_question_edit"
+                    android:inputType="textMultiLine"
+                    android:maxLength="100"
+                    android:maxLines="2" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:layout_marginBottom="0dp"
+                android:text="@string/generic_answer_one_text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/signup_answer_layout"
+                android:hint="@string/generic_answer_hint"
+                app:counterEnabled="true"
+                app:counterMaxLength="200" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/signup_answer_edit"
+                    android:inputType="textMultiLine"
+                    android:maxLength="200"
+                    android:maxLines="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:text="@string/generic_question_two_text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/signup_question_two_layout"
+                android:hint="@string/generic_question_hint"
+                app:counterEnabled="true"
+                app:counterMaxLength="100" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/signup_question_two_edit"
+                    android:inputType="textMultiLine"
+                    android:maxLength="100"
+                    android:maxLines="2" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:text="@string/generic_answer_two_text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/signup_answer_two_layout"
+                android:hint="@string/generic_answer_hint"
+                app:counterEnabled="true"
+                app:counterMaxLength="200" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/signup_answer_two_edit"
+                    android:inputType="textMultiLine"
+                    android:maxLength="200"
+                    android:maxLines="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:visibility="gone"
+                style="@style/LoginBackButton"
+                android:id="@+id/signup_back_button"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+                app:tint="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/LoginButton"
+                android:id="@+id/signup_register_button"
+                android:text="@string/signup_forward_text"
+                android:layout_margin="0dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

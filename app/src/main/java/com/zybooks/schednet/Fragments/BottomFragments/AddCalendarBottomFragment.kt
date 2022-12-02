@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.zybooks.schednet.R
 import android.content.DialogInterface
+import android.util.Log
 import android.widget.*
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -106,9 +107,14 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment() {
         }
         
         dateChip.setOnClickListener {
-            this.gTime = null
-            dateChip.text = "Date"
-            dateChip.isCloseIconVisible = false
+            if(gTime != null) {
+                gTime = null
+                dateChip.apply {
+                    text = "Date"
+                    isCloseIconVisible = false
+                }
+                return@setOnClickListener
+            }
 
             callMaterialDatePicker()
         }
@@ -150,6 +156,7 @@ class AddCalendarBottomFragment(): BottomSheetDialogFragment() {
             gTime = gTime?.plusHours(materialTimePicker.hour.toLong())
                 ?.plusMinutes(materialTimePicker.minute.toLong())
             dateChip.text = DateConversions.dateTimeConversion(gTime ?: ZonedDateTime.now())
+            Log.i("calTest", "${DateConversions.dateTimeConversion(gTime ?: ZonedDateTime.now())}")
         }
 
         materialTimePicker.show(childFragmentManager, "AG")

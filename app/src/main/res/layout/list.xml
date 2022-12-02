@@ -39,7 +39,7 @@
 
         <ImageButton
             android:id="@+id/list_actionbar_dots"
-            style="@style/ActionBarElement"
+            style="@style/ActionBar.Element"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -48,7 +48,7 @@
 
         <ImageButton
             android:id="@+id/list_actionbar_new_list"
-            style="@style/ActionBarAddElement"
+            style="@style/ActionBar.AddElement"
             android:contentDescription="@string/generic_add_element_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

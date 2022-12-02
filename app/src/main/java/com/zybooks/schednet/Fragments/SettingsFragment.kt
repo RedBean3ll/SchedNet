@@ -36,14 +36,14 @@ class SettingsFragment : Fragment() {
         binding = SettingsBinding.inflate(inflater)
 
         binding.apply {
+            binding.settingsLabel.text = DatabaseManager(requireContext()).readAccountName(gId)
 
-
-            settingsLogoutAccount.setOnClickListener {
+            settingsLogoutButton.setOnClickListener {
                 DatabaseManager(requireContext()).revokeAutoLogin(gId)
                 endSession()
             }
 
-            settingsDeleteAccount.setOnClickListener {
+            settingsDeleteButton.setOnClickListener {
                 deleteButtonDialog()
             }
         }

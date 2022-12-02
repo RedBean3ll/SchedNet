@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:useDefaultMargins="true"
+    tools:context=".Fragments.SignupFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/SubLoginLabel"
+            android:id="@+id/signup_label"
+            android:text="@string/login_forgot_label_text"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SecurityQuestion"
+                android:id="@+id/forgot_question"
+                android:text="@string/login_question_one" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:layout_marginBottom="0dp"
+                android:layout_width="match_parent"
+                android:text="@string/generic_answer_one_text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/forgot_answer_layout"
+                android:hint="@string/generic_answer_hint"
+                app:counterEnabled="true"
+                app:counterMaxLength="200" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/forgot_answer_edit"
+                    android:inputType="textMultiLine"
+                    android:maxLength="200"
+                    android:maxLines="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SecurityQuestion"
+                android:id="@+id/forgot_question_two"
+                android:text="@string/forgot_question_two" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/LoginLabels"
+                android:layout_width="match_parent"
+                android:text="@string/generic_answer_two_text" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout.Register"
+                android:id="@+id/forgot_answer_two_layout"
+                android:layout_marginBottom="0dp"
+                android:hint="@string/generic_answer_hint"
+                app:counterEnabled="true"
+                app:counterMaxLength="200" >
+                <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText.Login"
+                    android:id="@+id/forgot_answer_two_edit"
+                    android:inputType="textMultiLine"
+                    android:maxLength="200"
+                    android:maxLines="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/forgot_incorrect_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/forgot_answer_error_text"
+                android:textColor="@color/red_error"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/LoginButton"
+            android:id="@+id/forgot_continue_button"
+            android:text="@string/signup_continue_button" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

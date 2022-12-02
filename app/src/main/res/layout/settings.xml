@@ -11,203 +11,141 @@
     >
 
     <androidx.appcompat.widget.AppCompatTextView
+        style="@style/TitleBar.Settings"
         android:id="@+id/settings_label"
-        android:text="Coffee123"
-        android:gravity="center_horizontal|center_vertical"
-        android:layout_gravity="center"
-
+        android:text="@string/settings_default_name"
         android:maxLength="15"
-
-        style="@style/TitleBar"
-        android:textColor="@color/white"
-
-        android:layout_height="50dp"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/ic_button_background_round"
-        android:backgroundTint="@color/purple_500"
-
-        />
+        android:background="@color/purple_500" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/white"
+        android:background="@color/calendar_gray" >
 
-         >
-
-        <GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:columnCount="2"
-            >
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" >
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings" >
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/SettingsButton"
+                    android:id="@+id/settings_update_name_button"
+                    android:text="@string/settings_update_name_text"
+                    android:background="@color/purple_700" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings" >
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/SettingsButton"
+                    android:id="@+id/settings_change_question_button"
+                    android:text="@string/settings_update_question_text"
+                    android:background="@color/purple_700" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings" >
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/SettingsButton"
+                    android:id="@+id/settings_update_password_button"
+                    android:text="@string/settings_update_password_button"
+                    android:background="@color/purple_700" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings"
+                android:minWidth="550dp" >
+                <GridLayout
+                    style="@style/SettingsTable"
+                    android:columnCount="2" >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SettingsSubSectionHeader"
+                        android:paddingBottom="5dp"
+                        android:text="@string/settings_event_preference_table_text"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_columnSpan="2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SettingsTableLabels"
+                        android:text="@string/settings_expiration_todo_text"
+                        android:layout_width="200dp"
+                        android:layout_columnSpan="1" />
+
+                    <androidx.cardview.widget.CardView
+                        style="@style/CardView.Settings"
+                        android:layout_marginTop="0dp"
+                        app:cardCornerRadius="0dp"
+                        >
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/settings_todo_expiration_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="50dp"
+                            android:layout_column="1"
+                            android:entries="@array/garbage_collector_todo"
+                            app:backgroundTint="@color/black" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SettingsTableLabels"
+                        android:text="@string/settings_expiration_calendar_text"
+                        android:layout_columnSpan="1"
+                        android:layout_width="200dp" />
+
+                    <androidx.cardview.widget.CardView
+                        style="@style/CardView.Settings"
+                        android:layout_marginTop="0dp"
+                        app:cardCornerRadius="0dp" >
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/settings_calendar_expiration_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="50dp"
+                            android:layout_columnSpan="1"
+                            android:entries="@array/garbage_collector_calendar"
+                            app:backgroundTint="@color/black" />
+
+                    </androidx.cardview.widget.CardView>
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SettingsSubSectionHeader.Bar"
+                android:text="Favorite Page Preferences" />
 
-                android:layout_columnSpan="2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Account Info:"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_black"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp" />
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings"
+                android:layout_marginTop="5dp" >
+                <androidx.appcompat.widget.SwitchCompat
+                    style="@style/SwitchUniversal.Settings"
+                    android:theme="@style/SwitchCompatTheme"
+                    android:id="@+id/settings_favorite_mode_switch"
+                    android:text="@string/default_profile_type_text"
+                    />
+            </androidx.cardview.widget.CardView>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text=""
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                />
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/settings_update_name_button"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:text="Update Name"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="@color/text_white"
-                android:background="@color/purple_700"
-                android:gravity="center"
-                android:backgroundTint="@color/purple_700"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_column="1"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text=""
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                />
-
+                style="@style/SettingsButton"
+                android:id="@+id/settings_logout_button"
+                android:text="@string/settings_logout_text"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:background="@color/purple_700" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/settings_change_password_button"
-                android:text="Update Password"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="@color/text_white"
-                android:gravity="center"
-                android:background="@color/purple_700"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_column="1" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/settings_change_question_button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:textColor="@color/text_white"
-                android:gravity="center"
-                android:background="@color/purple_700"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:text="Update Sequrity QU"
-                android:layout_columnSpan="2"
-                />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/settings_logout_account"
-                android:text="Logout"
-                android:textSize="20sp"
-                android:layout_height="50dp"
-                android:layout_width="match_parent"
-                android:background="@color/purple_500"
-                android:textColor="@color/text_white"
-                android:textStyle="bold"
-                android:gravity="center"
-                />
-
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/settings_delete_account"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Delete Account"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:background="@color/red_error"
-                android:gravity="center"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_columnSpan="2"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text="Event Preferences:"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_columnSpan="2"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text="Todo Expiration:"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                />
-
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/garbage_collector_todo"
-                android:layout_column="1"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text="Calendar Expiration:"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                />
-            <androidx.appcompat.widget.AppCompatSpinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:entries="@array/garbage_collector_calendar"
-                android:layout_column="1" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text="Favorite Page Preferences:"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_columnSpan="2"
-                />
-
-            <androidx.appcompat.widget.SwitchCompat
-                android:text="Default to calendar"
-                android:layout_width="match_parent"
-                android:layout_columnSpan="2"
-                />
-        </GridLayout>
-
-
+                style="@style/SettingsButton"
+                android:id="@+id/settings_delete_button"
+                android:text="@string/settings_delete_text"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:background="@color/red_error" />
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 

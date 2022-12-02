@@ -36,7 +36,7 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/favorite_actionbar_switch"
-            style="@style/ActionBarElement"
+            style="@style/ActionBar.Element"
             android:layout_marginStart="10dp"
             android:contentDescription="@string/generic_actionbar_switch_description"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/favorite_actionbar_new_profile"
-            style="@style/ActionBarAddElement"
+            style="@style/ActionBar.AddElement"
             android:contentDescription="@string/generic_add_element_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

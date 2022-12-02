@@ -72,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="3"
                     android:maxLength="100"
+                    android:textStyle="bold"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -83,6 +84,7 @@
                 android:text="is Pinned?"
                 android:textStyle="bold"
                 android:buttonTint="@color/purple_700"
+                android:textSize="15sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"/>
         </LinearLayout>
