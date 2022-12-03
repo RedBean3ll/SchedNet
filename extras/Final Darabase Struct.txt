@@ -1,0 +1,108 @@
+CREATE TABLE 'Users' ('user' INTEGER PRIMARY KEY,
+ "username" TEXT DEFAULT "EMERGENCY" NOT NULL,
+ "password" TEXT DEFAULT "EMERGENCY" NOT NULL,
+ "frequencycleancal" TEXT DEFAULT "week" NOT NULL,
+ "frequencycleantdo" TEXT DEFAULT "month" NOT NULL,
+ "defaultlogin" INTEGER DEFAULT 0 NOT NULL, 
+ 'loggedin' INTEGER DEFAULT 0 NOT NULL
+)
+
+CREATE TABLE 'TodoLists' (
+ 'user' INTEGER DEFAULT 0 NOT NULL,
+ 'list' INTEGER PRIMARY KEY,
+ 'listtitle' TEXT DEFAULT 'TITLE' NOT NULL
+)
+
+CREATE TABLE 'CalendarMain' (
+    'user' INTEGER DEFAULT 0 NOT NULL,
+    'id' INTEGER PRIMARY KEY,
+    'title' TEXT DEFAULT 'CAL EVT NAME' NOT NULL,
+    'eventlocation' TEXT,
+    'description' TEXT DEFAULT 'CAL DESCRIPTION' NOT NULL,
+    'allday' INTEGER DEFAULT 1 NOT NULL,
+    'datestart' TEXT DEFAULT '1667174400' NOT NULL,
+    'dateend' TEXT,
+    'repeat' INTEGER DEFAULT 0 NOT NULL,
+    'remind' INTEGER DEFAULT 0 NOT NULL,
+    'remindone' TEXT,
+    'remindtwo' TEXT,
+    'repeattype' TEXT,
+    'repeattime' TEXT,
+    'status' INTEGER DEFAULT 0 NOT NULL,
+    'statusstamp' TEXT
+)
+
+CREATE TABLE 'TodoMain' (
+    'user' INTEGER DEFAULT 0 NOT NULL,
+    'list' INTEGER DEFAULT 0 NOT NULL,
+    'id' INTEGER PRIMARY KEY,
+    'title' TEXT DEFAULT 'TODO NAME' NOT NULL,
+    'description' TEXT DEFAULT 'TODO DESCRIPTION' NOT NULL,
+    'allday' INTEGER DEFAULT 1 NOT NULL,
+    'datestart' TEXT DEFAULT '1667174400' NOT NULL,
+    'dateend' TEXT,
+    'repeat' INTEGER DEFAULT 0 NOT NULL,
+    'remind' INTEGER DEFAULT 0 NOT NULL,
+    'remindone' TEXT,
+    'remindtwo' TEXT,
+    'repeattype' TEXT,
+    'repeattime' TEXT,
+    'status' INTEGER DEFAULT 0 NOT NULL,
+    'statusstamp' TEXT
+}
+
+CREATE TABLE 'FavoriteTodo' (
+    'user' INTEGER DEFAULT 0 NOT NULL,
+    'id' INTEGER PRIMARY KEY,
+    'title' TEXT DEFAULT 'FAVORITE NAME' NOT NULL,
+    'description' TEXT DEFAULT 'FAVORITE DESCRIPTION' NOT NULL,
+    'allday' INTEGER DEFAULT 1 NOT NULL,
+    'datestart' TEXT DEFAULT '1667174400' NOT NULL,
+    'dateend' TEXT,
+    'repeat' INTEGER DEFAULT 0 NOT NULL,
+    'remind' INTEGER DEFAULT 0 NOT NULL,
+    'remindone' TEXT,
+    'remindtwo' TEXT,
+    'repeattype' TEXT,
+    'repeattime' TEXT
+)
+
+CREATE TABLE 'FavoriteCalendar' (
+    'user' INTEGER DEFAULT 0 NOT NULL,
+    'id' INTEGER PRIMARY KEY,
+    'title' TEXT DEFAULT 'FAVORITE NAME' NOT NULL,
+    'eventlocation' TEXT,
+    'description' TEXT DEFAULT 'FAVORITE DESCRIPTION' NOT NULL,
+    'allday' INTEGER DEFAULT 1 NOT NULL,
+    'datestart' TEXT DEFAULT '1667174400' NOT NULL,
+    'dateend' TEXT,
+    'repeat' INTEGER DEFAULT 0 NOT NULL,
+    'remind' INTEGER DEFAULT 0 NOT NULL,
+    'remindone' TEXT,
+    'remindtwo' TEXT,
+    'repeattype' TEXT,
+    'repeattime' TEXT
+)
+
+//WARNING: DO NO CREATE WITHOUT VALID EVENT ID
+CREATE TABLE 'ActiveReminders' ( 
+    'remind' INTEGER PRIMARY KEY,
+    'id' INTEGER,
+    'source' TEXT DEFAULT 'NA' NOT NULL,
+    'remindtime' TEXT DEFAULT 'NA' NOT NULL
+)
+
+
+CREATE DEFAULT USER W/ USER ID 0
+INSERT INTO Users ("user", "username", "password", "defaultlogin", "loggedin") VALUES (0, "default", "default", 1, 1)CREATE DEFAULT TODO LIST FOR CREATE DEFAULT LIST 0 FOR TESTING UNDER USER 0
+INSERT INTO TodoLists ('list') VALUES (0)
+CREATE DEFAULT TASK FOR TESTING IN LIST 0
+INSERT INTO TodoMain ('user') VALUES ('0')
+CREATE DEFAULT TASK FOR TESTING CALENDAR
+INSERT INTO CalendarMain ('user') VALUES ('0')
+CREATE DEFAULT FAVORITE TASK FOR TESTING FAVORITES TODO
+INSERT INTO FavoriteTodo ('user') VALUES ('0')
+CREATE DEFAULT FAVORITE TASK FOR TESTING FAVORITES CALENDAR
+INSERT INTO FavoriteCalendar ('user') VALUES ('0')
+CREATE DEFAULT ACTIVE REMINDER FOR TESTING ACTIVE REMINDERS OF TEST EVENT 0 <<<<<NEEDS SOURCE AND REMIND TIME>>>>>
+INSERT INTO ActiveReminders ('id') VALUES (0)
