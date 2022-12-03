@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/new_ribbon_frame_banner"
+        android:background="@color/purple_700" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/new_todo_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="0dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout"
+            android:id="@+id/new_todo_name_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/general_task_name_hint"
+            android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
+            app:layout_constraintEnd_toStartOf="@id/new_todo_pin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"  >
+
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditText"
+                android:id="@+id/new_todo_name_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/new_todo_pin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/menu_ribbon_pin_description"
+            android:src="@drawable/ic_baseline_push_pin_alt_24"
+            android:layout_marginTop="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/new_todo_name_layout"
+
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
+        android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
+        >
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/new_todo_chipgroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/new_todo_chip_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_chip_description_text"
+                app:iconStartPadding="@dimen/general_chip_icon_padding"
+                app:chipIcon="@drawable/ic_baseline_description_24" />
+
+            <com.google.android.material.chip.Chip
+                android:visibility="gone"
+                android:id="@+id/new_todo_chip_due"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_chip_due_text"
+                app:iconStartPadding="@dimen/general_chip_icon_padding"
+                app:chipIcon="@drawable/ic_baseline_date_range_24" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/new_todo_description_layout"
+        app:counterEnabled="true"
+        app:counterMaxLength="250"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/generic_task_description_hint"
+        android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
+        android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/new_todo_description_edit"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="250"
+            android:maxLines="5"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/action_bar_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/generic_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/red_menu"
+            app:srcCompat="@drawable/ic_cancel_24_ico"
+            android:contentDescription="@string/generic_cancel_button_description"
+            android:tint="@color/white"
+            />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/generic_confirm_button"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/green_menu"
+            app:srcCompat="@drawable/ic_baseline_check_24"
+            android:contentDescription="@string/generic_confirm_button_description"
+            android:tint="@color/white"
+            />
+    </LinearLayout>
+
+</LinearLayout>

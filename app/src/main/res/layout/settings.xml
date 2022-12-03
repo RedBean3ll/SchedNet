@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.SettingsFragment"
+    android:background="@color/purple_700"
+    >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/TitleBar.Settings"
+        android:id="@+id/settings_label"
+        android:text="@string/settings_default_name"
+        android:maxLength="15"
+        android:background="@color/purple_500" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/calendar_gray" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp" >
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings" >
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/SettingsButton"
+                    android:id="@+id/settings_update_name_button"
+                    android:text="@string/settings_update_name_text"
+                    android:background="@color/purple_700" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings" >
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/SettingsButton"
+                    android:id="@+id/settings_update_question_button"
+                    android:text="@string/settings_update_question_text"
+                    android:background="@color/purple_700" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings" >
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/SettingsButton"
+                    android:id="@+id/settings_update_password_button"
+                    android:text="@string/settings_update_password_button"
+                    android:background="@color/purple_700" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings"
+                android:minWidth="550dp" >
+                <GridLayout
+                    style="@style/SettingsTable"
+                    android:columnCount="2" >
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SettingsSubSectionHeader"
+                        android:paddingBottom="5dp"
+                        android:text="@string/settings_event_preference_table_text"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_columnSpan="2" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SettingsTableLabels"
+                        android:text="@string/settings_expiration_todo_text"
+                        android:layout_width="200dp"
+                        android:layout_columnSpan="1" />
+
+                    <androidx.cardview.widget.CardView
+                        style="@style/CardView.Settings"
+                        android:layout_marginTop="0dp"
+                        app:cardCornerRadius="0dp"
+                        >
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/settings_todo_expiration_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="50dp"
+                            android:layout_column="1"
+                            android:entries="@array/garbage_collector_todo"
+                            app:backgroundTint="@color/black" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/SettingsTableLabels"
+                        android:text="@string/settings_expiration_calendar_text"
+                        android:layout_columnSpan="1"
+                        android:layout_width="200dp" />
+
+                    <androidx.cardview.widget.CardView
+                        style="@style/CardView.Settings"
+                        android:layout_marginTop="0dp"
+                        app:cardCornerRadius="0dp" >
+                        <androidx.appcompat.widget.AppCompatSpinner
+                            android:id="@+id/settings_calendar_expiration_spinner"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:minHeight="50dp"
+                            android:layout_columnSpan="1"
+                            android:entries="@array/garbage_collector_calendar"
+                            app:backgroundTint="@color/black" />
+
+                    </androidx.cardview.widget.CardView>
+                </GridLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/SettingsSubSectionHeader.Bar"
+                android:text="@string/settings_favorites_header" />
+
+            <androidx.cardview.widget.CardView
+                style="@style/CardView.Settings"
+                android:layout_marginTop="5dp" >
+                <androidx.appcompat.widget.SwitchCompat
+                    style="@style/SwitchUniversal.Settings"
+                    android:theme="@style/SwitchCompatTheme"
+                    android:id="@+id/settings_favorite_mode_switch"
+                    android:switchTextOff="HEY"
+                    android:text="@string/default_profile_type_off_text"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/SettingsButton"
+                android:id="@+id/settings_logout_button"
+                android:text="@string/settings_logout_text"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:background="@color/purple_700" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/SettingsButton"
+                android:id="@+id/settings_delete_button"
+                android:text="@string/settings_delete_text"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:background="@color/red_error" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

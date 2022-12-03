@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/TitleBar"
+        android:id="@+id/favorite_label"
+        android:text="@string/favorite_list_select_text"
+        android:textColor="@color/white"
+        android:background="@color/purple_700" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/favorite_list_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/list_ribbon_favorite_menu"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/generic_cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/red_menu"
+        android:contentDescription="@string/generic_cancel_button_description"
+        android:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/generic_calendar_recyclerview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_cancel_24_ico" />
+
+
+</LinearLayout>

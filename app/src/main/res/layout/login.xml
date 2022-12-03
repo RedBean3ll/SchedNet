@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragments.LoginFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/LoginTitleBar"
+        android:id="@+id/login_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:columnCount="2"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_label">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/LoginLabels"
+            android:id="@+id/login_username_label"
+            android:layout_columnSpan="2"
+            android:text="@string/login_username_text"
+            android:layout_marginTop="10dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout.Login"
+            android:id="@+id/login_username_layout"
+            android:layout_columnSpan="2"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
+            android:hint="@string/login_username_hint" >
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditText.Login"
+                android:id="@+id/login_username_edit"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/LoginLabels"
+            android:id="@+id/login_password_label"
+            android:layout_columnSpan="2"
+            android:text="@string/login_password_text" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout.Login"
+            android:id="@+id/login_password_layout"
+            android:layout_columnSpan="2"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            android:hint="@string/login_password_hint"
+            app:passwordToggleEnabled="true" >
+            <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditText.Login"
+                android:id="@+id/login_password_edit"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            style="@style/CheckboxUniversal.LoginCheckbox"
+            android:id="@+id/login_check_box_remember"
+            android:layout_column="0"
+            android:text="@string/login_remember_text" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/EndButton"
+            android:id="@+id/login_forgot_button"
+            android:layout_column="1"
+            android:layout_columnSpan="1"
+            android:text="@string/login_forgot_text" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/EndButton"
+            android:id="@+id/login_register_button"
+            android:layout_columnSpan="2"
+            android:text="@string/login_register_text" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/LoginButton"
+            android:id="@+id/login_button"
+            android:text="@string/login_local_text"
+            android:layout_columnSpan="2" />
+    </GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

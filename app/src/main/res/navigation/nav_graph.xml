@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/login_fragment"
+    >
+
+    <fragment
+        android:id="@+id/login_fragment"
+        android:name="com.zybooks.schednet.fragments.LoginFragment"
+        android:label="@string/nav_login"
+        tools:layout="@layout/login" >
+        <action
+            android:id="@+id/show_signup"
+            app:destination="@id/signup_fragment" />
+        <action
+            android:id="@+id/show_forgot"
+            app:destination="@id/forgot_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signup_fragment"
+        android:name="com.zybooks.schednet.fragments.SignupFragment"
+        tools:layout="@layout/signup" />
+
+    <fragment
+        android:id="@+id/forgot_fragment"
+        android:name="com.zybooks.schednet.fragments.ForgotFragment"
+        tools:layout="@layout/forgot" >
+        <action
+            android:id="@+id/show_forgot_question"
+            app:destination="@id/forgot_question_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgot_question_fragment"
+        android:name="com.zybooks.schednet.fragments.ForgotQuestionFragment"
+        tools:layout="@layout/forgot_question" >
+        <argument
+            android:name="user.ky"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>

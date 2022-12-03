@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_stage"
+    app:startDestination="@id/todo_hub_fragment"
+    >
+
+    <fragment
+        android:id="@+id/todo_hub_fragment"
+        android:name="com.zybooks.schednet.fragments.ListFragment"
+        android:label="@string/nm_todo_hub"
+        tools:layout="@layout/list" >
+        <action
+            android:id="@+id/show_todo_list"
+            app:destination="@id/todo_list_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/todo_list_fragment"
+        android:name="com.zybooks.schednet.fragments.TodoFragment"
+        android:label="@string/nav_todo_list"
+        tools:layout="@layout/todo_list" >
+        <action
+            android:id="@+id/show_todo_edit"
+            app:destination="@id/todo_edit_fragment" />
+        <argument
+            android:name="list.ky"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/todo_edit_fragment"
+        android:name="com.zybooks.schednet.fragments.TodoEditFragment"
+        android:label="@string/nav_todo_edit"
+        tools:layout="@layout/todo_edit"
+        >
+        <argument
+            android:name="event.ky"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendar_fragment"
+        android:name="com.zybooks.schednet.fragments.CalendarFragment"
+        android:label="@string/nm_calendar"
+        tools:layout="@layout/calendar" >
+        <action
+            android:id="@+id/show_list_calendar"
+            app:destination="@id/calendar_list_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendar_list_fragment"
+        android:name="com.zybooks.schednet.fragments.CalendarListFragment"
+        android:label="Calendar List"
+        tools:layout="@layout/calendar_list">
+        <action
+            android:id="@+id/show_calendar_edit"
+            app:destination="@id/calendar_edit_fragment" />
+        <argument
+            android:name="year.ky"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/calendar_edit_fragment"
+        android:name="com.zybooks.schednet.fragments.CalendarEditFragment"
+        android:label="Calendar Edit"
+        tools:layout="@layout/calendar_edit" >
+        <argument
+            android:name="event.ky"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorite_fragment"
+        android:name="com.zybooks.schednet.fragments.FavoriteFragment"
+        android:label="@string/nm_favorite"
+        tools:layout="@layout/favorite"
+        >
+        <action
+            android:id="@+id/show_favorite_edit"
+            app:destination="@id/favorite_edit_fragment"
+            />
+        <action
+            android:id="@+id/show_favorite_list_select"
+            app:destination="@id/favorite_list_select_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorite_edit_fragment"
+        android:name="com.zybooks.schednet.fragments.FavoriteEditFragment"
+        android:label="Edit Favorite Todo"
+        tools:layout="@layout/favorite_edit" >
+        <argument
+            android:name="favorite.ky"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="mode.ky"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorite_list_select_fragment"
+        android:name="com.zybooks.schednet.fragments.FavoriteListSelectFragment"
+        android:label="@string/nav_favorite_list_select"
+        tools:layout="@layout/favorite_list_select" >
+        <argument
+            android:name="favorite.ky"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settings_fragment"
+        android:name="com.zybooks.schednet.fragments.SettingsFragment"
+        android:label="@string/nm_settings"
+        tools:layout="@layout/settings" >
+        <action
+            android:id="@+id/show_question_edit"
+            app:destination="@id/update_questions_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/update_questions_fragment"
+        android:name="com.zybooks.schednet.fragments.SettingsUpdateQuestionFragment"
+        android:label="@string/nav_settings_edit_question"
+        tools:layout="@layout/settings_questions_edit" />
+
+
+</navigation>
