@@ -2,7 +2,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
@@ -14,29 +13,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/new_list_body"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:minWidth="550dp"
         android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-        >
+        android:paddingBottom="5dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout"
             android:id="@+id/new_list_layout"
             android:layout_width="match_parent"
+            android:minWidth="550dp"
+
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:hint="@string/general_list_name_hint"
-            app:boxStrokeErrorColor="@color/red_error"
-            app:errorIconDrawable="@drawable/ic_baseline_error_24"
-            app:errorTextAppearance="@color/red_error"
-
-            app:errorTextColor="@color/red_error"
-            app:hintTextColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditText"
                 android:id="@+id/new_list_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,8 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        >
+        android:layout_marginTop="10dp" >
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/generic_cancel_button"
@@ -62,8 +59,7 @@
             android:background="@color/red_menu"
             app:srcCompat="@drawable/ic_cancel_24_ico"
             android:contentDescription="@string/generic_cancel_button_description"
-            android:tint="@color/white"
-            />
+            android:tint="@color/white" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/generic_confirm_button"
@@ -73,9 +69,6 @@
             android:background="@color/green_menu"
             app:srcCompat="@drawable/ic_baseline_check_24"
             android:contentDescription="@string/generic_confirm_button_description"
-            android:tint="@color/white"
-            />
+            android:tint="@color/white" />
     </LinearLayout>
-
-
 </LinearLayout>

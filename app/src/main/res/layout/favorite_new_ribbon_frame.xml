@@ -13,31 +13,28 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/new_favorite_body"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:minWidth="550dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:paddingEnd="10dp"
         android:paddingStart="0dp"
         android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-        >
+        android:paddingBottom="5dp" >
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputEditText"
             android:id="@+id/new_favorite_profile_name_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
             android:hint="@string/general_favorite_name_hint"
-            app:boxStrokeErrorColor="@color/red_error"
-            app:errorIconDrawable="@drawable/ic_baseline_error_24"
-            app:errorTextAppearance="@color/red_error"
-
-            app:errorTextColor="@color/red_error"
-            app:hintTextColor="@color/black"
             app:layout_constraintEnd_toStartOf="@id/new_favorite_pin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditText"
                 android:id="@+id/new_favorite_profile_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,8 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/general_task_name_hint"
-                app:iconStartPadding="@dimen/general_chip_icon_padding"
-                app:chipIcon="@drawable/ic_uknn_tmp_ico" />
+                app:iconStartPadding="@dimen/general_chip_icon_padding" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/new_favorite_chip_description"
@@ -93,6 +89,7 @@
     </HorizontalScrollView>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/TextInputLayout"
         android:id="@+id/new_favorite_name_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -100,15 +97,9 @@
         android:hint="@string/general_task_name_hint"
         android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
         android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
-        app:boxStrokeErrorColor="@color/red_error"
-        app:errorIconDrawable="@drawable/ic_baseline_error_24"
-        app:errorTextAppearance="@color/red_error"
-        app:errorTextColor="@color/red_error"
-        app:hintTextColor="@color/black"
-        android:visibility="gone"
-        >
-
+        android:visibility="gone" >
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/TextInputEditText"
             android:id="@+id/new_favorite_name_edit"
             android:inputType="text"
             android:layout_width="match_parent"
@@ -129,6 +120,7 @@
         >
 
         <com.google.android.material.textfield.TextInputEditText
+            style="@style/TextInputEditText"
             android:id="@+id/new_favorite_description_edit"
             android:inputType="textMultiLine"
             android:layout_width="match_parent"
@@ -139,24 +131,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/new_favorite_error"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="*No date specified"
-        android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
-        android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
-        android:textColor="@color/red_error"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:visibility="gone"
-        />
-
-    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/new_favorite_event_name_missing"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="*Event name field is empty"
+        android:text="@string/error_name_field_empty_text"
         android:textStyle="bold"
         android:textSize="15sp"
         android:layout_marginStart="10dp"

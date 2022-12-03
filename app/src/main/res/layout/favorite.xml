@@ -6,13 +6,13 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatTextView
-        style="@style/TitleBar"
         android:id="@+id/favorite_label"
+        style="@style/TitleBar"
+        android:background="@color/purple_700"
         android:text="@string/favorite_label_text"
         android:textColor="@color/white"
-        android:background="@color/purple_700"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -5,9 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.zybooks.schednet.Utils.DatabaseManager
+import com.zybooks.schednet.utils.DatabaseManager
+
+/**
+ *  File: MainActivity.kt
+ *  @author Matthew Clark
+ */
 
 class MainActivity : AppCompatActivity() {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

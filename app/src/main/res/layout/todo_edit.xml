@@ -14,36 +14,29 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" >
+        android:layout_weight="1"
+        android:paddingStart="20dp"
+        android:layout_marginTop="20dp"
+        android:paddingEnd="10dp" >
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            >
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text="General:"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+            android:layout_gravity="center_horizontal" >
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                style="@style/TextInputLayout"
                 android:id="@+id/edit_todo_name_layout"
-                android:hint="Task Name"
+                android:hint="@string/general_task_name_hint"
                 app:hintTextColor="@color/text_black"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                app:errorTextColor="@color/red_error"
-                app:errorTextAppearance="@color/red_error"
-                app:boxStrokeErrorColor="@color/red_error" >
+                android:maxWidth="550dp"
+                android:minWidth="550dp" >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
                     android:id="@+id/edit_todo_name_edit"
                     android:inputType="text"
                     android:layout_width="match_parent"
@@ -54,18 +47,18 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:id="@+id/edit_todo_description_layout"
-                android:hint="Description"
-                app:counterEnabled="true"
-                app:counterMaxLength="100"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_width="match_parent"
+                style="@style/TextInputLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                >
+                android:layout_marginTop="10dp"
+                android:hint="@string/generic_task_description_hint"
+                android:maxWidth="550dp"
+                android:minWidth="550dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="100">
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
                     android:id="@+id/edit_todo_description_edit"
                     android:inputType="textMultiLine"
                     android:layout_width="match_parent"
@@ -77,16 +70,22 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <CheckBox
-                android:id="@+id/edit_todo_check_box"
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/edit_todo_switch"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="is Pinned?"
+                android:text="@string/pinned_switch_text"
                 android:textStyle="bold"
                 android:buttonTint="@color/purple_700"
+                android:maxWidth="550dp"
+                android:minWidth="550dp"
                 android:textSize="15sp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:theme="@style/SwitchCompatTheme"
+                />
         </LinearLayout>
 
 
@@ -109,8 +108,7 @@
             android:background="@color/red_menu"
             app:srcCompat="@drawable/ic_cancel_24_ico"
             android:contentDescription="@string/generic_cancel_button_description"
-            android:tint="@color/white"
-            />
+            android:tint="@color/white" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/generic_confirm_button"
@@ -120,8 +118,6 @@
             android:background="@color/green_menu"
             app:srcCompat="@drawable/ic_baseline_check_24"
             android:contentDescription="@string/generic_confirm_button_description"
-            android:tint="@color/white"
-            />
+            android:tint="@color/white" />
     </LinearLayout>
-
 </LinearLayout>

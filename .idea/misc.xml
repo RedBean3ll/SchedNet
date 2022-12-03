@@ -53,7 +53,7 @@
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/activity_home_page.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/activity_local_hub.xml" value="0.22" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/activity_login_page.xml" value="0.25" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/activity_main.xml" value="0.145" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/activity_sign_up_form.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/activity_stage.xml" value="0.1470713980333476" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/activity_todo_page.xml" value="0.22" />
@@ -62,16 +62,16 @@
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar.xml" value="0.2159090909090909" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_cell.xml" value="0.67" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_day_list_bottom.xml" value="0.23300555793073963" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_edit.xml" value="0.25" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_list.xml" value="0.21" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_edit.xml" value="0.33" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_list.xml" value="0.13" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_list_bottom.xml" value="0.22" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_main.xml" value="0.26403985507246375" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/calendar_new_ribbon_frame.xml" value="0.2033678756476684" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/event_cell.xml" value="0.5" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite.xml" value="0.2818590704647676" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite.xml" value="0.22" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_calendar_edit.xml" value="0.22420537897310513" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_calendar_new_ribbon_frame.xml" value="0.3009833262077811" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_edit.xml" value="0.15520833333333334" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_edit.xml" value="0.33" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_list_select.xml" value="0.22420537897310513" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_new_ribbon_frame.xml" value="0.33" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/favorite_todo_edit.xml" value="0.22420537897310513" />
@@ -82,31 +82,37 @@
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/forgot_question.xml" value="0.25" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/hey.xml" value="0.17657118426678067" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/layout.xml" value="0.35260416666666666" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list.xml" value="0.33" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list.xml" value="0.1" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_edit_ribbon_frame.xml" value="0.25" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_new_ribbon_frame.xml" value="0.33" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_new_ribbon_frame.xml" value="0.14215686274509803" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_ribbon_calendar.xml" value="0.28558476881233" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_ribbon_favorite.xml" value="0.1" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_ribbon_favorite.xml" value="0.22" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_ribbon_favorite_menu.xml" value="0.2" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_ribbon_frame.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_ribbon_menu.xml" value="0.28558476881233" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/list_ribbon_todo.xml" value="0.21975203078238564" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/login.xml" value="0.12143439282803586" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/menu_ribbon_frame.xml" value="0.23428815733219324" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/name_edit_ribbon_frame.xml" value="0.25" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/name_new_ribbon_frame.xml" value="0.15546875" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/new_password_frame.xml" value="0.15546875" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/sched_shelf.xml" value="0.23125" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/settings.xml" value="0.33" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/settings.xml" value="0.2" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/settings_questions_edit.xml" value="0.18" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/shelf_todo.xml" value="0.2398989898989899" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/signup.xml" value="0.25" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/signup.xml" value="0.17" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/task_hub.xml" value="0.33" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/test_bottom.xml" value="0.1" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_edit.xml" value="0.22" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_edit_ribbon_page.xml" value="0.3009833262077811" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_hub.xml" value="0.1470713980333476" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_list.xml" value="0.28815733219324496" />
-        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_new_ribbon_frame.xml" value="0.22" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_new_ribbon_frame.xml" value="0.19507575757575757" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_ribbon.xml" value="0.33" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/todo_ribbon_frame.xml" value="0.18" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/trash_activity.xml" value="0.25" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/warning_dialog.xml" value="0.13005050505050506" />
+        <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/layout/warning_dialog_fragment.xml" value="0.1" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1470713980333476" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/mipmap-anydpi-v26/ic_lanucher.xml" value="0.159" />
         <entry key="..\:/Users/matth/AndroidStudioProjects/SchedNet/app/src/main/res/mipmap-anydpi-v26/ic_lanucher_round.xml" value="0.159" />

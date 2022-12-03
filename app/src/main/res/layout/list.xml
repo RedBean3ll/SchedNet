@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         style="@style/TitleBar"
         android:id="@+id/list_label"
         android:text="@string/list_label_text"
@@ -37,16 +37,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         >
 
-        <ImageButton
-            android:id="@+id/list_actionbar_dots"
-            style="@style/ActionBar.Element"
-            android:layout_marginStart="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_menu_dot_settings_ico"
-            android:contentDescription="@string/generic_dots_description" />
-
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/list_actionbar_new_list"
             style="@style/ActionBar.AddElement"
             android:contentDescription="@string/generic_add_element_description"

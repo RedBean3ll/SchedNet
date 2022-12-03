@@ -20,7 +20,6 @@
     <color name="calendar_gray">#F5F5F5</color>
     <color name="text_white">#FFFFFFFF</color>
     <color name="text_black">#FF000000</color>
-
     <color name="default_text_hint">#757575</color>
-    <color name="mtrl_textinput_default_box_stroke_color" tools:orerride="true">#FF3700B3</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#FF3700B3</color>
 </resources>

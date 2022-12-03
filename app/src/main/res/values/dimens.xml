@@ -2,11 +2,8 @@
 <resources>
     <dimen name="global_twenty">20dp</dimen>
     <dimen name="ActionBarPadding">10dp</dimen>
-
     <dimen name="GenericBarElementSize">50dp</dimen>
-
     <dimen name="TitleBarPadding">10dp</dimen>
-
     <dimen name="general_chip_icon_padding">4dp</dimen>
     <dimen name="chip_group_holder_horizontal_margin">10dp</dimen>
     <dimen name="new_ribbon_frame_banner">50dp</dimen>

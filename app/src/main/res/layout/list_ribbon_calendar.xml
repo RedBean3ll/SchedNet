@@ -1,63 +1,53 @@
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardElevation="0dp"
-    >
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/sample_ribbon_body"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        >
-
-        <CheckBox
-            android:visibility="gone"
-            android:id="@+id/sample_ribbon_checkbox"
-            android:buttonTint="@color/purple_700"
-            android:maxLength="65"
-            android:paddingStart="10dp"
-            android:paddingEnd="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/sample_ribbon_title"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
-        <TextView
+    android:layout_height="60dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:background="@color/white" >
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/sample_ribbon_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
             android:textSize="20sp"
             android:maxLines="3"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/text_black"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/sample_ribbon_pin"
-            app:layout_constraintStart_toEndOf="@id/sample_ribbon_checkbox"
+            app:layout_constraintEnd_toStartOf="@id/sample_ribbon_time_box"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:visibility="invisible"
-            android:id="@+id/sample_ribbon_pin"
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_push_pin_alt_24"
-            android:backgroundTint="@color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <LinearLayout
+            android:id="@+id/sample_ribbon_time_box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/sample_ribbon_title"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/menu_ribbon_pin_description"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_constraintBottom_toBottomOf="parent" >
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sample_ribbon_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                        />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sample_ribbon_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                        />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

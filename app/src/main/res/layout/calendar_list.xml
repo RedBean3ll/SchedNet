@@ -16,15 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="No upcoming events"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:layout_weight="0"
-        />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/generic_calendar_recyclerview"
         android:layout_width="match_parent"
@@ -33,7 +24,7 @@
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/style_bar"
+        app:layout_constraintTop_toBottomOf="@id/calendar_list_label"
         app:layout_constraintBottom_toTopOf="@id/generic_cancel_button"
         tools:listitem="@layout/list_ribbon_calendar"
         />

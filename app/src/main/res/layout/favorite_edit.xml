@@ -13,37 +13,29 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        >
+        android:layout_marginTop="10dp"
+        android:layout_weight="1" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             >
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:text="General:"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout"
                 android:id="@+id/edit_favorite_profile_name_layout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:minWidth="550dp"
+                android:maxWidth="550dp"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
-                android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
-                android:hint="@string/general_favorite_name_hint"
-                app:boxStrokeErrorColor="@color/red_error"
-                app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                app:errorTextAppearance="@color/red_error"
 
-                app:errorTextColor="@color/red_error"
-                app:hintTextColor="@color/black">
-
+                android:hint="@string/general_favorite_name_hint" >
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
                     android:id="@+id/edit_favorite_profile_name_edit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,20 +44,18 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout"
                 android:id="@+id/edit_favorite_name_layout"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:minWidth="550dp"
+                android:maxWidth="550dp"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="@string/general_task_name_hint"
-                android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
-                android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
-                app:boxStrokeErrorColor="@color/red_error"
-                app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                app:errorTextAppearance="@color/red_error"
-                app:errorTextColor="@color/red_error"
-                app:hintTextColor="@color/black" >
+                android:hint="@string/general_task_name_hint" >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
                     android:id="@+id/edit_favorite_name_edit"
                     android:inputType="text"
                     android:layout_width="match_parent"
@@ -73,36 +63,39 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout"
                 android:id="@+id/edit_favorite_description_layout"
                 app:counterEnabled="true"
                 app:counterMaxLength="250"
                 android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
+                android:minWidth="550dp"
+                android:maxWidth="550dp"
+                android:layout_gravity="center"
                 android:layout_height="wrap_content"
-                android:hint="@string/generic_task_description_hint"
-                android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
-                android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
-                >
-
+                android:hint="@string/generic_task_description_hint" >
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
                     android:id="@+id/edit_favorite_description_edit"
                     android:inputType="textMultiLine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLength="250"
-                    android:maxLines="5"
-                    />
+                    android:maxLines="5" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatCheckBox
-                android:id="@+id/edit_favorite_check_box"
-                android:layout_width="match_parent"
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/edit_favorite_switch"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="is Pinned?"
-                android:textStyle="bold"
-
+                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:maxWidth="550dp"
+                android:minWidth="550dp"
+                android:text="@string/pinned_switch_text"
+                android:textStyle="bold"
+                android:theme="@style/SwitchCompatTheme" />
 
         </LinearLayout>
 

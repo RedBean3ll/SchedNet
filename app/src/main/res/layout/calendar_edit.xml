@@ -15,42 +15,30 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1" >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:orientation="vertical"
-            >
-
-
-            <TextView
-                android:text="General:"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:orientation="vertical" >
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                style="@style/TextInputLayout"
                 android:id="@+id/ribbon_name_casing"
-                android:hint="Task Name"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                app:errorTextAppearance="@color/red_error"
-                app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                app:errorIconTint="@color/red_error"
-                app:boxStrokeErrorColor="@color/red_error"
-                app:errorTextColor="@color/red_error"
-                >
+                android:hint="@string/general_task_name_hint"
+                android:minWidth="550dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
                     android:id="@+id/ribbon_name"
                     android:inputType="text"
                     android:layout_width="match_parent"
+                    android:minWidth="550dp"
                     android:layout_height="wrap_content"
                     android:maxLength="30"
                     />
@@ -58,21 +46,21 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/TextInputLayout"
                 android:id="@+id/ribbon_description_casing"
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                android:hint="Description"
+                android:hint="@string/generic_task_description_hint"
                 app:counterEnabled="true"
                 app:counterMaxLength="100"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
                 <com.google.android.material.textfield.TextInputEditText
+                    style="@style/TextInputEditText"
                     android:id="@+id/ribbon_description"
                     android:inputType="textMultiLine"
                     android:layout_width="match_parent"
+                    android:minWidth="550dp"
                     android:layout_height="wrap_content"
                     android:maxLines="3"
                     android:maxLength="100"
@@ -80,33 +68,28 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Date:"
-                />
-
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal" >
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/ribbon_date_casing"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                    android:hint="Time Result"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
+                    style="@style/TextInputLayout"
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:enabled="false"
-                    app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                    app:errorIconTint="@color/red_error"
-                    app:boxStrokeErrorColor="@color/red_error"
-                    >
+                    android:minWidth="550dp"
+                    android:hint="@string/calendar_result_text"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/date_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
                     <com.google.android.material.textfield.TextInputEditText
+                        style="@style/TextInputEditText"
                         android:id="@+id/ribbon_date"
                         android:inputType="text"
                         android:maxLines="1"
@@ -120,10 +103,13 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     app:srcCompat="@drawable/ic_baseline_date_range_24"
-                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="@color/gray_classic"
                     android:layout_marginEnd="10dp"
-
-                    />
+                    android:contentDescription="@string/time_button_description"
+                    app:layout_constraintTop_toTopOf="@id/ribbon_date_casing"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="10dp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

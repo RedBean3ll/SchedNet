@@ -14,31 +14,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/new_list_body"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:minWidth="550dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:paddingStart="0dp"
         android:paddingEnd="10dp"
         android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-        >
-
+        android:paddingBottom="5dp" >
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout"
             android:id="@+id/new_list_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/general_list_name_hint"
-            app:hintTextColor="@color/black"
             android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
             app:layout_constraintEnd_toStartOf="@id/new_list_pin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            app:errorIconDrawable="@drawable/ic_baseline_error_24"
-            app:errorTextColor="@color/red_error"
-            app:errorTextAppearance="@color/red_error"
-            app:boxStrokeErrorColor="@color/red_error" >
+            app:layout_constraintTop_toTopOf="parent" >
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditText"
                 android:id="@+id/new_list_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

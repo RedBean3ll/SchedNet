@@ -16,29 +16,24 @@
         android:id="@+id/new_todo_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingEnd="10dp"
         android:paddingStart="0dp"
         android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-        >
+        android:paddingEnd="10dp"
+        android:paddingBottom="5dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout"
             android:id="@+id/new_todo_name_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="@string/general_task_name_hint"
-            app:hintTextColor="@color/black"
             android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
             app:layout_constraintEnd_toStartOf="@id/new_todo_pin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
-            app:errorIconDrawable="@drawable/ic_baseline_error_24"
-            app:errorTextColor="@color/red_error"
-            app:errorTextAppearance="@color/red_error"
-            app:boxStrokeErrorColor="@color/red_error" >
+            app:layout_constraintTop_toTopOf="parent"  >
 
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditText"
                 android:id="@+id/new_todo_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -95,7 +90,6 @@
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/new_todo_description_layout"

@@ -18,7 +18,7 @@
             android:contentDescription="@string/generic_previous_description"
             app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/control_pane_label"
             style="@style/ElementLabel"
             android:text="@string/generic_date_description"
@@ -40,25 +40,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/calendar_control_bar" >
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/DetailPane.Element"
             android:text="@string/calendar_weekday_sun" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/DetailPane.Element"
             android:text="@string/calendar_weekday_mon" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/DetailPane.Element"
             android:text="@string/calendar_weekday_tue" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/DetailPane.Element"
             android:text="@string/calendar_weekday_wed" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/DetailPane.Element"
             android:text="@string/calendar_weekday_thur" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/DetailPane.Element"
             android:text="@string/calendar_weekday_fri" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             style="@style/DetailPane.Element"
             android:text="@string/calendar_weekday_sat" />
     </LinearLayout>
@@ -81,9 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" >
 
-
-
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             style="@style/ActionBar.Element"
             android:id="@+id/calendar_list"
             android:contentDescription="@string/generic_actionbar_switch_description"
@@ -93,14 +91,14 @@
             app:srcCompat="@drawable/ic_baseline_format_list_bulleted_24"
             />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/calendar_reset_date"
             style="@style/ActionBar.Element"
             app:srcCompat="@drawable/ic_baseline_rotate_left_24"
             app:layout_constraintStart_toEndOf="@id/calendar_list"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             style="@style/ActionBar.AddElement"
             android:id="@+id/new_calendar_event_button"
             app:layout_constraintEnd_toEndOf="parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:useDefaultMargins="true"
-    tools:context=".Fragments.SignupFragment">
+    tools:context=".fragments.SignupFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/SecurityQuestion"
                 android:id="@+id/forgot_question"
-                android:text="@string/login_question_one" />
+                android:text="@string/forgot_question_one" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/LoginLabels"

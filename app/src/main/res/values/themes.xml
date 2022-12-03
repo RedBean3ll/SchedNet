@@ -54,4 +54,321 @@
         <item name="fontWeight">500</item>
     </style>
 
+    <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxStrokeColor">@color/purple_700</item>
+        <item name="errorIconDrawable">@drawable/ic_baseline_error_24</item>
+        <item name="errorIconTint">@color/red_error</item>
+        <item name="errorTextAppearance">@color/red_error</item>
+        <item name="errorTextColor">@color/red_error</item>
+        <item name="boxStrokeErrorColor">@color/red_error</item>
+        <item name="hintTextColor">@color/default_text_hint</item>
+        <item name="android:textColorHint">@color/default_text_hint</item>
+    </style>
+
+    <style name="TextInputLayout.Register">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="TextInputLayout.Login">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:minWidth">550dp</item>
+        <item name="android:maxWidth">550dp</item>
+    </style>
+
+    <style name="TextInputEditText">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextInputEditText.Login">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SubLoginLabel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center|bottom</item>
+        <item name="android:background">@color/purple_700</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="RegistrationProgress">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+        <item name="android:backgroundTint">@color/gray_classic</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="SecurityQuestion">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:maxWidth">550dp</item>
+        <item name="android:minWidth">550dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CheckboxUniversal">
+        <item name="android:buttonTint">@color/purple_700</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CheckboxUniversal.LoginCheckbox">
+        <item name="android:layout_column">0</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="SwitchUniversal">
+    </style>
+
+    <style name="SwitchUniversal.Settings">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">550dp</item>
+        <item name="android:maxWidth">550dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CardView.Settings">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="cardElevation">5dp</item>
+        <item name="cardCornerRadius">5dp</item>
+    </style>
+
+    <style name="SettingsButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:minWidth">550dp</item>
+        <item name="android:maxWidth">550dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="SettingsSubSectionHeader">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="SettingsSubSectionHeader.Bar">
+        <item name="android:minWidth">550dp</item>
+        <item name="android:maxWidth">550dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="SettingsTable">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="SettingsTableLabels">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">italic|bold</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="TitleBar.Settings">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginStart">50dp</item>
+        <item name="android:layout_marginEnd">50dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">20dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="LoginTitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">180dp</item>
+        <item name="android:paddingBottom">20dp</item>
+        <item name="android:gravity">bottom|center</item>
+        <item name="android:text">@string/login_label_text</item>
+        <item name="android:textSize">60sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:background">@color/purple_700</item>
+    </style>
+
+    <style name="LoginLabels">
+        <item name="android:minWidth">550dp</item>
+        <item name="android:maxWidth">550dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_black</item>
+
+    </style>
+
+    <style name="LoginBackButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+        <item name="android:backgroundTint">@color/red_error</item>
+    </style>
+
+    <style name="LoginButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginBottom">40dp</item>
+        <item name="android:paddingStart">80dp</item>
+        <item name="android:paddingEnd">80dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+        <item name="android:backgroundTint">@color/purple_700</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="EndButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/TitleBarPadding</item>
+        <item name="android:paddingEnd">@dimen/TitleBarPadding</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:lines">1</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/ActionBarPadding</item>
+    </style>
+
+    <style name="ActionBar.Element">
+        <item name="android:layout_width">@dimen/GenericBarElementSize</item>
+        <item name="android:layout_height">@dimen/GenericBarElementSize</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+        <item name="android:layout_marginStart">@dimen/global_twenty</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="ActionBar.AddElement">
+        <item name="android:layout_width">@dimen/GenericBarElementSize</item>
+        <item name="android:layout_height">@dimen/GenericBarElementSize</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:padding">0dp</item>
+    </style>
+
+    <style name="SaveButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:text">@string/generic_save_button_text</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ControlPane">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ElementLeft">
+        <item name="android:layout_width">@dimen/GenericBarElementSize</item>
+        <item name="android:layout_height">@dimen/GenericBarElementSize</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">0dp</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+    </style>
+
+    <style name="ElementRight">
+        <item name="android:layout_width">@dimen/GenericBarElementSize</item>
+        <item name="android:layout_height">@dimen/GenericBarElementSize</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+        <item name="android:background">@drawable/ic_button_background_round</item>
+    </style>
+
+    <style name="ElementLabel">
+        <item name="android:layout_width">@dimen/generic_auto_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical|center_horizontal</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="DetailPane">
+
+    </style>
+
+    <style name="DetailPane.Element">
+        <item name="android:layout_width">@dimen/generic_auto_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">@dimen/calendar_detail_element_text_size</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 </resources>

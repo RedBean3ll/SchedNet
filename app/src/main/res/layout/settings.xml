@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.SettingsFragment"
+    tools:context=".fragments.SettingsFragment"
     android:background="@color/purple_700"
     >
 
@@ -43,7 +43,7 @@
                 style="@style/CardView.Settings" >
                 <androidx.appcompat.widget.AppCompatButton
                     style="@style/SettingsButton"
-                    android:id="@+id/settings_change_question_button"
+                    android:id="@+id/settings_update_question_button"
                     android:text="@string/settings_update_question_text"
                     android:background="@color/purple_700" />
             </androidx.cardview.widget.CardView>
@@ -117,7 +117,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/SettingsSubSectionHeader.Bar"
-                android:text="Favorite Page Preferences" />
+                android:text="@string/settings_favorites_header" />
 
             <androidx.cardview.widget.CardView
                 style="@style/CardView.Settings"
@@ -126,7 +126,8 @@
                     style="@style/SwitchUniversal.Settings"
                     android:theme="@style/SwitchCompatTheme"
                     android:id="@+id/settings_favorite_mode_switch"
-                    android:text="@string/default_profile_type_text"
+                    android:switchTextOff="HEY"
+                    android:text="@string/default_profile_type_off_text"
                     />
             </androidx.cardview.widget.CardView>
 

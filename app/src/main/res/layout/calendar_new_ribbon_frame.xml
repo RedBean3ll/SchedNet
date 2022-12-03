@@ -13,48 +13,42 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/new_calendar_body"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:minWidth="550dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:paddingEnd="10dp"
         android:paddingStart="0dp"
         android:paddingTop="10dp"
-        android:paddingBottom="5dp"
-        >
+        android:paddingBottom="5dp" >
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayout"
             android:id="@+id/new_calendar_name_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
             android:hint="@string/general_task_name_hint"
-            app:boxStrokeErrorColor="@color/red_error"
-            app:errorIconDrawable="@drawable/ic_baseline_error_24"
-            app:errorTextAppearance="@color/red_error"
-
-            app:errorTextColor="@color/red_error"
-            app:hintTextColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            app:layout_constraintTop_toTopOf="parent" >
             <com.google.android.material.textfield.TextInputEditText
+                style="@style/TextInputEditText"
                 android:id="@+id/new_calendar_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
-
         </com.google.android.material.textfield.TextInputLayout>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <HorizontalScrollView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minWidth="550dp"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
-        android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
-        >
+        android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin" >
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/new_calendar_chipgroup"
             android:layout_width="wrap_content"
@@ -110,7 +104,7 @@
         android:id="@+id/new_calendar_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="*No date specified"
+        android:text="@string/error_no_date_specified"
         android:layout_marginStart="@dimen/chip_group_holder_horizontal_margin"
         android:layout_marginEnd="@dimen/chip_group_holder_horizontal_margin"
         android:textColor="@color/red_error"
