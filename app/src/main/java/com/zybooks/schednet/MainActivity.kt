@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, StageActivity::class.java)
             intent.putExtra(StageActivity.MAGIC_NUMBER, attemptAlpha)
             startActivity(intent)
+            finish()
         } else {
             setContentView(R.layout.activity_main)
         }

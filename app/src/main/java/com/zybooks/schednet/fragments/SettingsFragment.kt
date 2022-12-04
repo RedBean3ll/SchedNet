@@ -143,8 +143,8 @@ class SettingsFragment : Fragment(), AlertFragment.OnDismissDialog, NewNameBotto
     fun endSession() {
         val intent = Intent(requireContext(), MainActivity::class.java)
             .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        requireActivity().finish()
         startActivity(intent)
+        requireActivity().finish()
     }
 
     override fun cancelAction() { } //UNUSED

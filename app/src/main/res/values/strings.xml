@@ -144,4 +144,5 @@
     <string name="generic_warning_content_text">All account data will be deleted and unretrievable!</string>
     <string name="settings_favorites_header">Favorite Page Preferences</string>
     <string name="error_no_date_specified">*No date specified</string>
+    <string name="refocus_calendar_button">Refocus to current month</string>
 </resources>

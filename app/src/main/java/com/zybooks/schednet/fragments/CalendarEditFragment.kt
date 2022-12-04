@@ -111,11 +111,6 @@ class CalendarEditFragment: Fragment() {
         return rootView
     }
 
-    override fun onPause() {
-        findNavController().popBackStack()
-        super.onPause()
-    }
-
     private fun callMaterialDatePicker() {
         val materialDatePicker = MaterialDatePicker.Builder
             .datePicker()
@@ -153,6 +148,6 @@ class CalendarEditFragment: Fragment() {
             timeEditText.setText(DateConversions.dateTimeConversion(gDateTime ?: ZonedDateTime.now()))
         }
 
-        materialTimePicker.show(childFragmentManager, "AG")
+        materialTimePicker.show(childFragmentManager, materialTimePicker.tag)
     }
 }

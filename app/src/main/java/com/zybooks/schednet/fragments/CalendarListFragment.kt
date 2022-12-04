@@ -65,12 +65,6 @@ class CalendarListFragment: Fragment(), CalendarEventAdapter.OnRibbonClick, Recy
         listLabel = rootView.findViewById(R.id.calendar_list_label)
         initializer()
 
-
-
-        cancelButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
         return rootView
     }
 
@@ -92,6 +86,10 @@ class CalendarListFragment: Fragment(), CalendarEventAdapter.OnRibbonClick, Recy
         }
 
         gAdapter.submitNewList(gList.toList())
+
+        cancelButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     override fun onClickEvent(position: Int, event: CalendarEvent) {
@@ -105,6 +103,4 @@ class CalendarListFragment: Fragment(), CalendarEventAdapter.OnRibbonClick, Recy
         gList.removeAt(position)
         gAdapter.submitNewList(gList.toList())
     }
-
-
 }

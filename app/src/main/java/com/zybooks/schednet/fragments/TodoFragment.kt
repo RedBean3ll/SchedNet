@@ -19,6 +19,7 @@ import com.zybooks.schednet.model.TodoObject
 import com.zybooks.schednet.R
 import com.zybooks.schednet.StageActivity
 import com.zybooks.schednet.utils.DatabaseManager
+import com.zybooks.schednet.utils.DateConversions
 
 /**
  *  File: TodoFragment.kt
@@ -59,6 +60,9 @@ class TodoFragment : Fragment(), AddTodoBottomFragment.OnDismissInteraction, Tod
         listName = rootView.findViewById(R.id.todo_label)
         recyclerview = rootView.findViewById(R.id.todo_recyclerview)
         newEventButton = rootView.findViewById(R.id.todo_actionbar_new_todo)
+
+        val tempList = DatabaseManager(requireContext()).readGarbageCollectorValues(gId)
+        DatabaseManager(requireContext()).cleanTodo(gId, DateConversions.getDateStampTodo(tempList[0]))
         initializer()
 
         return rootView

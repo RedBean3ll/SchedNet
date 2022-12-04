@@ -96,7 +96,8 @@
             style="@style/ActionBar.Element"
             app:srcCompat="@drawable/ic_baseline_rotate_left_24"
             app:layout_constraintStart_toEndOf="@id/calendar_list"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/refocus_calendar_button" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             style="@style/ActionBar.AddElement"

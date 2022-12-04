@@ -59,7 +59,8 @@
         tools:layout="@layout/calendar_list">
         <action
             android:id="@+id/show_calendar_edit"
-            app:destination="@id/calendar_edit_fragment" />
+            app:destination="@id/calendar_edit_fragment"
+            app:popUpToInclusive="false" />
         <argument
             android:name="year.ky"
             android:defaultValue="-1"

@@ -29,6 +29,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/SecurityQuestion"
                 android:id="@+id/forgot_question"
+                android:textColor="@color/text_black"
                 android:text="@string/forgot_question_one" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -54,6 +55,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/SecurityQuestion"
                 android:id="@+id/forgot_question_two"
+                android:textColor="@color/text_black"
                 android:text="@string/forgot_question_two" />
 
             <androidx.appcompat.widget.AppCompatTextView
