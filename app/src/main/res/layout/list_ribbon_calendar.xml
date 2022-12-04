@@ -37,6 +37,7 @@
                     android:id="@+id/sample_ribbon_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/gray_menu"
                     android:textSize="17sp"
                     android:textStyle="bold"
                         />
@@ -44,6 +45,7 @@
                     android:id="@+id/sample_ribbon_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/gray_menu"
                     android:textStyle="bold"
                     android:textSize="17sp"
                         />
