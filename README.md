@@ -48,5 +48,7 @@ Sometimes, your Android Studio may behave erroneously. There is nothing wrong wi
   
   
 Note: Older computers may not be able to run the AVD.
+  
+  [More Trouble Shooting Info](https://developer.android.com/studio/run/emulator-troubleshooting)
 
 
